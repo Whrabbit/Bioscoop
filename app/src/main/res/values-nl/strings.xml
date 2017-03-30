@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bioscoop</string>
+    <string name="biosBtnString">Bioscoop</string>
+    <string name="filmBtnString">Films</string>
+    <string name="ticketBtnString">Kaarten</string>
+    <string name="logoImgViewString">Bioscoop Logo</string>
+</resources>

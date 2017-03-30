@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bioscoop</string>
+    <string name="app_name">Cinema</string>
     <string-array name="filterType">
         <item>Filteren op</item>
         <item>Genre</item>
@@ -19,4 +19,9 @@
     <string name="film_title">Film title</string>
     <string name="year">Year</string>
     <string name="thumbnail">thumbnail</string>
+    <string name="filmBtnString">Movies</string>
+    <string name="biosBtnString">Cinema</string>
+    <string name="ticketBtnString">Tickets</string>
+    <string name="langSwitchBtnString" translatable="false">English / Dutch</string>
+    <string name="logoImgViewString">Cinema Logo</string>
 </resources>
