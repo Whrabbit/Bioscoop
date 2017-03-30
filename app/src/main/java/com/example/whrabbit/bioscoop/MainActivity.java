@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     Button filmBtn, biosBtn, ticketBtn;
 
     String potato;
+    String test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
     
     public void testMethode(){
         Log.e("potato", "potato");
+
+
+    public void testMethode(){
+        Log.i("TEST", "TEST");
     }
 }
 
