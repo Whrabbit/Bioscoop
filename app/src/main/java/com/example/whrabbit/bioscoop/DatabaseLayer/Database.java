@@ -21,6 +21,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String ROOM_TABLE_NAME = "room";
     private static final String SEAT_TABLE_NAME = "seat";
 
+    private static final String SEA_TABLE_NAME = "seat";
+
     public DatabaseHandler (Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, DB_NAME, factory, DB_VERSION);
 
