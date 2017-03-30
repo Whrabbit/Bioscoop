@@ -10,6 +10,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     Button filmBtn, biosBtn, ticketBtn;
 
+    String potato;
     String test;
 
     @Override
@@ -46,8 +47,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    
+    public void testMethode(){
+        Log.e("potato", "potato");
+
 
     public void testMethode(){
         Log.i("TEST", "TEST");
     }
 }
+
