@@ -35,8 +35,6 @@ public class FilmList extends AppCompatActivity implements AdapterView.OnItemSel
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        TextView tekst = (TextView) view;
-        Toast.makeText(this, "You selected " + tekst.getText(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
