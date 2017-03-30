@@ -16,4 +16,7 @@
         <item>Review</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
+    <string name="film_title">Film title</string>
+    <string name="year">Year</string>
+    <string name="thumbnail">thumbnail</string>
 </resources>
