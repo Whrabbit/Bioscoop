@@ -8,8 +8,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button filmBtn, biosBtn, ticketBtn;
-    String potato;
 
+    String potato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
