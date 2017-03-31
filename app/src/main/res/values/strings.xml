@@ -63,4 +63,14 @@
     <string name="playtimeDatum" translatable="false">Date</string>
     <string name="playtimeStartTime" translatable="false">Start Time</string>
     <string name="playtimeEndTime" translatable="false">End Time</string>
+    <string name="ticketAantalView">Ticket Amount:</string>
+    <string name="ticketStudentView">Student Amount:</string>
+    <string name="ticketKindView">Child Amount:</string>
+    <string name="ticketPrijsView">Price:</string>
+    <string name="ticketPrijsNumber" translatable="false">€</string>
+    <string name="ticketPayView">Payment Method</string>
+    <string name="ticketIDealBttn" translatable="false">IDeal</string>
+    <string name="ticketPaypalBttn" translatable="false">PayPal</string>
+    <string name="ticketCreditBttn" translatable="false">CreditCard</string>
+    <string name="ticketSeatBttn">Seat selection</string>
 </resources>

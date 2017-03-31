@@ -42,4 +42,10 @@
     <string name="infoRuntime">Duur:</string>
     <string name="infoDirector">Regisseur:</string>
     <string name="infoRating">Beoordeling:</string>
+    <string name="ticketAantalView">Aantal Tickets:</string>
+    <string name="ticketStudentView">Aantal Studenten:</string>
+    <string name="ticketKindView">Aantal Kinderen:</string>
+    <string name="ticketPrijsView">Prijs:</string>
+    <string name="ticketPayView">Betaalingsmethode</string>
+    <string name="ticketSeatBttn">Stoel keuze</string>
 </resources>
