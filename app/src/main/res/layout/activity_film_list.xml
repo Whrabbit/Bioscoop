@@ -45,19 +45,19 @@
         android:orientation="horizontal">
 
         <Spinner
-            android:id="@+id/filterType"
+            android:id="@+id/filterTypeSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <Spinner
-            android:id="@+id/filter"
+            android:id="@+id/filterSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <Spinner
-            android:id="@+id/order"
+            android:id="@+id/sortBySpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
@@ -71,7 +71,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/search"
+            android:id="@+id/filmSearchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -80,7 +80,7 @@
             android:inputType="textPersonName" />
 
         <ImageButton
-            android:id="@+id/searchBtn"
+            android:id="@+id/filmSearchBttn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -94,7 +94,7 @@
         android:orientation="horizontal">
 
         <ListView
-            android:id="@+id/filmList"
+            android:id="@+id/filmListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
