@@ -36,9 +36,9 @@
     <string name="filmTicketDate" translatable="false">Date</string>
     <string name="filmTicketAmountString" translatable="false">Amount tickets</string>
     <string name="detailQrImage" translatable="false">QR</string>
-    <string name="detailBuyerName" translatable="false">Name: ...</string>
-    <string name="detailBuyerAge" translatable="false">Age: ...</string>
-    <string name="detailBuyerSeat" translatable="false">Seat: ...</string>
+    <string name="detailBuyerName">Name:</string>
+    <string name="detailBuyerAge">Age:</string>
+    <string name="detailBuyerSeat">Seat:</string>
     <string name="ticketsTabBttn">Tickets</string>
     <string name="reviewsTabBttn">Reviews</string>
     <string name="infoTabBttn" translatable="false">Info</string>
@@ -46,4 +46,21 @@
     <string name="filmBackdrop" translatable="false">Backdrop Film</string>
     <string name="userImage" translatable="false">Person Image of User</string>
     <string name="reviewBox">Write a review...</string>
+    <string name="userName">Logged in as:</string>
+    <string name="userRealName">Name:</string>
+    <string name="reviewSubmitBttn">Submit Review</string>
+    <string name="reviewerName" translatable="false">Username reviewer</string>
+    <string name="infoTitle">Film title</string>
+    <string name="infoRelease">Released:</string>
+    <string name="infoAge">Age:</string>
+    <string name="infoLanguage">Language:</string>
+    <string name="infoRuntime">Runtime:</string>
+    <string name="infoGenre" translatable="false">Genre:</string>
+    <string name="infoDirector">Director:</string>
+    <string name="infoRating">Rating:</string>
+    <string name="infoPlot" translatable="false">Plot:</string>
+    <string name="playtimeDag" translatable="false">Dag</string>
+    <string name="playtimeDatum" translatable="false">Date</string>
+    <string name="playtimeStartTime" translatable="false">Start Time</string>
+    <string name="playtimeEndTime" translatable="false">End Time</string>
 </resources>

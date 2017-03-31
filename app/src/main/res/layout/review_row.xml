@@ -24,7 +24,7 @@
             android:id="@+id/reviewerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="@string/reviewerName"
             android:textSize="16sp" />
 
         <RatingBar
@@ -32,7 +32,6 @@
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="0dp"
             android:isIndicator="false"
             android:numStars="5"
             android:rating="3"
