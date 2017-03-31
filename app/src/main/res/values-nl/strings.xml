@@ -28,4 +28,6 @@
     <string name="detailBuyerName"></string>
     <string name="ticketsTabBttn">Kaarten</string>
     <string name="reviewsTabBttn">Beoordelingen</string>
+    <string name="makeReviewBttn">Review Schrijven</string>
+    <string name="reviewBox">Schrijf een beoordeling...</string>
 </resources>

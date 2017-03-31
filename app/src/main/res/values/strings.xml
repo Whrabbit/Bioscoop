@@ -42,4 +42,8 @@
     <string name="ticketsTabBttn">Tickets</string>
     <string name="reviewsTabBttn">Reviews</string>
     <string name="infoTabBttn" translatable="false">Info</string>
+    <string name="makeReviewBttn">Write Review</string>
+    <string name="filmBackdrop" translatable="false">Backdrop Film</string>
+    <string name="userImage" translatable="false">Person Image of User</string>
+    <string name="reviewBox">Write a review...</string>
 </resources>
