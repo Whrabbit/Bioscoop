@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filterSpinStrings">
+        <item>Genre</item>
+        <item>Leeftijd</item>
+    </string-array>
+    <string-array name="kiesSpinStrings">
+        <item>Genre</item>
+        <item>Leeftijd</item>
+    </string-array>
+    <string-array name="orderSpinStrings">
+        <item>Datum</item>
+        <item>Review</item>
+    </string-array>
+    <string name="app_name">Bioscoop</string>
+    <string name="biosBtnString">Bioscoop</string>
+    <string name="filmBtnString">Films</string>
+    <string name="ticketBtnString">Kaarten</string>
+    <string name="logoImgViewString">Bioscoop Logo</string>
+    <string name="routeViewString">Routebeschrijving</string>
+    <string name="contactNumberViewString">088 en dash 525 75 00</string>
+    <string name="teZienBttnString">Te Zien</string>
+    <string name="bekekenBttnString">Bekeken</string>
+    <string name="filmSearchBarString">Titel...</string>
+    <string name="filmSearchBttnString">Zoek</string>
+    <string name="ticketSearchBarString">Titel...</string>
+    <string name="ticketSearchBttn">Zoek</string>
+    <string name="detailBuyerName">Naam:</string>
+    <string name="ticketsTabBttn">Kaarten</string>
+    <string name="reviewsTabBttn">Beoordelingen</string>
+    <string name="makeReviewBttn">Review Schrijven</string>
+    <string name="reviewBox">Schrijf een beoordeling...</string>
+    <string name="userName">Ingelogd als:</string>
+    <string name="userRealName">Naam:</string>
+    <string name="reviewSubmitBttn">Review Plaatsen</string>
+    <string name="detailBuyerAge">Leeftijd:</string>
+    <string name="detailBuyerSeat">Stoel:</string>
+    <string name="infoTitle">Film titel</string>
+    <string name="infoAge">Leeftijd:</string>
+    <string name="infoLanguage">Taal:</string>
+    <string name="infoRelease">Uitgebracht:</string>
+    <string name="infoRuntime">Duur:</string>
+    <string name="infoDirector">Regisseur:</string>
+    <string name="infoRating">Beoordeling:</string>
+</resources>
