@@ -2,7 +2,6 @@ package com.example.whrabbit.bioscoop;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,8 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.whrabbit.bioscoop.API.Film;
 import com.example.whrabbit.bioscoop.API.FilmAdapter;
@@ -29,7 +26,7 @@ public class FilmList extends AppCompatActivity implements AdapterView.OnItemSel
     ListView filmListView;
     FilmAdapter filmAdapter;
     ArrayList<Film> films;
-    ImageButton filmSearchBttn;
+    Button filmSearchBttn;
     EditText filmSearchBar;
 
     @Override
@@ -40,23 +37,23 @@ public class FilmList extends AppCompatActivity implements AdapterView.OnItemSel
         films = new ArrayList<>();
 
         filterTypeSpinner = (Spinner) findViewById(R.id.filterTypeSpinner);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.filterType,android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.filterTypeSpinnerStrings,android.R.layout.simple_spinner_item);
         filterTypeSpinner.setAdapter(adapter);
         filterTypeSpinner.setOnItemSelectedListener(this);
 
         filterSpinner = (Spinner) findViewById(R.id.filterSpinner);
-        ArrayAdapter a = ArrayAdapter.createFromResource(this, R.array.filter,android.R.layout.simple_spinner_item);
+        ArrayAdapter a = ArrayAdapter.createFromResource(this, R.array.filterSpinnerStrings,android.R.layout.simple_spinner_item);
         filterSpinner.setAdapter(a);
         filterSpinner.setOnItemSelectedListener(this);
 
         sortBySpinner = (Spinner) findViewById(R.id.sortBySpinner);
-        ArrayAdapter o = ArrayAdapter.createFromResource(this, R.array.order,android.R.layout.simple_spinner_item);
+        ArrayAdapter o = ArrayAdapter.createFromResource(this, R.array.sortBySpinnerStrings,android.R.layout.simple_spinner_item);
         sortBySpinner.setAdapter(o);
         sortBySpinner.setOnItemSelectedListener(this);
 
         filmSearchBar = (EditText) findViewById(R.id.filmSearchBar);
 
-        filmSearchBttn = (ImageButton) findViewById(R.id.filmSearchBttn);
+        filmSearchBttn = (Button) findViewById(R.id.filmSearchBttn);
         filmSearchBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

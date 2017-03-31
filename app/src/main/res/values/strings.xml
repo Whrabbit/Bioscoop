@@ -1,22 +1,66 @@
 <resources>
-    <string name="app_name">Bioscoop</string>
-    <string-array name="filterType">
-        <item>Filteren op</item>
+    <string name="app_name">Cinema</string>
+    <string-array name="filterTypeSpinnerStrings">
         <item>Genre</item>
-        <item>Leeftijd</item>
+        <item>Age</item>
     </string-array>
-    <string-array name="filter">
-        <item>Kies</item>
+    <string-array name="filterSpinnerStrings">
         <item>Genre</item>
-        <item>Leeftijd</item>
+        <item>Age</item>
     </string-array>
-    <string-array name="order">
-        <item>Order op</item>
-        <item>Datum</item>
+    <string-array name="sortBySpinnerStrings">
+        <item>Date</item>
         <item>Review</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
-    <string name="film_title">Film title</string>
-    <string name="year">Year</string>
-    <string name="thumbnail">thumbnail</string>
+    <string name="filmBtnString">Movies</string>
+    <string name="biosBtnString">Cinema</string>
+    <string name="ticketBtnString">Tickets</string>
+    <string name="langSwitchBtnString" translatable="false">English / Dutch</string>
+    <string name="logoImgViewString">Cinema Logo</string>
+    <string name="contactNameViewString" translatable="false">Avans Bioscoop</string>
+    <string name="contactLovViewString" translatable="false">Hogeschoollaan 1</string>
+    <string name="contactPostViewString" translatable="false">4818 CR Breda</string>
+    <string name="contactNumberViewString">+31 88 525 75 00</string>
+    <string name="routeViewString">Route Description</string>
+    <string name="contactMailViewString" translatable="false">biosbreda@cinemas.com</string>
+    <string name="teZienBttnString">Now Playing</string>
+    <string name="bekekenBttnString">Recent</string>
+    <string name="filmSearchBarString">Title...</string>
+    <string name="filmSearchBttnString">Search</string>
+    <string name="filmTitleString" translatable="false">Film title</string>
+    <string name="filmYearString" translatable="false">Year</string>
+    <string name="filmImageString" translatable="false">Thumbnail</string>
+    <string name="ticketSearchBarString">Title...</string>
+    <string name="ticketSearchBttn">Search</string>
+    <string name="filmTicketDate" translatable="false">Date</string>
+    <string name="filmTicketAmountString" translatable="false">Amount tickets</string>
+    <string name="detailQrImage" translatable="false">QR</string>
+    <string name="detailBuyerName">Name:</string>
+    <string name="detailBuyerAge">Age:</string>
+    <string name="detailBuyerSeat">Seat:</string>
+    <string name="ticketsTabBttn">Tickets</string>
+    <string name="reviewsTabBttn">Reviews</string>
+    <string name="infoTabBttn" translatable="false">Info</string>
+    <string name="makeReviewBttn">Write Review</string>
+    <string name="filmBackdrop" translatable="false">Backdrop Film</string>
+    <string name="userImage" translatable="false">Person Image of User</string>
+    <string name="reviewBox">Write a review...</string>
+    <string name="userName">Logged in as:</string>
+    <string name="userRealName">Name:</string>
+    <string name="reviewSubmitBttn">Submit Review</string>
+    <string name="reviewerName" translatable="false">Username reviewer</string>
+    <string name="infoTitle">Film title</string>
+    <string name="infoRelease">Released:</string>
+    <string name="infoAge">Age:</string>
+    <string name="infoLanguage">Language:</string>
+    <string name="infoRuntime">Runtime:</string>
+    <string name="infoGenre" translatable="false">Genre:</string>
+    <string name="infoDirector">Director:</string>
+    <string name="infoRating">Rating:</string>
+    <string name="infoPlot" translatable="false">Plot:</string>
+    <string name="playtimeDag" translatable="false">Dag</string>
+    <string name="playtimeDatum" translatable="false">Date</string>
+    <string name="playtimeStartTime" translatable="false">Start Time</string>
+    <string name="playtimeEndTime" translatable="false">End Time</string>
 </resources>
