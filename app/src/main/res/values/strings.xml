@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">Cinema</string>
-    <string-array name="filterSpinStrings">
+    <string-array name="filterTypeSpinnerStrings">
         <item>Genre</item>
         <item>Age</item>
     </string-array>
-    <string-array name="kiesSpinStrings">
+    <string-array name="filterSpinnerStrings">
         <item>Genre</item>
         <item>Age</item>
     </string-array>
-    <string-array name="orderSpinStrings">
+    <string-array name="sortBySpinnerStrings">
         <item>Date</item>
         <item>Review</item>
     </string-array>
