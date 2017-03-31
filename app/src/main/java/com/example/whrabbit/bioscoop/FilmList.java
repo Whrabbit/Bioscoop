@@ -63,8 +63,7 @@ public class FilmList extends AppCompatActivity implements AdapterView.OnItemSel
                 getProducts(filmSearchBar.getText().toString());
             }
         });
-
-        //TODO: adapter maken voor film_row
+        
         filmListView = (ListView) findViewById(R.id.filmListView);
         filmAdapter = new FilmAdapter(getApplicationContext(), films);
         filmListView.setAdapter(filmAdapter);
