@@ -19,8 +19,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/te_zien_button"
+            android:background="@drawable/border_right"
             android:text="@string/teZienBttnString"
+            android:textAlignment="center"
             tools:ignore="ButtonStyle,NestedWeights" />
 
         <Button
@@ -28,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/bekeken_button"
+            android:background="@drawable/border_left"
             android:text="@string/bekekenBttnString"
             android:textAlignment="center"
             tools:ignore="ButtonStyle" />

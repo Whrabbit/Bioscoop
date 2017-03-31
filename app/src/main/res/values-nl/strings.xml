@@ -26,4 +26,6 @@
     <string name="ticketSearchBarString">Titel...</string>
     <string name="ticketSearchBttn">Zoek</string>
     <string name="detailBuyerName"></string>
+    <string name="ticketsTabBttn">Kaarten</string>
+    <string name="reviewsTabBttn">Beoordelingen</string>
 </resources>

@@ -39,4 +39,7 @@
     <string name="detailBuyerName" translatable="false">Name: ...</string>
     <string name="detailBuyerAge" translatable="false">Age: ...</string>
     <string name="detailBuyerSeat" translatable="false">Seat: ...</string>
+    <string name="ticketsTabBttn">Tickets</string>
+    <string name="reviewsTabBttn">Reviews</string>
+    <string name="infoTabBttn" translatable="false">Info</string>
 </resources>
