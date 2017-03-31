@@ -14,7 +14,7 @@
         tools:ignore="UselessParent">
 
         <ImageView
-            android:id="@+id/thumbnail"
+            android:id="@+id/filmImage"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_weight="1"
