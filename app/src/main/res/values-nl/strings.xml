@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="filterSpinStrings">
+        <item>Genre</item>
+        <item>Leeftijd</item>
+    </string-array>
+    <string-array name="kiesSpinStrings">
+        <item>Genre</item>
+        <item>Leeftijd</item>
+    </string-array>
+    <string-array name="orderSpinStrings">
+        <item>Datum</item>
+        <item>Review</item>
+    </string-array>
     <string name="app_name">Bioscoop</string>
     <string name="biosBtnString">Bioscoop</string>
     <string name="filmBtnString">Films</string>
     <string name="ticketBtnString">Kaarten</string>
     <string name="logoImgViewString">Bioscoop Logo</string>
+    <string name="routeViewString">Routebeschrijving</string>
+    <string name="contactNumberViewString" translatable="false">088 - 525 75 00</string>
+    <string name="teZienBttnString">Te Zien</string>
+    <string name="bekekenBttnString">Bekeken</string>
+    <string name="filmSearchBarString">Titel...</string>
+    <string name="filmSearchBttnString">Zoek</string>
+    <string name="ticketSearchBarString">Titel...</string>
+    <string name="ticketSearchBttn">Zoek</string>
+    <string name="detailBuyerName"></string>
 </resources>

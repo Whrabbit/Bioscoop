@@ -10,27 +10,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class FilmList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Spinner filterType, filter, order;
+    Spinner filterSpin, kiesSpin, orderSpin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_film_list);
 
-        filterType = (Spinner) findViewById(R.id.filterType);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.filterType,android.R.layout.simple_spinner_item);
-        filterType.setAdapter(adapter);
-        filterType.setOnItemSelectedListener(this);
+        filterSpin = (Spinner) findViewById(R.id.filterSpin);
+        ArrayAdapter a = ArrayAdapter.createFromResource(this, R.array.filterSpinStrings,android.R.layout.simple_spinner_item);
+        filterSpin.setAdapter(a);
+        filterSpin.setOnItemSelectedListener(this);
 
-        filter = (Spinner) findViewById(R.id.filter);
-        ArrayAdapter a = ArrayAdapter.createFromResource(this, R.array.filter,android.R.layout.simple_spinner_item);
-        filter.setAdapter(a);
-        filter.setOnItemSelectedListener(this);
+        kiesSpin = (Spinner) findViewById(R.id.kiesSpin);
+        ArrayAdapter b = ArrayAdapter.createFromResource(this, R.array.kiesSpinStrings,android.R.layout.simple_spinner_item);
+        kiesSpin.setAdapter(b);
+        kiesSpin.setOnItemSelectedListener(this);
 
-        order = (Spinner) findViewById(R.id.order);
-        ArrayAdapter o = ArrayAdapter.createFromResource(this, R.array.order,android.R.layout.simple_spinner_item);
-        order.setAdapter(o);
-        order.setOnItemSelectedListener(this);
+        orderSpin = (Spinner) findViewById(R.id.orderSpin);
+        ArrayAdapter c = ArrayAdapter.createFromResource(this, R.array.orderSpinStrings,android.R.layout.simple_spinner_item);
+        orderSpin.setAdapter(c);
+        orderSpin.setOnItemSelectedListener(this);
     }
 
     @Override

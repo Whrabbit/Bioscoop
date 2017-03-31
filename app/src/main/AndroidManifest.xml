@@ -28,7 +28,6 @@
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -36,7 +35,7 @@
         <!-- FilmList -->
         <activity
             android:name=".FilmList"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="adjustNothing" />
         <!-- Contact -->
         <activity
             android:name=".Contact"
@@ -61,7 +60,6 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".filmRow"></activity>
     </application>
 
 </manifest>
