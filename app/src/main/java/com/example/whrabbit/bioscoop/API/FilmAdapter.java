@@ -37,7 +37,7 @@ public class FilmAdapter extends ArrayAdapter<Film> {
         TextView filmYear = (TextView) convertView.findViewById(R.id.filmYear);
 
         if(item.getPoster_path() != null) {
-            Picasso.with(getContext()).load("https://image.tmdb.org/t/p" + "/w154" + "/" + item.getPoster_path()).into(filmImage);
+            Picasso.with(getContext()).load("https://image.tmdb.org/t/p" + "/w500" + "/" + item.getPoster_path()).into(filmImage);
             Log.i("test", item.getPoster_path());
         }
         filmTitle.setText(item.getTitle());
