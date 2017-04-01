@@ -1,6 +1,7 @@
 package com.example.whrabbit.bioscoop.API;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -95,99 +96,86 @@ public class TMDBApiConnector extends AsyncTask<String, Void, ArrayList<JSONObje
 
         Map<Integer, String> map = new HashMap<>();
 
-        for (JSONObject jsonObject : jsonList) {
+        if (jsonList == null) {
+            listener.onFilmsAvailable(null);
+        } else {
+            for (JSONObject jsonObject : jsonList) {
 
-            try {
+                try {
 
-                if (jsonObject.has("genres") && !jsonObject.isNull("genres")) {
-                    JSONArray genres = jsonObject.getJSONArray("genres");
+                    if (jsonObject.has("genres") && !jsonObject.isNull("genres")) {
+                        JSONArray genres = jsonObject.getJSONArray("genres");
 
-                    for (int i = 0; i < genres.length(); i++) {
+                        for (int i = 0; i < genres.length(); i++) {
 
-                        if (genres.getJSONObject(i).has("name") && !genres.getJSONObject(i).isNull("name")) {
-                            map.put(genres.getJSONObject(i).getInt("id"), genres.getJSONObject(i).getString("name"));
+                            if (genres.getJSONObject(i).has("name") && !genres.getJSONObject(i).isNull("name")) {
+                                map.put(genres.getJSONObject(i).getInt("id"), genres.getJSONObject(i).getString("name"));
+                            }
                         }
                     }
-                }
 
-                if (jsonObject.has("results") && !jsonObject.isNull("results")) {
-                    JSONArray films = jsonObject.getJSONArray("results");
+                    if (jsonObject.has("results") && !jsonObject.isNull("results")) {
+                        JSONArray films = jsonObject.getJSONArray("results");
 
-                    for (int i = 0; i < films.length(); i++) {
+                        for (int i = 0; i < films.length(); i++) {
 
-                        film = new Film();
+                            film = new Film();
 
-                        if (films.getJSONObject(i).has("poster_path") && !films.getJSONObject(i).isNull("poster_path")) {
-                            poster_path = films.getJSONObject(i).getString("poster_path");
-                            film.setPoster_path(poster_path);
-                        }
+                            film.setPoster_path(getJsonString(films, "poster_path", i));
+                            film.setOverview(getJsonString(films, "overview", i));
+                            film.setRelease_date(getJsonString(films, "release_date", i));
+                            film.setOriginal_title(getJsonString(films, "original_title", i));
+                            film.setOriginal_language(getJsonString(films, "original_language", i));
+                            film.setOriginal_language(getJsonString(films, "title", i));
+                            film.setOriginal_language(getJsonString(films, "backdrop_path", i));
 
-                        if (films.getJSONObject(i).has("overview") && !films.getJSONObject(i).isNull("overview")) {
-                            overview = films.getJSONObject(i).getString("overview");
-                            film.setOverview(overview);
-                        }
+                            if (films.getJSONObject(i).has("genre_ids") && !films.getJSONObject(i).isNull("genre_ids")) {
 
-                        if (films.getJSONObject(i).has("release_date") && !films.getJSONObject(i).isNull("release_date")) {
-                            release_date = films.getJSONObject(i).getString("release_date");
-                            film.setRelease_date(release_date);
-                        }
+                                genre_ids = new ArrayList<>();
+                                genreStrings = new ArrayList<>();
+                                json_genre_ids = films.getJSONObject(i).getJSONArray("genre_ids");
 
-                        if (films.getJSONObject(i).has("original_title") && !films.getJSONObject(i).isNull("original_title")) {
-                            original_title = films.getJSONObject(i).getString("original_title");
-                            film.setOriginal_title(original_title);
-                        }
-
-                        if (films.getJSONObject(i).has("original_language") && !films.getJSONObject(i).isNull("original_language")) {
-                            original_language = films.getJSONObject(i).getString("original_language");
-                            film.setOriginal_language(original_language);
-                        }
-
-                        if (films.getJSONObject(i).has("title") && !films.getJSONObject(i).isNull("title")) {
-                            title = films.getJSONObject(i).getString("title");
-                            film.setTitle(title);
-                        }
-
-                        if (films.getJSONObject(i).has("backdrop_path") && !films.getJSONObject(i).isNull("backdrop_path")) {
-                            backdrop_path = films.getJSONObject(i).getString("backdrop_path");
-                            film.setBackdrop_path(backdrop_path);
-                        }
-
-                        if (films.getJSONObject(i).has("id") && !films.getJSONObject(i).isNull("id")) {
-                            id = films.getJSONObject(i).getInt("id");
-                            film.setId(id);
-                        }
-
-                        if (films.getJSONObject(i).has("genre_ids") && !films.getJSONObject(i).isNull("genre_ids")) {
-                            genre_ids = new ArrayList<>();
-                            genreStrings = new ArrayList<>();
-
-                            json_genre_ids = films.getJSONObject(i).getJSONArray("genre_ids");
-
-                            for (int x = 0; x < json_genre_ids.length(); x++) {
-                                genre_ids.add(json_genre_ids.getInt(x));
-                            }
-
-                            film.setGenre_ids(genre_ids);
-
-                            for (Integer genre_id : genre_ids) {
-                                if (map.containsKey(genre_id)){
-                                    genreStrings.add(map.get(genre_id));
+                                for (int x = 0; x < json_genre_ids.length(); x++) {
+                                    genre_ids.add(json_genre_ids.getInt(x));
                                 }
+                                film.setGenre_ids(genre_ids);
+
+                                for (Integer genre_id : genre_ids) {
+                                    if (map.containsKey(genre_id)) {
+                                        genreStrings.add(map.get(genre_id));
+                                    }
+                                }
+                                film.setGenres(genreStrings);
+
                             }
 
-                            film.setGenres(genreStrings);
+                            listener.onFilmsAvailable(film);
 
                         }
-
-                        listener.onFilmsAvailable(film);
                     }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    listener.onFilmsAvailable(null);
                 }
 
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
-
         }
+    }
+
+    private String getJsonString(JSONArray films, String q, int index) {
+        String result = null;
+
+        try {
+            if (films.getJSONObject(index).has(q) && !films.getJSONObject(index).isNull(q)) {
+                result = films.getJSONObject(index).getString(q);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+
     }
 
 }

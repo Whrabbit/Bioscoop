@@ -66,8 +66,10 @@ public class FilmList extends AppCompatActivity implements AdapterView.OnItemSel
 
     }
 
-    //TODO: search functionaliteit toevoegen & placeholder URL vervangen
+    //TODO: Construct url based on search and filters
     public void getProducts(String search) {
+
+        films.clear();
 
         try {
             String encSearch = URLEncoder.encode(search, "UTF-8");
@@ -75,8 +77,8 @@ public class FilmList extends AppCompatActivity implements AdapterView.OnItemSel
             films.clear();
 
             TMDBApiConnector connector = new TMDBApiConnector(this);
-            String discover_url = "https://api.themoviedb.org/3/discover/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
-            String[] urls = new String[] {discover_url};
+            String url = "https://api.themoviedb.org/3/search/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&query=" + encSearch + "&page=1&include_adult=false";
+            String[] urls = new String[] {url};
             connector.execute(urls);
 
         } catch (UnsupportedEncodingException e) {
@@ -96,7 +98,11 @@ public class FilmList extends AppCompatActivity implements AdapterView.OnItemSel
 
     @Override
     public void onFilmsAvailable(Film film) {
-        films.add(film);
+        if(film != null) {
+            films.add(film);
+        } else {
+            films.clear();
+        }
         filmAdapter.notifyDataSetChanged();
     }
 }
