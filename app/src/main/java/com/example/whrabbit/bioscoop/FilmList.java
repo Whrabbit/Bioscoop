@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -76,7 +75,11 @@ public class FilmList extends AppCompatActivity implements AdapterView.OnItemSel
             films.clear();
 
             TMDBApiConnector connector = new TMDBApiConnector(this);
-            String[] urls = new String[] {"https://api.themoviedb.org/3/discover/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1"};
+            String discover_url = "https://api.themoviedb.org/3/discover/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
+            String genre_url = "https://api.themoviedb.org/3/genre/movie/list?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US";
+
+            //GENRE URL BEFORE DISCOVER URL
+            String[] urls = new String[] {genre_url, discover_url};
             connector.execute(urls);
 
         } catch (UnsupportedEncodingException e) {

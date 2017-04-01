@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class Film implements Parcelable {
 
     private String poster_path, overview, release_date, original_title, original_language, title, backdrop_path;
-    //private ArrayList<Integer> genre_ids;
-    //private ArrayList<String> genres;
+    private ArrayList<Integer> genre_ids;
+    private ArrayList<String> genres;
 
     public Film() {
         poster_path = null;
@@ -23,8 +23,8 @@ public class Film implements Parcelable {
         original_language = "";
         title = "";
         backdrop_path = null;
-        //genre_ids = new ArrayList<>();
-        //genres = new ArrayList<>();
+        genre_ids = new ArrayList<>();
+        genres = new ArrayList<>();
     }
 
     private Film(Parcel in) {
@@ -123,19 +123,19 @@ public class Film implements Parcelable {
         this.backdrop_path = backdrop_path;
     }
 
-//    public ArrayList<Integer> getGenre_ids() {
-//        return genre_ids;
-//    }
-//
-//    public void setGenre_ids(ArrayList<Integer> genre_ids) {
-//        this.genre_ids = genre_ids;
-//    }
-//
-//    public ArrayList<String> getGenres() {
-//        return genres;
-//    }
-//
-//    public void setGenres(ArrayList<String> genres) {
-//        this.genres = genres;
-//    }
+    public ArrayList<Integer> getGenre_ids() {
+        return genre_ids;
+    }
+
+    public void setGenre_ids(ArrayList<Integer> genre_ids) {
+        this.genre_ids = genre_ids;
+    }
+
+    public ArrayList<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(ArrayList<String> genres) {
+        this.genres = genres;
+    }
 }
