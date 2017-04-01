@@ -14,7 +14,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -34,7 +33,15 @@ public class TMDBApiConnector extends AsyncTask<String, Void, ArrayList<JSONObje
 
         BufferedReader reader = null;
         String response = "";
+        String genre_url = "https://api.themoviedb.org/3/genre/movie/list?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US";
         ArrayList<JSONObject> responseList = new ArrayList<>();
+
+        ArrayList<String> urlList = new ArrayList<>();
+        urlList.add(genre_url);
+
+        for (String url : urls) {
+            urlList.add(url);
+        }
 
         try {
             for (int i = 0; i < urls.length; i++) {
