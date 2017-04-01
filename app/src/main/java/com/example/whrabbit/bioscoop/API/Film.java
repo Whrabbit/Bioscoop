@@ -1,12 +1,15 @@
 package com.example.whrabbit.bioscoop.API;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 /**
  * Created by Koen Kamman on 30-3-2017.
  */
 
-public class Film {
+public class Film implements Parcelable {
 
     private String poster_path, overview, release_date, original_title, original_language, title, backdrop_path;
     //private ArrayList<Integer> genre_ids;
@@ -23,6 +26,46 @@ public class Film {
         //genre_ids = new ArrayList<>();
         //genres = new ArrayList<>();
     }
+
+    private Film(Parcel in) {
+        poster_path = in.readString();
+        overview = in.readString();
+        release_date = in.readString();
+        original_title = in.readString();
+        original_language = in.readString();
+        title = in.readString();
+        backdrop_path = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(poster_path);
+        out.writeString(overview);
+        out.writeString(release_date);
+        out.writeString(original_title);
+        out.writeString(original_language);
+        out.writeString(title);
+        out.writeString(backdrop_path);
+    }
+
+    public static final Parcelable.Creator<Film> CREATOR = new Parcelable.Creator<Film>() {
+
+        @Override
+        public Film createFromParcel(Parcel in) {
+            return new Film(in);
+        }
+
+        @Override
+        public Film[] newArray(int size) {
+            return new Film[size];
+        }
+
+    };
 
     public String getPoster_path() {
         return poster_path;
