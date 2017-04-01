@@ -126,8 +126,8 @@ public class TMDBApiConnector extends AsyncTask<String, Void, ArrayList<JSONObje
                             film.setRelease_date(getJsonString(films, "release_date", i));
                             film.setOriginal_title(getJsonString(films, "original_title", i));
                             film.setOriginal_language(getJsonString(films, "original_language", i));
-                            film.setOriginal_language(getJsonString(films, "title", i));
-                            film.setOriginal_language(getJsonString(films, "backdrop_path", i));
+                            film.setTitle(getJsonString(films, "title", i));
+                            film.setBackdrop_path(getJsonString(films, "backdrop_path", i));
 
                             if (films.getJSONObject(i).has("genre_ids") && !films.getJSONObject(i).isNull("genre_ids")) {
 
