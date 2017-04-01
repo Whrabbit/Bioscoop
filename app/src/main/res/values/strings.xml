@@ -16,7 +16,7 @@
     <string name="filmBtnString">Movies</string>
     <string name="biosBtnString">Cinema</string>
     <string name="ticketBtnString">Tickets</string>
-    <string name="langSwitchBtnString" translatable="false">English / Dutch</string>
+    <string name="langSwitchBtnString">Switch to dutch</string>
     <string name="logoImgViewString">Cinema Logo</string>
     <string name="contactNameViewString" translatable="false">Avans Bioscoop</string>
     <string name="contactLovViewString" translatable="false">Hogeschoollaan 1</string>
@@ -73,4 +73,8 @@
     <string name="ticketPaypalBttn" translatable="false">PayPal</string>
     <string name="ticketCreditBttn" translatable="false">CreditCard</string>
     <string name="ticketSeatBttn">Seat selection</string>
+    <string name="bedanktView">Thanks for your payment with...</string>
+    <string name="toEticketBttn">Show E-Ticket</string>
+    <string name="toRouteBttn">Route Description</string>
+    <string name="backToFilmBttn">Back to film</string>
 </resources>
