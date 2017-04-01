@@ -23,6 +23,7 @@
         <!-- Main activity -->
         <activity
             android:name=".MainActivity"
+            android:label="Bioscoop"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
