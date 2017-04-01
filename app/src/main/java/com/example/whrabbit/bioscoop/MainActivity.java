@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         filmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), FilmList.class);
+                Intent i = new Intent(getApplicationContext(), SelectSeats.class);
                 startActivity(i);
             }
         });

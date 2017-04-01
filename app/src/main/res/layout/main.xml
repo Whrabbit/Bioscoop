@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/foreground_dark">
+    <TextView
+        android:id="@+id/tv_cinema_screen"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_100dp"
+        android:text="@string/cinema_screen"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center" />
+
+    <com.github.captain_miao.seatview.MovieSeatView
+        android:id="@+id/seat_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_cinema_screen"
+        app:seatWidth="@dimen/padding_30dp"
+        app:seatHeight="@dimen/padding_30dp"
+        app:seatPadding="@dimen/padding_2dp"
+        app:seatScaleFactorMinBest="1.4"
+        app:seatScaleFactorMaxBest="1.8"
+        app:seatScaleFactorMin="0.5"
+        app:seatScaleFactorMax="3"
+        app:iconOnSale="@drawable/seat_sale"
+        app:iconSold="@drawable/seat_sold"
+        app:iconSelected="@drawable/seat_selected"
+        />
+
+
+</RelativeLayout>

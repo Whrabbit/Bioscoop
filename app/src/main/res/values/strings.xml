@@ -19,4 +19,10 @@
     <string name="film_title">Film title</string>
     <string name="year">Year</string>
     <string name="thumbnail">thumbnail</string>
-</resources>
+
+
+    <string name="cinema_screen">Screen</string>
+    <string name="seat_max_number" formatted="false">Je hebt al %d zitplaatsen gekozen</string>
+
+
+    </resources>
