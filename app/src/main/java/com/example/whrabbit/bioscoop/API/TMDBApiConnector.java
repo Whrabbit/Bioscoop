@@ -87,6 +87,7 @@ public class TMDBApiConnector extends AsyncTask<String, Void, ArrayList<JSONObje
     protected void onPostExecute(ArrayList<JSONObject> jsonList) {
 
         String poster_path, overview, release_date, original_title, original_language, title, backdrop_path;
+        int id;
         JSONArray json_genre_ids;
         ArrayList<Integer> genre_ids;
         ArrayList<String> genreStrings;
@@ -151,6 +152,11 @@ public class TMDBApiConnector extends AsyncTask<String, Void, ArrayList<JSONObje
                             film.setBackdrop_path(backdrop_path);
                         }
 
+                        if (films.getJSONObject(i).has("id") && !films.getJSONObject(i).isNull("id")) {
+                            id = films.getJSONObject(i).getInt("id");
+                            film.setId(id);
+                        }
+
                         if (films.getJSONObject(i).has("genre_ids") && !films.getJSONObject(i).isNull("genre_ids")) {
                             genre_ids = new ArrayList<>();
                             genreStrings = new ArrayList<>();
@@ -163,9 +169,9 @@ public class TMDBApiConnector extends AsyncTask<String, Void, ArrayList<JSONObje
 
                             film.setGenre_ids(genre_ids);
 
-                            for (Integer id : genre_ids) {
-                                if (map.containsKey(id)){
-                                    genreStrings.add(map.get(id));
+                            for (Integer genre_id : genre_ids) {
+                                if (map.containsKey(genre_id)){
+                                    genreStrings.add(map.get(genre_id));
                                 }
                             }
 

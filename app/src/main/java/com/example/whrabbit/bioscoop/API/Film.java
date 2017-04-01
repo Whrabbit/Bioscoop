@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Film implements Parcelable {
 
     private String poster_path, overview, release_date, original_title, original_language, title, backdrop_path;
+    private int id;
     private ArrayList<Integer> genre_ids;
     private ArrayList<String> genres;
 
@@ -22,6 +23,7 @@ public class Film implements Parcelable {
         original_title = "";
         original_language = "";
         title = "";
+        id = -1;
         backdrop_path = null;
         genre_ids = new ArrayList<>();
         genres = new ArrayList<>();
@@ -35,6 +37,7 @@ public class Film implements Parcelable {
         original_language = in.readString();
         title = in.readString();
         backdrop_path = in.readString();
+        id = in.readInt();
     }
 
     @Override
@@ -51,6 +54,7 @@ public class Film implements Parcelable {
         out.writeString(original_language);
         out.writeString(title);
         out.writeString(backdrop_path);
+        out.writeInt(id);
     }
 
     public static final Parcelable.Creator<Film> CREATOR = new Parcelable.Creator<Film>() {
@@ -137,5 +141,13 @@ public class Film implements Parcelable {
 
     public void setGenres(ArrayList<String> genres) {
         this.genres = genres;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
