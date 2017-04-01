@@ -42,4 +42,15 @@
     <string name="infoRuntime">Duur:</string>
     <string name="infoDirector">Regisseur:</string>
     <string name="infoRating">Beoordeling:</string>
+    <string name="ticketAantalView">Aantal Tickets:</string>
+    <string name="ticketStudentView">Aantal Studenten:</string>
+    <string name="ticketKindView">Aantal Kinderen:</string>
+    <string name="ticketPrijsView">Prijs:</string>
+    <string name="ticketPayView">Betaalingsmethode</string>
+    <string name="ticketSeatBttn">Stoel keuze</string>
+    <string name="bedanktView">Bedankt voor uw betaling met...</string>
+    <string name="toEticketBttn">Naar E-Ticket</string>
+    <string name="toRouteBttn">Routebeschrijving</string>
+    <string name="backToFilmBttn">Terug naar film</string>
+    <string name="langSwitchBtnString">Switch to english</string>
 </resources>
