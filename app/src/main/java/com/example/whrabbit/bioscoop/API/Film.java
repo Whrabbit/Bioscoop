@@ -1,16 +1,20 @@
 package com.example.whrabbit.bioscoop.API;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 /**
  * Created by Koen Kamman on 30-3-2017.
  */
 
-public class Film {
+public class Film implements Parcelable {
 
     private String poster_path, overview, release_date, original_title, original_language, title, backdrop_path;
-    //private ArrayList<Integer> genre_ids;
-    //private ArrayList<String> genres;
+    private int id;
+    private ArrayList<Integer> genre_ids;
+    private ArrayList<String> genres;
 
     public Film() {
         poster_path = null;
@@ -19,10 +23,53 @@ public class Film {
         original_title = "";
         original_language = "";
         title = "";
+        id = -1;
         backdrop_path = null;
-        //genre_ids = new ArrayList<>();
-        //genres = new ArrayList<>();
+        genre_ids = new ArrayList<>();
+        genres = new ArrayList<>();
     }
+
+    private Film(Parcel in) {
+        poster_path = in.readString();
+        overview = in.readString();
+        release_date = in.readString();
+        original_title = in.readString();
+        original_language = in.readString();
+        title = in.readString();
+        backdrop_path = in.readString();
+        id = in.readInt();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(poster_path);
+        out.writeString(overview);
+        out.writeString(release_date);
+        out.writeString(original_title);
+        out.writeString(original_language);
+        out.writeString(title);
+        out.writeString(backdrop_path);
+        out.writeInt(id);
+    }
+
+    public static final Parcelable.Creator<Film> CREATOR = new Parcelable.Creator<Film>() {
+
+        @Override
+        public Film createFromParcel(Parcel in) {
+            return new Film(in);
+        }
+
+        @Override
+        public Film[] newArray(int size) {
+            return new Film[size];
+        }
+
+    };
 
     public String getPoster_path() {
         return poster_path;
@@ -80,19 +127,27 @@ public class Film {
         this.backdrop_path = backdrop_path;
     }
 
-//    public ArrayList<Integer> getGenre_ids() {
-//        return genre_ids;
-//    }
-//
-//    public void setGenre_ids(ArrayList<Integer> genre_ids) {
-//        this.genre_ids = genre_ids;
-//    }
-//
-//    public ArrayList<String> getGenres() {
-//        return genres;
-//    }
-//
-//    public void setGenres(ArrayList<String> genres) {
-//        this.genres = genres;
-//    }
+    public ArrayList<Integer> getGenre_ids() {
+        return genre_ids;
+    }
+
+    public void setGenre_ids(ArrayList<Integer> genre_ids) {
+        this.genre_ids = genre_ids;
+    }
+
+    public ArrayList<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(ArrayList<String> genres) {
+        this.genres = genres;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
