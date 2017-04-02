@@ -1,5 +1,4 @@
 package com.example.whrabbit.bioscoop;
-
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -8,14 +7,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-    static final LatLng loven = new LatLng(53.558, 9.927);
-    private static final LatLng SYDNEY = new LatLng(-33.88,151.21);;
-    private GoogleMap map;
 
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,37 +24,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        map = googleMap;
+        mMap = googleMap;
 
-//        // Add a marker in Sydney and move the camera
-//        map.addMarker(new MarkerOptions()
-//                .position(new LatLng(51.5843649,4.79515))
-//                .title("Marker"));
+        // Add a marker
+        LatLng hogeschool = new LatLng(51.5843682,4.795152);
+        mMap.addMarker(new MarkerOptions().position(hogeschool).title("Hogeschoollaan 1"));
 
-//        map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-//
-//        map.setMinZoomPreference(6.0f);
-//        map.setMaxZoomPreference(14.0f);
-//        map.moveCamera(CameraUpdateFactory.newLatLngZoom(loven, 15));
-//        map.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
-
-
-
-// Set the camera to the greatest possible zoom level that includes the
-// bounds
-
-        map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(SYDNEY, 15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hogeschool, 17));
     }
 }
