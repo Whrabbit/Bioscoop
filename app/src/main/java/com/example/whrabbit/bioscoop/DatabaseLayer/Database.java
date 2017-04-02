@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Mika Krooswijk on 30-3-2017.
  */
 
-public class Database extends SQLiteOpenHelper {
+public class DatabaseHandler extends SQLiteOpenHelper {
      private static final String TAG = "MovieDBHandler";
 
     private static final int DB_VERSION = 5;
@@ -21,7 +21,7 @@ public class Database extends SQLiteOpenHelper {
     private static final String ROOM_TABLE_NAME = "room";
     private static final String SEAT_TABLE_NAME = "seat";
 
-    public Database(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
+    public DatabaseHandler (Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, DB_NAME, factory, DB_VERSION);
 
     }
@@ -30,10 +30,9 @@ public class Database extends SQLiteOpenHelper {
         String CREATE_MOVIE_TABLE = "CREATE TABLE"
  + MOVIE_TABLE_NAME + "(";    }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-    }
+
+
 
 
 }
