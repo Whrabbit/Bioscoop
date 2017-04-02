@@ -1,19 +1,13 @@
 package com.example.whrabbit.bioscoop;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
-
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    Button filmBtn, biosBtn, ticketBtn, languageBtn;
+    Button filmBtn, biosBtn, ticketBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         filmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), FilmList.class);
+                Intent i = new Intent(getApplicationContext(), FilmListActivity.class);
                 startActivity(i);
             }
         });
@@ -34,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         biosBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), MapsActivity.class);
+                Intent i = new Intent(getApplicationContext(), ContactActivity.class);
                 startActivity(i);
             }
         });
@@ -44,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         ticketBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), Ticket.class);
+                Intent i = new Intent(getApplicationContext(), TicketListActivity.class);
                 startActivity(i);
             }
         });

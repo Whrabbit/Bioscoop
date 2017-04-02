@@ -35,6 +35,7 @@
             android:layout_weight="1"
             android:background="@drawable/no_border"
             android:text="@string/reviewsTabBttn"
+            android:textStyle="bold"
             tools:ignore="ButtonStyle" />
 
         <Button
@@ -59,5 +60,6 @@
         android:id="@+id/reviewsList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6" />
+        android:layout_weight="6"
+        android:entries="@array/listDummyEntries"/>
 </LinearLayout>

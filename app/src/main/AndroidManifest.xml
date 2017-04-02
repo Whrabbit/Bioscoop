@@ -16,6 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
 
+        <!--API AND GOOGLE MAPS-->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <!-- Main activity -->
         <activity
             android:name=".MainActivity"
@@ -28,39 +33,32 @@
             </intent-filter>
         </activity>
 
-        <!-- FilmList -->
-        <activity
-            android:name=".FilmList"
-            android:windowSoftInputMode="adjustNothing" />
-        <!-- Contact -->
-        <activity
-            android:name=".Contact"
-            android:windowSoftInputMode="stateHidden" />
+        <!-- Ticket Activities -->
+        <activity android:name=".TicketListActivity" android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".DetailedTicketActivity" />
 
-        <!-- Ticket -->
+        <!--ContactActivity-->
         <activity
-            android:name=".Ticket"
-            android:windowSoftInputMode="stateHidden" />
-
-        <!--API AND GOOGLE MAPS-->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".MapsActivity"
+            android:name=".ContactActivity"
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- Film Activities -->
+        <activity android:name=".FilmListActivity" android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".FilmListActivityHistory" android:windowSoftInputMode="adjustNothing" />
 
+        <activity android:name=".PlaytimesActivity" />
         <activity android:name=".TicketActivity" />
-        <activity android:name=".FinalActivity" />
-        <activity android:name=".FilmListActivityRecent"></activity>
+
+        <activity android:name=".ReviewListActivity" />
+        <activity android:name=".ReviewActivity" />
+
+        <activity android:name=".FilmInfoActivity" />
+
     </application>
 
 </manifest>
