@@ -1,8 +1,10 @@
 package com.example.whrabbit.bioscoop;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,13 +21,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-public class FilmList extends AppCompatActivity implements AdapterView.OnItemSelectedListener, TMDBConnectorListener {
+public class FilmListActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, TMDBConnectorListener {
 
     Spinner filterTypeSpinner, filterSpinner, sortBySpinner;
     ListView filmListView;
     FilmAdapter filmAdapter;
     ArrayList<Film> films;
-    Button filmSearchBttn;
+    Button filmSearchBttn, bekekenBttn;
     EditText filmSearchBar;
 
     @Override
@@ -60,7 +62,24 @@ public class FilmList extends AppCompatActivity implements AdapterView.OnItemSel
             }
         });
 
+        bekekenBttn = (Button) findViewById(R.id.bekekenBttn);
+        bekekenBttn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), FilmListActivityHistory.class);
+                startActivity(i);
+            }
+        });
+
         filmListView = (ListView) findViewById(R.id.filmListView);
+        filmListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(), PlaytimesActivity.class);
+                startActivity(i);
+            }
+        });
+
         filmAdapter = new FilmAdapter(getApplicationContext(), films);
         filmListView.setAdapter(filmAdapter);
 

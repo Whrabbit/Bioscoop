@@ -44,6 +44,7 @@
             android:layout_weight="1"
             android:background="@drawable/border_left"
             android:text="@string/infoTabBttn"
+            android:textStyle="bold"
             tools:ignore="ButtonStyle" />
 
     </LinearLayout>

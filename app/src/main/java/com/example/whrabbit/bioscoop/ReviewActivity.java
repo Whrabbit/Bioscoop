@@ -10,24 +10,22 @@ import android.widget.Button;
  * Created by mark on 2-4-2017.
  */
 
-public class TicketActivity extends AppCompatActivity {
+public class ReviewActivity extends AppCompatActivity {
 
-    Button ticketSeatBttn;
+    Button reviewSubmitBttn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ticket);
+        setContentView(R.layout.activity_review);
 
-        /*
-        ticketSeatBttn = (Button) findViewById(R.id.);
-        ticketSeatBttn.setOnClickListener(new View.OnClickListener() {
+        reviewSubmitBttn = (Button) findViewById(R.id.reviewSubmitBttn);
+        reviewSubmitBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), ReviewListActivity.class);
                 startActivity(i);
             }
         });
-        */
     }
 }
