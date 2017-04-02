@@ -25,7 +25,7 @@
     <string name="routeViewString">Route Description</string>
     <string name="contactMailViewString" translatable="false">biosbreda@cinemas.com</string>
     <string name="teZienBttnString">Now Playing</string>
-    <string name="bekekenBttnString">Recent</string>
+    <string name="bekekenBttnString">HISTORY</string>
     <string name="filmSearchBarString">Title...</string>
     <string name="filmSearchBttnString">Search</string>
     <string name="filmTitleString" translatable="false">Film title</string>
