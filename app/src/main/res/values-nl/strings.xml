@@ -53,6 +53,4 @@
     <string name="toRouteBttn">Routebeschrijving</string>
     <string name="backToFilmBttn">Terug naar film</string>
     <string name="langSwitchBtnString">Switch to english</string>
-    <string name="selected_seat_text">Gekozen zitplaats: </string>
-    <string name="payBtn">NAAR BETALEN</string>
 </resources>
