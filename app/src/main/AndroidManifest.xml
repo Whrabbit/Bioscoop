@@ -62,7 +62,9 @@
         <activity android:name=".ReviewListActivity" />
         <activity android:name=".ReviewActivity" />
         <activity android:name=".FilmInfoActivity" />
-        <activity android:name=".SelectSeatsActivity"/>
+        <activity android:name=".SelectSeatsActivity" />
+        <activity android:name=".FinalActivity" />
+        <activity android:name=".PaymentActivity"/>
     </application>
 
 </manifest>

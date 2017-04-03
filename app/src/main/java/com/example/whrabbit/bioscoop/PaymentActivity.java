@@ -6,19 +6,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class FinalActivity extends AppCompatActivity {
-    private Button backToHomeBttn;
-
+public class PaymentActivity extends AppCompatActivity {
+    private Button finalBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_final);
+        setContentView(R.layout.activity_payment);
 
-        backToHomeBttn = (Button) findViewById(R.id.backToHomeBttn);
-        backToHomeBttn.setOnClickListener(new View.OnClickListener() {
+        finalBtn = (Button) findViewById(R.id.finalBtn);
+        finalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                Intent i = new Intent(getApplicationContext(), FinalActivity.class);
                 startActivity(i);
             }
         });

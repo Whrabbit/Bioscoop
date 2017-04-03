@@ -74,44 +74,7 @@
         android:textColor="@android:color/white"
         android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/ticketPayView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="50dp"
-        android:text="@string/ticketPayView"
-        android:textColor="@android:color/white" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="10dp">
-
-        <Button
-            android:id="@+id/ticketIDealBttn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/ticketIDealBttn"
-            tools:ignore="ButtonStyle" />
-
-        <Button
-            android:id="@+id/ticketPaypalBttn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/ticketPaypalBttn"
-            tools:ignore="ButtonStyle" />
-
-        <Button
-            android:id="@+id/ticketCreditBttn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/ticketCreditBttn"
-            tools:ignore="ButtonStyle" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
