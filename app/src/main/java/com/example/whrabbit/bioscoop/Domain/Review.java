@@ -6,9 +6,16 @@ package com.example.whrabbit.bioscoop.Domain;
 
 public class Review {
 
-    private String title, review;
+    private String title, review, customerName;
     private int rating, reviewID, CustomerID, FilmID;
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 
     public String getTitle() {
         return title;

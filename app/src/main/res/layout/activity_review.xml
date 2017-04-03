@@ -46,21 +46,53 @@
                 android:id="@+id/userRealName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
                 android:text="@string/userRealName"
                 android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/ratingText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="@string/ratingText"
+                android:textColor="@android:color/white" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="3"
+                android:stepSize="1" />
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
+    <!--<TextView-->
+        <!--android:id="@+id/reviewBox"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@drawable/full_border"-->
+        <!--android:hint="@string/reviewBox"-->
+        <!--android:padding="5dp"-->
+        <!--android:textColor="@android:color/white" />-->
+
+    <EditText
         android:id="@+id/reviewBox"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_height="150dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1.83"
         android:background="@drawable/full_border"
-        android:hint="@string/reviewBox"
-        android:padding="5dp"
-        android:textColor="@android:color/white" />
+        android:ems="10"
+        android:gravity="left|top"
+        android:inputType="textMultiLine"
+        android:padding="5dp">
 
+        <requestFocus />
+    </EditText>
     <Button
         android:id="@+id/reviewSubmitBttn"
         android:layout_width="match_parent"

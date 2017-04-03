@@ -56,4 +56,5 @@
     <string name="selected_seat_text">Gekozen zitplaats: </string>
     <string name="payBtn">NAAR BETALEN</string>
     <string name="finalBtn">AFRONDEN</string>
+    <string name="ratingText">Rating: </string>
 </resources>
