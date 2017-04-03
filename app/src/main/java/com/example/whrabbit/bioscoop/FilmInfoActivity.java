@@ -34,6 +34,7 @@ public class FilmInfoActivity extends AppCompatActivity {
         extra = getIntent().getExtras();
         film = extra.getParcelable("FILM");
         genres = "";
+        genreList = new ArrayList<>();
 
         infoTitle = (TextView) findViewById(R.id.infoTitle);
         infoRelease = (TextView) findViewById(R.id.infoRelease);
@@ -54,9 +55,9 @@ public class FilmInfoActivity extends AppCompatActivity {
 
         genreList = film.getGenres();
 
-        for (int i = 0; i < genreList.size(); i++){
-            genres += genreList.get(i) + " ";
-        }
+//        for (int i = 0; i < genreList.size(); i++){
+//            genres += genreList.get(i) + " ";
+//        }
 
         infoGenre.setText("Genres: " + genres);
 
