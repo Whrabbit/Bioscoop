@@ -3,9 +3,7 @@ package com.example.whrabbit.bioscoop;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,15 +13,12 @@ import android.widget.Spinner;
 
 import com.example.whrabbit.bioscoop.API.Film;
 import com.example.whrabbit.bioscoop.API.FilmAdapter;
-import com.example.whrabbit.bioscoop.API.TMDBApiConnector;
+import com.example.whrabbit.bioscoop.API.ApiConnector;
 import com.example.whrabbit.bioscoop.API.TMDBConnectorListener;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class FilmListActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, TMDBConnectorListener {
 
@@ -99,7 +94,7 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
         String url = "";
 
         films.clear();
-        TMDBApiConnector connector = new TMDBApiConnector(this);
+        ApiConnector connector = new ApiConnector(this);
 
         try {
             String encSearch = URLEncoder.encode(search, "UTF-8");

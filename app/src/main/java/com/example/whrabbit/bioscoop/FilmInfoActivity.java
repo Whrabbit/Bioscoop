@@ -3,21 +3,27 @@ package com.example.whrabbit.bioscoop;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.whrabbit.bioscoop.API.ApiConnector;
+import com.example.whrabbit.bioscoop.API.DetailApiConnector;
 import com.example.whrabbit.bioscoop.API.Film;
+import com.example.whrabbit.bioscoop.API.TMDBConnectorListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 /**
  * Created by mark on 2-4-2017.
  */
 
-public class FilmInfoActivity extends AppCompatActivity {
+public class FilmInfoActivity extends AppCompatActivity implements TMDBConnectorListener{
 
     private Button ticketsTabBttn, reviewsTabBttn;
     private TextView infoTitle, infoRelease, infoAge, infoLanguage, infoRuntime, infoGenre, infoDirector, infoRating, infoPlot;
@@ -49,20 +55,14 @@ public class FilmInfoActivity extends AppCompatActivity {
 
         infoTitle.setText(film.getTitle());
         infoRelease.setText("Release: " + film.getRelease_date());
-        infoAge.setText("Age Rating: " + "not available yet");
+        infoAge.setText("Age Rating: " + "-");
         infoLanguage.setText("Language: " + film.getOriginal_language());
-        infoRuntime.setText("Runtime: " + "not available yet");
-
-        genreList = film.getGenres();
-
-//        for (int i = 0; i < genreList.size(); i++){
-//            genres += genreList.get(i) + " ";
-//        }
+        infoRuntime.setText("Runtime: " + "-");
 
         infoGenre.setText("Genres: " + genres);
 
-        infoDirector.setText("Director: " + "not available yet");
-        infoRating.setText("Rating: " + "not available yet");
+        infoDirector.setText("Director: " + "-");
+        infoRating.setText("Rating: " + "-");
         infoPlot.setText("Plot: " + film.getOverview());
 
         if(film.getBackdrop_path() != null) {
@@ -90,5 +90,32 @@ public class FilmInfoActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        getFilmInfo();
+    }
+
+    public void getFilmInfo() {
+
+        DetailApiConnector connector = new DetailApiConnector(this);
+
+        String url = "https://api.themoviedb.org/3/movie/" + film.getId() + "?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&append_to_response=release_dates";
+
+            String[]urls = new String[]{url};
+            connector.execute(urls);
+
+    }
+
+    @Override
+    public void onFilmsAvailable(Film film) {
+        ArrayList<String> genres = film.getGenres();
+        String str = "";
+
+        for ( String genre : genres) {
+            str += genre + " ";
+        }
+
+        infoGenre.setText("Genre: " + str);
+        infoRuntime.setText("Runtime: " + film.getRuntime() + " min");
+        infoAge.setText("Age Rating: " + film.getCertification());
     }
 }
