@@ -33,7 +33,7 @@
     <string name="routeViewString">Route Description</string>
     <string name="contactMailViewString" translatable="false">biosbreda@cinemas.com</string>
     <string name="teZienBttnString">Now Playing</string>
-    <string name="bekekenBttnString">Recent</string>
+    <string name="bekekenBttnString">History</string>
     <string name="filmSearchBarString">Title...</string>
     <string name="filmSearchBttnString">Search</string>
     <string name="filmTitleString" translatable="false">Film title</string>
@@ -84,5 +84,13 @@
     <string name="bedanktView">Thanks for your payment with...</string>
     <string name="toEticketBttn">Show E-Ticket</string>
     <string name="toRouteBttn">Route Description</string>
-    <string name="backToFilmBttn">Back to film</string>
+    <string name="backToHomeBttn">Back to home</string>
+    <string name="selected_seat_text">Selected seat: </string>
+    <string name="payBtn">TO PAYMENT</string>
+    <string name="finalBtn">COMPLETE ORDER</string>
+
+    <string-array name="listDummyEntries">
+        <item>dummy</item>
+    </string-array>
+
 </resources>

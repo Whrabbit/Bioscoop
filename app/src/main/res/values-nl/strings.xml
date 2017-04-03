@@ -51,6 +51,9 @@
     <string name="bedanktView">Bedankt voor uw betaling met...</string>
     <string name="toEticketBttn">Naar E-Ticket</string>
     <string name="toRouteBttn">Routebeschrijving</string>
-    <string name="backToFilmBttn">Terug naar film</string>
+    <string name="backToHomeBttn">Terug naar home</string>
     <string name="langSwitchBtnString">Switch to english</string>
+    <string name="selected_seat_text">Gekozen zitplaats: </string>
+    <string name="payBtn">NAAR BETALEN</string>
+    <string name="finalBtn">AFRONDEN</string>
 </resources>

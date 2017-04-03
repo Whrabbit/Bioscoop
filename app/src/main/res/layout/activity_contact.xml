@@ -58,7 +58,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="3"
         android:orientation="vertical">
 
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="15"
-            tools:context=".MapsActivity" />
+            tools:context=".ContactActivity" />
     </LinearLayout>
 
 </LinearLayout>
