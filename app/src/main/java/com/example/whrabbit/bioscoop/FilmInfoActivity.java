@@ -108,14 +108,22 @@ public class FilmInfoActivity extends AppCompatActivity implements TMDBConnector
     @Override
     public void onFilmsAvailable(Film film) {
         ArrayList<String> genres = film.getGenres();
-        String str = "";
+        String rating;
+        int runtime;
 
+        if (film.getCertification().equals("")){
+            infoAge.setText("Age Rating: " + "No Rating Found");
+        } else {
+            infoAge.setText("Age Rating: " + film.getCertification());
+        }
+
+        String str = "";
         for ( String genre : genres) {
             str += genre + " ";
         }
-
         infoGenre.setText("Genre: " + str);
+
+
         infoRuntime.setText("Runtime: " + film.getRuntime() + " min");
-        infoAge.setText("Age Rating: " + film.getCertification());
     }
 }
