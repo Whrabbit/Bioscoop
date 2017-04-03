@@ -132,6 +132,8 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
             String text = parent.getSelectedItem().toString();
             sortBy = text;
             Log.i("test", sortBy);
+            getFilms("");
+        }
     }
 
     @Override
