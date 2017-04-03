@@ -54,8 +54,8 @@ public class FilmInfoActivity extends AppCompatActivity {
 
         genreList = film.getGenres();
 
-        for (Object genre : genreList) {
-            genres += genre + " ";
+        for (int i = 0; i < genreList.size(); i++){
+            genres += genreList.get(i) + " ";
         }
 
         infoGenre.setText("Genres: " + genres);
