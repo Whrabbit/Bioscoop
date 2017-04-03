@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         ticketBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), SelectSeatsActivity.class);
+                Intent i = new Intent(getApplicationContext(), TicketListActivity.class);
                 startActivity(i);
             }
         });
