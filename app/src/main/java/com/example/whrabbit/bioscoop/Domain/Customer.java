@@ -6,18 +6,20 @@ package com.example.whrabbit.bioscoop.Domain;
 
 public class Customer {
 
-    private String firstName, lastName, city, street, gender, postalCode;
-    private int age, customerID;
+    private String username, firstName, lastName, city, street, gender, postalCode;
+    private int age;
 
-    public Customer(String firstName, String lastName, String city, String street, String gender, int age, int customerID) {
+    public Customer(String username, String firstName, String lastName, String city, String street, String gender, int age) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
         this.street = street;
         this.gender = gender;
         this.age = age;
-        this.customerID = customerID;
     }
+
+    public String getUsername() { return username; }
 
     public String getFirstName() {
         return firstName;
@@ -41,10 +43,6 @@ public class Customer {
 
     public int getAge() {
         return age;
-    }
-
-    public int getCustomerID() {
-        return customerID;
     }
 
     public String getPostalCode() {
@@ -73,10 +71,6 @@ public class Customer {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
     }
 
     public void setPostalCode(String postalCode) {
