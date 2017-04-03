@@ -77,6 +77,8 @@
     <string name="toEticketBttn">Show E-Ticket</string>
     <string name="toRouteBttn">Route Description</string>
     <string name="backToFilmBttn">Back to film</string>
+    <string name="selected_seat_text">Selected seat: </string>
+    <string name="payBtn">TO PAYMENT</string>
 
     <string-array name="listDummyEntries">
         <item>dummy</item>
