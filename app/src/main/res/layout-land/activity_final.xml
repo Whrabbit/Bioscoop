@@ -10,7 +10,8 @@
     <ImageView
         android:id="@+id/logoFinalView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="0dp"
+        android:layout_weight="3"
         android:contentDescription="@string/logoImgViewString"
         android:paddingEnd="75dp"
         android:paddingLeft="75dp"
@@ -22,7 +23,8 @@
     <TextView
         android:id="@+id/bedanktView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:paddingEnd="50dp"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
@@ -36,7 +38,8 @@
     <Button
         android:id="@+id/toEticketBttn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal|center"
         android:layout_marginTop="25dp"
         android:text="@string/toEticketBttn" />
@@ -44,14 +47,16 @@
     <Button
         android:id="@+id/toRouteBttn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal|center"
         android:text="@string/toRouteBttn" />
 
     <Button
         android:id="@+id/backToHomeBttn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal"
         android:text="@string/backToHomeBttn" />
 
