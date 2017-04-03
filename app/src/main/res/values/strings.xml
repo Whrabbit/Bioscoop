@@ -88,6 +88,7 @@
     <string name="selected_seat_text">Selected seat: </string>
     <string name="payBtn">TO PAYMENT</string>
     <string name="finalBtn">COMPLETE ORDER</string>
+    <string name="ratingText">Rating: </string>
 
     <string-array name="listDummyEntries">
         <item>dummy</item>
