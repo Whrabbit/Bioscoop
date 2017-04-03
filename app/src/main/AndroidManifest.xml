@@ -21,17 +21,25 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <!-- Main activity -->
+        <!-- Account activities -->
         <activity
             android:name=".MainActivity"
             android:label="Bioscoop"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".RegistrationActivity"
+            android:windowSoftInputMode="adjustNothing" />
+
+        <!-- Home activity -->
+
+        <activity
+            android:name=".HomeActivity"
+            android:windowSoftInputMode="adjustNothing" />
 
         <!-- Ticket Activities -->
         <activity
@@ -57,14 +65,17 @@
         <activity
             android:name=".FilmListActivityHistory"
             android:windowSoftInputMode="adjustNothing" />
-        <activity android:name=".PlaytimesActivity" />
+        <activity android:name=".PlaytimesActivity"
+            android:noHistory="true"/>
         <activity android:name=".TicketActivity" />
-        <activity android:name=".ReviewListActivity" />
+        <activity android:name=".ReviewListActivity"
+            android:noHistory="true"/>
         <activity android:name=".ReviewActivity" />
-        <activity android:name=".FilmInfoActivity" />
+        <activity android:name=".FilmInfoActivity"
+            android:noHistory="true"/>
         <activity android:name=".SelectSeatsActivity" />
         <activity android:name=".FinalActivity" />
-        <activity android:name=".PaymentActivity"/>
+        <activity android:name=".PaymentActivity" />
     </application>
 
 </manifest>

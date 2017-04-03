@@ -36,7 +36,7 @@ public class FinalActivity extends AppCompatActivity {
         backToHomeBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                Intent i = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(i);
             }
         });

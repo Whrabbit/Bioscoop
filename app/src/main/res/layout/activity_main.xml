@@ -4,61 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingEnd="60dp"
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp"
+    android:paddingStart="60dp"
+    android:paddingTop="100dp"
+    tools:context="com.example.whrabbit.bioscoop.MainActivity">
 
+    <TextView
+        android:id="@+id/usernameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/usernameView"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
 
-    <ImageView
-        android:id="@+id/logoImgView"
+    <EditText
+        android:id="@+id/usernameEditText"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:contentDescription="@string/logoImgViewString"
-        android:paddingBottom="10dp"
-        android:paddingEnd="20dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingStart="20dp"
-        android:paddingTop="20dp"
-        app:srcCompat="@drawable/logo" />
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="16sp" />
 
+    <TextView
+        android:id="@+id/passView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:text="@string/passView"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/passEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/loginBttn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="@string/loginBttn" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical"
-        android:paddingBottom="10dp"
-        android:paddingEnd="20dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingStart="20dp">
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="40dp">
 
         <Button
-            android:id="@+id/filmBtn"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:text="@string/filmBtnString"
-            android:textSize="50sp"
-            tools:ignore="NestedWeights" />
-
-        <Button
-            android:id="@+id/biosBtn"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:text="@string/biosBtnString"
-            android:textSize="50sp" />
-
-        <Button
-            android:id="@+id/ticketBtn"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:text="@string/ticketBtnString"
-            android:textSize="50sp" />
-
+            android:id="@+id/registrationBttn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/registrationBttn"
+            android:textAlignment="center" />
     </LinearLayout>
 
 </LinearLayout>

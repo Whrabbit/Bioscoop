@@ -9,10 +9,18 @@
         <item>Age</item>
     </string-array>
     <string-array name="sortBySpinnerStrings">
-        <item>Date</item>
-        <item>Review</item>
+        <item>popularity.desc</item>
+        <item>popularity.asc</item>
+        <item>release_date.desc</item>
+        <item>release_date.asc</item>
+        <item>revenue.desc</item>
+        <item>revenue.asc</item>
+        <item>primary_release_date.desc</item>
+        <item>primary_release_date.asc</item>
+        <item>original_title.desc</item>
+        <item>original_title.asc</item>
     </string-array>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps" translatable="false">Map</string>
     <string name="filmBtnString">Movies</string>
     <string name="biosBtnString">Cinema</string>
     <string name="ticketBtnString">Tickets</string>
@@ -80,9 +88,24 @@
     <string name="selected_seat_text">Selected seat: </string>
     <string name="payBtn">TO PAYMENT</string>
     <string name="finalBtn">COMPLETE ORDER</string>
+    <string name="ratingText">Rating: </string>
 
     <string-array name="listDummyEntries">
         <item>dummy</item>
     </string-array>
+    <string name="usernameView">Username</string>
+    <string name="passView">Password</string>
+    <string name="loginBttn" translatable="false">Login</string>
+    <string name="registrationBttn">Create account</string>
+    <string name="personalDetailsView">Personal Details:</string>
+    <string name="voornaamView">Firstname:</string>
+    <string name="achternaamView">Lastname:</string>
+    <string name="mailView">E-mail address:</string>
+    <string name="adresView">Address:</string>
+    <string name="woonplaatsView">Place of residency:</string>
+    <string name="postcodeView">Postal Code:</string>
+    <string name="accountDetailsView">Account Details:</string>
+    <string name="usernameEnterView">Username:</string>
+    <string name="passwordEnterView">Password:</string>
 
 </resources>
