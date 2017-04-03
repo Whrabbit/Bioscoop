@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.whrabbit.bioscoop.API.ImageAdapter;
 import com.example.whrabbit.bioscoop.API.Seats;
@@ -21,7 +20,7 @@ public class SelectSeatsActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seat);
+        setContentView(R.layout.activity_seats);
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
