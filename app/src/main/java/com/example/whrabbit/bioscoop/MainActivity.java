@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.whrabbit.bioscoop.DatabaseLayer.DatabaseHandler;
+
 public class MainActivity extends AppCompatActivity {
     Button filmBtn, biosBtn, ticketBtn;
 
@@ -13,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DatabaseHandler dbh = new DatabaseHandler(getApplicationContext(), null, null, 1);
+
 
         filmBtn = (Button) findViewById(R.id.filmBtn);
         filmBtn.setOnClickListener(new View.OnClickListener() {
