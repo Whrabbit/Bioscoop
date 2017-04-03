@@ -90,37 +90,37 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase db){
         Log.i(TAG, "creating database");
-        String CREATE_MOVIE_TABLE = "CREATE TABLE" + MOVIE_TABLE_NAME + "(" +
-                MOVIE_COLUMN_ID + "INTEGER PRIMATY KEY," +
-                MOVIE_COLUMN_ACTORS  + "TEXT," +
-                MOVIE_COLUMN_TITLE  + "TEXT," +
-                MOVIE_COLUMN_DIRECTOR  + "TEXT," +
-                MOVIE_COLUMN_DISCR + "TEXT," +
-                MOVIE_COLUMN_PRICE  + "INTEGER," +
-                MOVIE_COLUMN_RATING  + "INTEGER," + ")"
+        String CREATE_MOVIE_TABLE = "CREATE TABLE " + MOVIE_TABLE_NAME + "(" +
+                MOVIE_COLUMN_ID + " INTEGER PRIMATY KEY," +
+                MOVIE_COLUMN_ACTORS  + " TEXT," +
+                MOVIE_COLUMN_TITLE  + " TEXT," +
+                MOVIE_COLUMN_DIRECTOR  + " TEXT," +
+                MOVIE_COLUMN_DISCR + " TEXT," +
+                MOVIE_COLUMN_PRICE  + " INTEGER," +
+                MOVIE_COLUMN_RATING  + " INTEGER" + ")"
                 ;
 
-        String CREATE_CUSTOMER_TABLE = "CREATE TABLE" + CUSTOMER_TABLE_NAME + "(" +
-                CUSTOMER_COLUMN_USERNAME + "TEXT PRIMARY KEY" +
-                CUSTOMER_COLUMN_FIRSTNAME + "TEXT" +
-                CUSTOMER_COLUMN_LASTNAME + "TEXT" +
-                CUSTOMER_COLUMN_AGE + "INTEGER" +
-                CUSTOMER_COLUMN_CITY + "TEXT" +
-                CUSTOMER_COLUMN_POSTALCODE + "TEXT" +
-                CUSTOMER_COLUMN_STREET + "TEXT" +
-                CUSTOMER_COLUMN_GENDER + "TEXT" + ")"
+        String CREATE_CUSTOMER_TABLE = "CREATE TABLE " + CUSTOMER_TABLE_NAME + "(" +
+                CUSTOMER_COLUMN_USERNAME + " TEXT PRIMARY KEY," +
+                CUSTOMER_COLUMN_FIRSTNAME + " TEXT," +
+                CUSTOMER_COLUMN_LASTNAME + " TEXT," +
+                CUSTOMER_COLUMN_AGE + " INTEGER," +
+                CUSTOMER_COLUMN_CITY + " TEXT," +
+                CUSTOMER_COLUMN_POSTALCODE + " TEXT," +
+                CUSTOMER_COLUMN_STREET + " TEXT," +
+                CUSTOMER_COLUMN_GENDER + " TEXT" + ")"
                 ;
-        String CREATE_REVIEW_TABLE = "CREATE TABLE" + REVIEW_TABLE_NAME + "(" +
-                REVIEW_COLUMN_USERNAME + "TEXT PRIMARY KEY" +
-                REVIEW_COLUMN_REVIEW + "TEXT" +
-                REVIEW_COLUMN_TITLE + "TEXT" +
-                REVIEW_COLUMN_FILMID + "INTEGER" +
-                REVIEW_COLUMN_RATING + "INTEGER" +
+        String CREATE_REVIEW_TABLE = "CREATE TABLE " + REVIEW_TABLE_NAME + "(" +
+                REVIEW_COLUMN_USERNAME + " TEXT PRIMARY KEY," +
+                REVIEW_COLUMN_REVIEW + " TEXT," +
+                REVIEW_COLUMN_TITLE + " TEXT," +
+                REVIEW_COLUMN_FILMID + " INTEGER," +
+                REVIEW_COLUMN_RATING + " INTEGER," +
 
-                "FOREIGN KEY" + REVIEW_COLUMN_USERNAME + "REFERENCES" +
-                CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME + ")" +
+                "FOREIGN KEY " + REVIEW_COLUMN_USERNAME + " REFERENCES " +
+                CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME + ")," +
 
-                "FOREIGN KEY" + REVIEW_COLUMN_FILMID + "REFERENCES" +
+                "FOREIGN KEY " + REVIEW_COLUMN_FILMID + " REFERENCES " +
                 MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")" +
                 ")"
                 ;
@@ -135,49 +135,44 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 ;
                 */
 
-        String CREATE_ROOM_TABLE = "CREATE TABLE" + ROOM_TABLE_NAME + "(" +
-                ROOM_COLUMN_ROOMID + "INTEGR PRIMARY KEY" +
-                ROOM_COLUMN_TOTALSEATS + "INTEGER" +
-                ROOM_COLUMN_AVAILIBLESEATS + "INTEGER" + ")"
+        String CREATE_ROOM_TABLE = "CREATE TABLE " + ROOM_TABLE_NAME + "(" +
+                ROOM_COLUMN_ROOMID + " INTEGER PRIMARY KEY," +
+                ROOM_COLUMN_TOTALSEATS + " INTEGER," +
+                ROOM_COLUMN_AVAILIBLESEATS + " INTEGER" + ")"
                 ;
 
-        String CREATE_SEAT_TABLE = "CREATE TABLE" + SEAT_TABLE_NAME + "(" +
-                SEAT_COLUMN_SEATID + "INTEGR PRIMARY KEY" +
-                SEAT_COLUMN_SEATNUMEBER + "INTEGER" +
-                SEAT_COLUMN_ISAVAILIBLE + "BOOLEAN" +
-                SEAT_COLUMN_ROOMID + "INTEGER" +
+        String CREATE_SEAT_TABLE = "CREATE TABLE " + SEAT_TABLE_NAME + "(" +
+                SEAT_COLUMN_SEATID + " INTEGER PRIMARY KEY," +
+                SEAT_COLUMN_SEATNUMEBER + " INTEGER," +
+                SEAT_COLUMN_ISAVAILIBLE + " BOOLEAN," +
+                SEAT_COLUMN_ROOMID + " INTEGER," +
 
-                "FOREIGN KEY" + SEAT_COLUMN_ROOMID + "REFERENCES" +
+                "FOREIGN KEY " + SEAT_COLUMN_ROOMID + " REFERENCES " +
                 ROOM_TABLE_NAME + "(" + ROOM_COLUMN_ROOMID + ")" +
-
                 ")"
                 ;
 
-        String CREATE_SCREENING_TABLE = "CREATE TABLE" + SCREENING_TABLE_NAME + "(" +
-                SCREENING_COLUMN_ROOMID + "INTEGER" +
-                SCREENING_COLUMN_FILMID + "INTEGER" +
+        String CREATE_SCREENING_TABLE = "CREATE TABLE " + SCREENING_TABLE_NAME + "(" +
+                SCREENING_COLUMN_ROOMID + " INTEGER," +
+                SCREENING_COLUMN_FILMID + " INTEGER," +
 
-                "FOREIGN KEY" + SCREENING_COLUMN_FILMID + "REFERENCES" +
-                MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")" +
+                "FOREIGN KEY " + SCREENING_COLUMN_FILMID + " REFERENCES " +
+                MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")," +
 
-                "FOREIGN KEY" + SCREENING_COLUMN_ROOMID + "REFERENCES" +
+                "FOREIGN KEY " + SCREENING_COLUMN_ROOMID + " REFERENCES " +
                 ROOM_TABLE_NAME + "(" + ROOM_COLUMN_ROOMID + ")" +
-
                 ")"
                 ;
 
-        String CREATE_RECENTWATCH_TABLE = "CREATE TABLE" + RECENT_WATCH_TABLE_NAME + "(" +
-                RECENTWATCH_COLUMN_USERNAME + "TEXT" +
-                RECENTWATCH_COLUMN_FILMID + "INTEGER" +
-                "FOREIGN KEY" + RECENTWATCH_COLUMN_FILMID + "REFERENCES" +
-                MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")" +
+        String CREATE_RECENTWATCH_TABLE = "CREATE TABLE " + RECENT_WATCH_TABLE_NAME + "(" +
+                RECENTWATCH_COLUMN_USERNAME + " TEXT," +
+                RECENTWATCH_COLUMN_FILMID + " INTEGER," +
+                "FOREIGN KEY " + RECENTWATCH_COLUMN_FILMID + " REFERENCES " +
+                MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")," +
 
-                "FOREIGN KEY" + RECENTWATCH_COLUMN_USERNAME + "REFERENCES" +
+                "FOREIGN KEY " + RECENTWATCH_COLUMN_USERNAME + " REFERENCES " +
                 CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME+ ")" +
-
                 ")"
-
-
                 ;
 
 
