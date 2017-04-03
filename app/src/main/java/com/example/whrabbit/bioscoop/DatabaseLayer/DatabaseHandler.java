@@ -1,9 +1,17 @@
 package com.example.whrabbit.bioscoop.DatabaseLayer;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.example.whrabbit.bioscoop.Domain.Customer;
+import com.example.whrabbit.bioscoop.Domain.RecentWatch;
+import com.example.whrabbit.bioscoop.Domain.Review;
+import com.example.whrabbit.bioscoop.Domain.Room;
+import com.example.whrabbit.bioscoop.Domain.Screening;
+import com.example.whrabbit.bioscoop.Domain.Seat;
 
 /**
  * Created by Mika Krooswijk on 30-3-2017.
@@ -63,6 +71,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         private static final String ROOM_COLUMN_TOTALSEATS = "totalSeats";
         private static final String ROOM_COLUMN_AVAILIBLESEATS = "availibleSeats";
         private static final String ROOM_COLUMN_ROOMID = "_roomId";
+
 
 
     private static final String SEAT_TABLE_NAME = "seat";
@@ -185,7 +194,91 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public void addMovie(){
+    public void addCustomer(Customer customer){
+        ContentValues values = new ContentValues();
+        values.put(CUSTOMER_COLUMN_FIRSTNAME, customer.getFirstName() );
+        values.put(CUSTOMER_COLUMN_LASTNAME, customer.getLastName() );
+        values.put(CUSTOMER_COLUMN_AGE, customer.getAge() );
+        values.put(CUSTOMER_COLUMN_CITY, customer.getCity() );
+        values.put(CUSTOMER_COLUMN_POSTALCODE, customer.getPostalCode() );
+        values.put(CUSTOMER_COLUMN_STREET, customer.getStreet() );
+        values.put(CUSTOMER_COLUMN_GENDER, customer.getGender() );
+        values.put(CUSTOMER_COLUMN_CUSTOMERID, customer.getCustomerID() );
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(CUSTOMER_TABLE_NAME, null, values);
+        db.close();
+
+
+    }
+
+    public void addReview(Review review){
+        ContentValues values = new ContentValues();
+        values.put(REVIEW_COLUMN_TITLE, review.getTitle());
+        values.put(REVIEW_COLUMN_RATING, review.getRating());
+        values.put(REVIEW_COLUMN_REVIEW, review.getReview());
+        values.put(REVIEW_COLUMN_REVIEWID, review.getReviewID());
+        values.put(REVIEW_COLUMN_CUSTOMERID, review.getCustomerID());
+        values.put(REVIEW_COLUMN_FILMID, review.getFilmID());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.close();
+
+
+    }
+
+    public void addRecentWatch(RecentWatch recentWatch){
+        ContentValues values = new ContentValues();
+        values.put(RECENTWATCH_COLUMN_CUSTOMERID, recentWatch.getCustomerID());
+        values.put(RECENTWATCH_COLUMN_FILMID, recentWatch.getFilmID());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.close();
+
+
+    }
+
+    public void addScreening(Screening screening){
+        ContentValues values = new ContentValues();
+        values.put(SCREENING_COLUMN_FILMID, screening.getFilmID());
+        values.put(SCREENING_COLUMN_ROOMID, screening.getRoomID());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.close();
+
+
+    }
+
+    public void addRoom(Room room){
+        ContentValues values = new ContentValues();
+        values.put(ROOM_COLUMN_AVAILIBLESEATS, room.getAvailibleSeats());
+        values.put(ROOM_COLUMN_TOTALSEATS, room.getTotalSeats());
+        values.put(ROOM_COLUMN_ROOMID, room.getTotalSeats());
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.close();
+
+
+    }
+
+    public void addSeat(Seat seat){
+
+        ContentValues values = new ContentValues();
+        values.put(SEAT_COLUMN_ISAVAILIBLE, seat.isAvailible());
+        values.put(SEAT_COLUMN_SEATNUMEBER, seat.getSeatNumber());
+        values.put(SEAT_COLUMN_ROOMID, seat.getRoomID());
+        values.put(SEAT_COLUMN_SEATID, seat.getSeatID());
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.close();
+
 
     }
 
