@@ -1,13 +1,14 @@
 package com.example.whrabbit.bioscoop;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.whrabbit.bioscoop.API.ImageAdapter;
 import com.example.whrabbit.bioscoop.API.Seats;
@@ -17,6 +18,7 @@ import java.util.List;
 public class SelectSeatsActivity extends AppCompatActivity {
     public List<Seats> selectedSeats;
     private static final int MAX_SEATS = 5;
+    private Button payBtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,17 @@ public class SelectSeatsActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.seat_selected);
                 TextView tv = (TextView) findViewById(R.id.selected_seat);
                 tv.setText(" " + position);
+
+                payBtn = (Button) findViewById(R.id.payBtn);
+                payBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getApplicationContext(), PaymentActivity.class);
+                        startActivity(i);
+                    }
+                });
+
+
 
 
 
