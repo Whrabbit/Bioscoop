@@ -9,6 +9,7 @@
         android:id="@+id/filmBackdrop"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_centerInParent="true"
         android:layout_weight="5"
         android:contentDescription="@string/filmBackdrop"
         app:srcCompat="@color/colorAccent" />
