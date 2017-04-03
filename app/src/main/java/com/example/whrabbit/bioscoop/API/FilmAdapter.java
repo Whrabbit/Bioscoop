@@ -38,6 +38,8 @@ public class FilmAdapter extends ArrayAdapter<Film> {
 
         if(item.getPoster_path() != null) {
             Picasso.with(getContext()).load("https://image.tmdb.org/t/p" + "/w500" + "/" + item.getPoster_path()).into(filmImage);
+        } else {
+            Picasso.with(getContext()).load("http://placehold.it/0x0").into(filmImage);
         }
         filmTitle.setText(item.getTitle());
         filmYear.setText(item.getRelease_date());

@@ -9,8 +9,16 @@
         <item>Age</item>
     </string-array>
     <string-array name="sortBySpinnerStrings">
-        <item>Date</item>
-        <item>Review</item>
+        <item>popularity.desc</item>
+        <item>popularity.asc</item>
+        <item>release_date.desc</item>
+        <item>release_date.asc</item>
+        <item>revenue.desc</item>
+        <item>revenue.asc</item>
+        <item>primary_release_date.desc</item>
+        <item>primary_release_date.asc</item>
+        <item>original_title.desc</item>
+        <item>original_title.asc</item>
     </string-array>
     <string name="title_activity_maps" translatable="false">Map</string>
     <string name="filmBtnString">Movies</string>
@@ -80,6 +88,7 @@
     <string name="selected_seat_text">Selected seat: </string>
     <string name="payBtn">TO PAYMENT</string>
     <string name="finalBtn">COMPLETE ORDER</string>
+    <string name="ratingText">Rating: </string>
 
     <string-array name="listDummyEntries">
         <item>dummy</item>

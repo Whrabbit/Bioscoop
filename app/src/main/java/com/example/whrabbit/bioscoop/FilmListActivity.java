@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,7 +13,7 @@ import android.widget.Spinner;
 
 import com.example.whrabbit.bioscoop.API.Film;
 import com.example.whrabbit.bioscoop.API.FilmAdapter;
-import com.example.whrabbit.bioscoop.API.TMDBApiConnector;
+import com.example.whrabbit.bioscoop.API.ApiConnector;
 import com.example.whrabbit.bioscoop.API.TMDBConnectorListener;
 
 import java.io.UnsupportedEncodingException;
@@ -29,6 +28,9 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
     ArrayList<Film> films;
     Button filmSearchBttn, bekekenBttn;
     EditText filmSearchBar;
+    String sortBy = "";
+    String searchType = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,8 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
         filmSearchBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getProducts(filmSearchBar.getText().toString());
+                searchType = "discover";
+                getFilms(filmSearchBar.getText().toString());
             }
         });
 
@@ -76,6 +79,7 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(), PlaytimesActivity.class);
+                i.putExtra("FILM", films.get(position));
                 startActivity(i);
             }
         });
@@ -86,18 +90,29 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
     }
 
     //TODO: Construct url based on search and filters
-    public void getProducts(String search) {
+    public void getFilms(String search) {
+        String url = "";
 
         films.clear();
+        ApiConnector connector = new ApiConnector(this);
 
         try {
             String encSearch = URLEncoder.encode(search, "UTF-8");
 
             films.clear();
 
-            TMDBApiConnector connector = new TMDBApiConnector(this);
-            String url = "https://api.themoviedb.org/3/search/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&query=" + encSearch + "&page=1&include_adult=false";
-            String[] urls = new String[] {url};
+//            Calendar c = Calendar.getInstance();
+//            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
+//            String strDate = sdf.format(c.getTime());
+//            Log.i("date", strDate);
+
+            if (searchType.equals("discover")) {
+                url = "https://api.themoviedb.org/3/discover/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&sort_by=" + sortBy + "&include_adult=false&include_video=false&page=1&with_release_type=1";
+            } else if (searchType.equals("search")){
+                url = "https://api.themoviedb.org/3/search/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&query=" + encSearch + "&page=1&include_adult=false";
+            }
+
+            String[]urls = new String[]{url};
             connector.execute(urls);
 
         } catch (UnsupportedEncodingException e) {
@@ -108,6 +123,8 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getSelectedItem().toString();
+        sortBy = text;
     }
 
     @Override

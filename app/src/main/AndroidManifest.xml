@@ -65,11 +65,14 @@
         <activity
             android:name=".FilmListActivityHistory"
             android:windowSoftInputMode="adjustNothing" />
-        <activity android:name=".PlaytimesActivity" />
+        <activity android:name=".PlaytimesActivity"
+            android:noHistory="true"/>
         <activity android:name=".TicketActivity" />
-        <activity android:name=".ReviewListActivity" />
+        <activity android:name=".ReviewListActivity"
+            android:noHistory="true"/>
         <activity android:name=".ReviewActivity" />
-        <activity android:name=".FilmInfoActivity" />
+        <activity android:name=".FilmInfoActivity"
+            android:noHistory="true"/>
         <activity android:name=".SelectSeatsActivity" />
         <activity android:name=".FinalActivity" />
         <activity android:name=".PaymentActivity" />

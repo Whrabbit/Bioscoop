@@ -2,6 +2,7 @@ package com.example.whrabbit.bioscoop.API;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -11,9 +12,8 @@ import java.util.ArrayList;
 
 public class Film implements Parcelable {
 
-    private String poster_path, overview, release_date, original_title, original_language, title, backdrop_path;
-    private int id;
-    private ArrayList<Integer> genre_ids;
+    private String poster_path, overview, release_date, original_title, original_language, title, backdrop_path, certification;
+    private int id, runtime;
     private ArrayList<String> genres;
 
     public Film() {
@@ -25,8 +25,9 @@ public class Film implements Parcelable {
         title = "";
         id = -1;
         backdrop_path = null;
-        genre_ids = new ArrayList<>();
         genres = new ArrayList<>();
+        certification = "";
+        runtime = -1;
     }
 
     private Film(Parcel in) {
@@ -38,6 +39,8 @@ public class Film implements Parcelable {
         title = in.readString();
         backdrop_path = in.readString();
         id = in.readInt();
+        certification = in.readString();
+        runtime = in.readInt();
     }
 
     @Override
@@ -55,6 +58,8 @@ public class Film implements Parcelable {
         out.writeString(title);
         out.writeString(backdrop_path);
         out.writeInt(id);
+        out.writeString(certification);
+        out.writeInt(runtime);
     }
 
     public static final Parcelable.Creator<Film> CREATOR = new Parcelable.Creator<Film>() {
@@ -127,14 +132,6 @@ public class Film implements Parcelable {
         this.backdrop_path = backdrop_path;
     }
 
-    public ArrayList<Integer> getGenre_ids() {
-        return genre_ids;
-    }
-
-    public void setGenre_ids(ArrayList<Integer> genre_ids) {
-        this.genre_ids = genre_ids;
-    }
-
     public ArrayList<String> getGenres() {
         return genres;
     }
@@ -149,5 +146,21 @@ public class Film implements Parcelable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCertification() {
+        return certification;
+    }
+
+    public void setCertification(String certification) {
+        this.certification = certification;
+    }
+
+    public int getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(int runtime) {
+        this.runtime = runtime;
     }
 }
