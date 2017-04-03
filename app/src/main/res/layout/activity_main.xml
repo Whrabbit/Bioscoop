@@ -1,67 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical">
 
-    <LinearLayout
+
+    <ImageView
+        android:id="@+id/logoImgView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/logoImgViewString"
         android:paddingBottom="10dp"
+        android:paddingEnd="20dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="10dp">
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        app:srcCompat="@drawable/logo" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@color/colorAccent" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingEnd="20dp"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:paddingRight="20dp"
+        android:paddingStart="20dp">
 
         <Button
             android:id="@+id/filmBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Film" />
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:text="@string/filmBtnString"
+            android:textSize="50sp"
+            tools:ignore="NestedWeights" />
 
         <Button
             android:id="@+id/biosBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Bioscoop" />
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:text="@string/biosBtnString"
+            android:textSize="50sp" />
 
         <Button
             android:id="@+id/ticketBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Kaarten" />
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:text="@string/ticketBtnString"
+            android:textSize="50sp" />
 
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="80dp"
-            android:paddingRight="80dp"
-            android:text="Dutch / English"
-            android:textAlignment="textStart" />
     </LinearLayout>
 
 </LinearLayout>

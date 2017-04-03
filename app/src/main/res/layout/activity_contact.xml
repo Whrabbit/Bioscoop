@@ -7,63 +7,80 @@
     android:padding="10dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/contactNameView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Avans Bioscoop"
+            android:text="@string/contactNameViewString"
+            android:textColor="@android:color/background_light"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="NestedWeights" />
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Hogeschoollaan 1" />
-
-        <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/contactLocView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="4818 CR Breda" />
+            android:text="@string/contactLovViewString"
+            android:textColor="@android:color/background_light" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/contactPostView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="088 - 525 75 00" />
+            android:text="@string/contactPostViewString"
+            android:textColor="@android:color/background_light" />
+
+        <TextView
+            android:id="@+id/contactNumberView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/contactNumberViewString"
+            android:textColor="@android:color/background_light" />
+
+        <TextView
+            android:id="@+id/contactMailView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/contactMailViewString"
+            android:textColor="@android:color/background_light" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="10dp">
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/routeView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Routebeschrijving"
+            android:text="@string/routeViewString"
+            android:textColor="@android:color/background_light"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="NestedWeights" />
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            tools:context=".MapsActivity" />
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            tools:context=".ContactActivity" />
     </LinearLayout>
 
 </LinearLayout>
