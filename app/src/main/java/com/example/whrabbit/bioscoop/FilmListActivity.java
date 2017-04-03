@@ -84,6 +84,7 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(), PlaytimesActivity.class);
+                i.putExtra("FILM", films.get(position));
                 startActivity(i);
             }
         });
@@ -105,10 +106,10 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
 
             films.clear();
 
-            Calendar c = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
-            String strDate = sdf.format(c.getTime());
-            Log.i("date", strDate);
+//            Calendar c = Calendar.getInstance();
+//            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
+//            String strDate = sdf.format(c.getTime());
+//            Log.i("date", strDate);
 
             if (searchType.equals("discover")) {
                 url = "https://api.themoviedb.org/3/discover/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&sort_by=" + sortBy + "&include_adult=false&include_video=false&page=1&with_release_type=1";

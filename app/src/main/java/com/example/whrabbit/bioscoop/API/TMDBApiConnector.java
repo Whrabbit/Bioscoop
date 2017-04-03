@@ -1,7 +1,6 @@
 package com.example.whrabbit.bioscoop.API;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,8 +44,8 @@ public class TMDBApiConnector extends AsyncTask<String, Void, ArrayList<JSONObje
         }
 
         try {
-            for (int i = 0; i < urls.length; i++) {
-                URL url = new URL(urls[i]);
+            for (int i = 0; i < urlList.size(); i++) {
+                URL url = new URL(urlList.get(i));
                 URLConnection connection = url.openConnection();
                 reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
@@ -87,8 +86,6 @@ public class TMDBApiConnector extends AsyncTask<String, Void, ArrayList<JSONObje
     @Override
     protected void onPostExecute(ArrayList<JSONObject> jsonList) {
 
-        String poster_path, overview, release_date, original_title, original_language, title, backdrop_path;
-        int id;
         JSONArray json_genre_ids;
         ArrayList<Integer> genre_ids;
         ArrayList<String> genreStrings;
