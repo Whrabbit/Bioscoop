@@ -11,8 +11,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import static com.example.whrabbit.bioscoop.R.id.ticketAantalSpinner;
-import static com.example.whrabbit.bioscoop.R.id.ticketPrijsNumber;
+import com.example.whrabbit.bioscoop.API.Film;
 
 /**
  * Created by mark on 2-4-2017.
@@ -23,6 +22,7 @@ public class TicketActivity extends AppCompatActivity {
     private SeekBar kinderenBar, studentenBar;
     private int aantalTickets, aantalStudenten, aantalKinderen, ticketPrijs;
     private Spinner ticketAantalSpinner;
+    private Film film;
 
     Button ticketSeatBttn;
 
@@ -36,6 +36,10 @@ public class TicketActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), SelectSeatsActivity.class);
+                i.putExtra("AANTAL", aantalTickets);
+                film = null;
+                i.putExtra("FILM", film);
+                i.putExtra("PRICE", ticketPrijs);
                 startActivity(i);
             }
         });

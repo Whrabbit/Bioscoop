@@ -3,6 +3,7 @@ package com.example.whrabbit.bioscoop;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,17 +41,17 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
         films = new ArrayList<>();
 
         filterTypeSpinner = (Spinner) findViewById(R.id.filterTypeSpinner);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.filterTypeSpinnerStrings,android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.filterTypeSpinnerStrings, android.R.layout.simple_spinner_item);
         filterTypeSpinner.setAdapter(adapter);
         filterTypeSpinner.setOnItemSelectedListener(this);
 
         filterSpinner = (Spinner) findViewById(R.id.filterSpinner);
-        ArrayAdapter a = ArrayAdapter.createFromResource(this, R.array.filterSpinnerStrings,android.R.layout.simple_spinner_item);
+        ArrayAdapter a = ArrayAdapter.createFromResource(this, R.array.filterSpinnerStrings, android.R.layout.simple_spinner_item);
         filterSpinner.setAdapter(a);
         filterSpinner.setOnItemSelectedListener(this);
 
         sortBySpinner = (Spinner) findViewById(R.id.sortBySpinner);
-        ArrayAdapter o = ArrayAdapter.createFromResource(this, R.array.sortBySpinnerStrings,android.R.layout.simple_spinner_item);
+        ArrayAdapter o = ArrayAdapter.createFromResource(this, R.array.sortBySpinnerStrings, android.R.layout.simple_spinner_item);
         sortBySpinner.setAdapter(o);
         sortBySpinner.setOnItemSelectedListener(this);
 
@@ -60,7 +61,7 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
         filmSearchBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchType = "discover";
+                searchType = "search";
                 getFilms(filmSearchBar.getText().toString());
             }
         });
@@ -78,7 +79,7 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
         filmListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), PlaytimesActivity.class);
+                Intent i = new Intent(getApplicationContext(), FilmInfoActivity.class);
                 i.putExtra("FILM", films.get(position));
                 startActivity(i);
             }
@@ -93,38 +94,44 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
     public void getFilms(String search) {
         String url = "";
 
-        films.clear();
-        ApiConnector connector = new ApiConnector(this);
 
-        try {
-            String encSearch = URLEncoder.encode(search, "UTF-8");
-
+        if (!search.equals("") || searchType.equals("discover")) {
             films.clear();
+            ApiConnector connector = new ApiConnector(this);
+
+            try {
+                String encSearch = URLEncoder.encode(search, "UTF-8");
+
+                films.clear();
 
 //            Calendar c = Calendar.getInstance();
 //            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
 //            String strDate = sdf.format(c.getTime());
 //            Log.i("date", strDate);
 
-            if (searchType.equals("discover")) {
-                url = "https://api.themoviedb.org/3/discover/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&sort_by=" + sortBy + "&include_adult=false&include_video=false&page=1&with_release_type=1";
-            } else if (searchType.equals("search")){
-                url = "https://api.themoviedb.org/3/search/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&query=" + encSearch + "&page=1&include_adult=false";
+                if (searchType.equals("discover")) {
+                    url = "https://api.themoviedb.org/3/discover/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&sort_by=" + sortBy + "&include_adult=false&include_video=false&page=1&with_release_type=1";
+                } else if (searchType.equals("search")) {
+                    url = "https://api.themoviedb.org/3/search/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&query=" + encSearch + "&page=1&include_adult=false";
+                }
+
+                String[] urls = new String[]{url};
+                connector.execute(urls);
+
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
             }
-
-            String[]urls = new String[]{url};
-            connector.execute(urls);
-
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         }
 
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text = parent.getSelectedItem().toString();
-        sortBy = text;
+        searchType = "discover";
+        if (parent.equals(sortBySpinner)) {
+            String text = parent.getSelectedItem().toString();
+            sortBy = text;
+            Log.i("test", sortBy);
     }
 
     @Override
@@ -134,7 +141,7 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onFilmsAvailable(Film film) {
-        if(film != null) {
+        if (film != null) {
             films.add(film);
         } else {
             films.clear();
