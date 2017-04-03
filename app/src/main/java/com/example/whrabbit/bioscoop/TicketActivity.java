@@ -19,13 +19,15 @@ public class TicketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket);
 
-        ticketSeatBttn = (Button) findViewById(R.id.ticketSeatBttn);
+        /*
+        ticketSeatBttn = (Button) findViewById(R.id.);
         ticketSeatBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), SelectSeatsActivity.class);
+                Intent i = new Intent(getApplicationContext(), ReviewListActivity.class);
                 startActivity(i);
             }
         });
+        */
     }
 }
