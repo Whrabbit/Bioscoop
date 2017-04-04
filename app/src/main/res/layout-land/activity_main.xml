@@ -9,7 +9,7 @@
     android:paddingLeft="60dp"
     android:paddingRight="60dp"
     android:paddingStart="60dp"
-    android:paddingTop="100dp"
+    android:paddingTop="50dp"
     tools:context="com.example.whrabbit.bioscoop.MainActivity">
 
     <TextView

@@ -36,11 +36,5 @@
             android:numStars="5"
             android:rating="3"
             android:stepSize="1" />
-
-        <TextView
-            android:id="@+id/reviewText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
     </LinearLayout>
 </LinearLayout>
