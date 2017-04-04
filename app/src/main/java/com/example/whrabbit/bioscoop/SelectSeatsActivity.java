@@ -30,10 +30,23 @@ public class SelectSeatsActivity extends AppCompatActivity {
                                     int position, long id) {
                 ImageView imageView;
                 imageView = (ImageView) v;
-                imageView.setImageResource(R.drawable.seat_selected);
+
+                //imageView.setImageResource(R.drawable.seat_selected);
                 TextView tv = (TextView) findViewById(R.id.selected_seat);
                 tv.setText(" " + position);
                 seat = position;
+
+                boolean flag=false;
+
+                if (!flag) {
+                    imageView.setImageResource(R.drawable.seat_selected);
+                    flag=true;
+                }
+                else {
+                    imageView.setImageResource(R.drawable.seat_sale);
+                    flag=false;
+                }
+
 
                 payBtn = (Button) findViewById(R.id.payBtn);
                 payBtn.setOnClickListener(new View.OnClickListener() {
@@ -43,11 +56,11 @@ public class SelectSeatsActivity extends AppCompatActivity {
                         i.putExtras(getIntent().getExtras());
                         i.putExtra("SEAT", seat);
                         startActivity(i);
+
+
+
                     }
                 });
-
-
-
 
 
             }
