@@ -1,5 +1,7 @@
 package com.example.whrabbit.bioscoop;
 
+import android.app.*;
+import android.app.Application;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
         wrongPasswordView = (TextView) findViewById(R.id.wrongPasswordView);
         wrongPasswordView.setVisibility(View.INVISIBLE);
 
-
-
         registrationBttn = (Button) findViewById(R.id.registrationBttn);
         registrationBttn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,12 +48,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String username = userNameBox.getText().toString();
+
                 Log.i("LOG",passwordBox.getText().toString());
 
 
                 if(passwordBox.getText().toString().equals(dbh.getPassword(username)) ) {
                     Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                    ((MyApplication) getBaseContext().getApplicationContext()).setSignedInUsername(username);
                     startActivity(i);
+
                 }else{
                     wrongPasswordView.setVisibility(View.VISIBLE);
                 }

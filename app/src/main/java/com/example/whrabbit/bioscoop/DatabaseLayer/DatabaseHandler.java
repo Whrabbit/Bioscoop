@@ -15,6 +15,8 @@ import com.example.whrabbit.bioscoop.Domain.Room;
 import com.example.whrabbit.bioscoop.Domain.Screening;
 import com.example.whrabbit.bioscoop.Domain.Seat;
 
+import java.util.ArrayList;
+
 /**
  * Created by Mika Krooswijk on 30-3-2017.
  */
@@ -223,7 +225,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void getReviews(int filmID) {
+    public ArrayList getReviews(int filmID) {
+
+        ArrayList<Review> reviews = new ArrayList<>();
+
         String query = "SELECT * FROM " + REVIEW_TABLE_NAME + " WHERE " +
                 REVIEW_COLUMN_USERNAME + "=" + filmID;
 
@@ -240,7 +245,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             review.setFilmID(cursor.getInt(cursor.getColumnIndex(REVIEW_COLUMN_FILMID)));
             review.setRating(cursor.getInt(cursor.getColumnIndex(REVIEW_COLUMN_RATING)));
             review.setReview(cursor.getString(cursor.getColumnIndex(REVIEW_COLUMN_REVIEW)));
+
+            reviews.add(review);
         }
+
+        db.close();
+
+        return reviews;
     }
 
     public void addRecentWatch(RecentWatch recentWatch){
@@ -340,7 +351,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Customer customer = new Customer();
 
-        String query = "SELECT " + CUSTOMER_COLUMN_USERNAME + "," + CUSTOMER_COLUMN_FIRSTNAME + " FROM " + CUSTOMER_TABLE_NAME + " WHERE " +
+        String query = "SELECT " + CUSTOMER_COLUMN_FIRSTNAME + " FROM " + CUSTOMER_TABLE_NAME + " WHERE " +
                 CUSTOMER_COLUMN_USERNAME + "=" + "\"" + username + "\"";
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -351,30 +362,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Log.i("TAG", "before while");
 
         while(cursor.moveToNext() ) {
-
-
-
-
-
-            customer.setUsername(cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_USERNAME)));
             customer.setFirstName(cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_FIRSTNAME)));
-
             Log.i("TAG", "got customer");
-        }
-
-        ;
-
+        };
 
         db.close();
 
      return customer;
 
-
-
-
     }
-
-
-
-
 }
