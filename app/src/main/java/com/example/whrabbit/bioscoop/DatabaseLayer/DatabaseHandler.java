@@ -117,10 +117,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 ")"
                 ;
         String CREATE_REVIEW_TABLE = "CREATE TABLE " + REVIEW_TABLE_NAME + "(" +
-                REVIEW_COLUMN_USERNAME + " TEXT PRIMARY KEY," +
+                REVIEW_COLUMN_USERNAME + " TEXT," +
                 REVIEW_COLUMN_REVIEW + " TEXT," +
                 REVIEW_COLUMN_FILMID + " INTEGER," +
                 REVIEW_COLUMN_RATING + " INTEGER," +
+                "PRIMARY KEY (" + REVIEW_COLUMN_FILMID + ", " + REVIEW_COLUMN_USERNAME + ")," +
+
 
                 "FOREIGN KEY (" + REVIEW_COLUMN_USERNAME + ") REFERENCES " +
                 CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME + ")," +
@@ -230,13 +232,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ArrayList<Review> reviews = new ArrayList<>();
 
         String query = "SELECT * FROM " + REVIEW_TABLE_NAME + " WHERE " +
-                REVIEW_COLUMN_USERNAME + "=" + filmID;
+                REVIEW_COLUMN_FILMID + "=" + filmID;
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(query, null);
 
-        cursor.moveToFirst();
+        //cursor.moveToFirst();
 
         while(cursor.moveToNext() ) {
             Review review = new Review();

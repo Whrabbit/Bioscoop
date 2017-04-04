@@ -44,8 +44,6 @@ public class ReviewActivity extends AppCompatActivity {
         userRealName.setText("");
         username = "";
 
-        Log.i("TEST1", ((MyApplication) getBaseContext().getApplicationContext()).getSignedInUsername());
-
         username = ((MyApplication) this.getApplicationContext()).getSignedInUsername();
         userName.setText(username);
 
