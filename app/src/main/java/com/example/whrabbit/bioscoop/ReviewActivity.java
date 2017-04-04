@@ -34,15 +34,15 @@ public class ReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
 
-        userName.setText("");
-        userRealName.setText("");
-        username = "";
-
         dbh = new DatabaseHandler(getApplicationContext(), null, null, 1);
 
         userName = (TextView) findViewById(R.id.userName);
         userRealName = (TextView) findViewById(R.id.userRealName);
         reviewBox = (EditText) findViewById(R.id.reviewBox);
+
+        userName.setText("");
+        userRealName.setText("");
+        username = "";
 
         Log.i("TEST1", ((MyApplication) getBaseContext().getApplicationContext()).getSignedInUsername());
 
