@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                         wrongPasswordView.setVisibility(View.VISIBLE);
                     }
 
+                } else {
+                    wrongPasswordView.setVisibility(View.VISIBLE);
                 }
 
 
