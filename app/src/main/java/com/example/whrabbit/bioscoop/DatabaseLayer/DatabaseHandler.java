@@ -120,27 +120,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 REVIEW_COLUMN_FILMID + " INTEGER," +
                 REVIEW_COLUMN_RATING + " INTEGER," +
 
-                "FOREIGN KEY " + REVIEW_COLUMN_USERNAME + " REFERENCES " +
+                "FOREIGN KEY (" + REVIEW_COLUMN_USERNAME + ") REFERENCES " +
                 CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME + ")," +
 
-                " FOREIGN KEY " + REVIEW_COLUMN_FILMID + " REFERENCES " +
+                " FOREIGN KEY (" + REVIEW_COLUMN_FILMID + ") REFERENCES " +
                 MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")" +
-                ")"
+                ");"
 
 
                 ;
-
-
-
-        String CREATE_CON_REVIEW = "ALTER TABLE " + REVIEW_TABLE_NAME +
-                " ADD CONSTRAINT FK_REVIEW FOREIGN KEY (" + REVIEW_COLUMN_USERNAME + ") REFERENCES " + CUSTOMER_TABLE_NAME +
-                "(" + CUSTOMER_COLUMN_USERNAME + "), " +
-
-                "FOREIGN KEY (" + REVIEW_COLUMN_FILMID + ") REFERENCES " + MOVIE_TABLE_NAME +
-                "(" + CUSTOMER_COLUMN_USERNAME + ")";
-
-
-       
 
         String CREATE_ROOM_TABLE = "CREATE TABLE " + ROOM_TABLE_NAME + "(" +
                 ROOM_COLUMN_ROOMID + " INTEGER PRIMARY KEY," +
@@ -154,7 +142,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 SEAT_COLUMN_ISAVAILIBLE + " BOOLEAN," +
                 SEAT_COLUMN_ROOMID + " INTEGER," +
 
-                "FOREIGN KEY " + SEAT_COLUMN_ROOMID + " REFERENCES " +
+                "FOREIGN KEY (" + SEAT_COLUMN_ROOMID + ") REFERENCES " +
                 ROOM_TABLE_NAME + "(" + ROOM_COLUMN_ROOMID + ")" +
                 ")"
                 ;
@@ -163,12 +151,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 SCREENING_COLUMN_ROOMID + " INTEGER," +
                 SCREENING_COLUMN_FILMID + " INTEGER," +
 
-                "FOREIGN KEY " + SCREENING_COLUMN_FILMID + " REFERENCES " +
+                "FOREIGN KEY (" + SCREENING_COLUMN_FILMID + ") REFERENCES " +
                 MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")," +
 
-                "FOREIGN KEY " + SCREENING_COLUMN_ROOMID + " REFERENCES " +
+                "FOREIGN KEY (" + SCREENING_COLUMN_ROOMID + ") REFERENCES " +
                 ROOM_TABLE_NAME + "(" + ROOM_COLUMN_ROOMID + ")" +
-                ")"
+                ");"
                 ;
 
 
@@ -176,19 +164,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_RECENTWATCH_TABLE = "CREATE TABLE " + RECENT_WATCH_TABLE_NAME + "(" +
                 RECENTWATCH_COLUMN_USERNAME + " TEXT," +
                 RECENTWATCH_COLUMN_FILMID + " INTEGER," +
-                "FOREIGN KEY " + RECENTWATCH_COLUMN_FILMID + " REFERENCES " +
+                "FOREIGN KEY (" + RECENTWATCH_COLUMN_FILMID + ") REFERENCES " +
                 MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")," +
 
-                "FOREIGN KEY " + RECENTWATCH_COLUMN_USERNAME + " REFERENCES " +
+                "FOREIGN KEY (" + RECENTWATCH_COLUMN_USERNAME + ") REFERENCES " +
                 CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME+ ")" +
                 ")"
                 ;
+
+
 
         db.execSQL("PRAGMA foreign_keys=ON;");
         db.execSQL(CREATE_MOVIE_TABLE);
         db.execSQL(CREATE_CUSTOMER_TABLE);
         db.execSQL(CREATE_REVIEW_TABLE);
-        db.execSQL(CREATE_CON_REVIEW);
+        //db.execSQL(CREATE_CON_REVIEW);
         db.execSQL(CREATE_ROOM_TABLE);
         db.execSQL(CREATE_SEAT_TABLE);
         db.execSQL(CREATE_RECENTWATCH_TABLE);

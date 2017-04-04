@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.whrabbit.bioscoop.DatabaseLayer.DatabaseHandler;
+import com.example.whrabbit.bioscoop.Domain.Customer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         userNameBox = (EditText) findViewById(R.id.usernameEditText);
         wrongPasswordView = (TextView) findViewById(R.id.wrongPasswordView);
         wrongPasswordView.setVisibility(View.INVISIBLE);
+
 
 
         registrationBttn = (Button) findViewById(R.id.registrationBttn);
