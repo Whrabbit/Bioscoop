@@ -125,15 +125,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 ")"
                 ;
 
-        /*
-        String CREATE_REVIEW_TABLE = "CREATE TABLE" + REVIEW_TABLE_NAME + "(" +
-                REVIEW_COLUMN_USERNAME + "TEXT PRIMARY KEY" +
-                REVIEW_COLUMN_REVIEW + "TEXT" +
-                REVIEW_COLUMN_TITLE + "TEXT" +
-                REVIEW_COLUMN_FILMID + "INTEGER" +
-                REVIEW_COLUMN_RATING + "INTEGER" + ")"
-                ;
-                */
+       
 
         String CREATE_ROOM_TABLE = "CREATE TABLE " + ROOM_TABLE_NAME + "(" +
                 ROOM_COLUMN_ROOMID + " INTEGER PRIMARY KEY," +
