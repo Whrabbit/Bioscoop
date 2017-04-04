@@ -5,67 +5,60 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/userRealName"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:orientation="horizontal"
-        android:paddingEnd="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingStart="10dp">
-
-        <ImageView
-            android:id="@+id/userImage"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:contentDescription="@string/userImage"
-            app:srcCompat="@drawable/panel_46628202_image_a72c6708272e0e22_320"
-            tools:ignore="NestedWeights" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingStart="10dp"
-            android:paddingTop="75dp"
-            tools:ignore="RtlSymmetry">
-
-            <TextView
-                android:id="@+id/userName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:text="@string/userName"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/userRealName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/userRealName"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_weight="1.5"
+        android:text="@string/userRealName"
+        android:textColor="@android:color/white" />
 
     <TextView
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:text="@string/userName"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/ratingText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/ratingText"
+        android:textColor="@android:color/white" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:numStars="5"
+        android:rating="3"
+        android:stepSize="1" />
+
+    <EditText
         android:id="@+id/reviewBox"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_margin="5dp"
+        android:layout_weight="6"
         android:background="@drawable/full_border"
-        android:hint="@string/reviewBox"
-        android:padding="5dp"
-        android:textColor="@android:color/white" />
+        android:ems="10"
+        android:gravity="start"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
 
     <Button
         android:id="@+id/reviewSubmitBttn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:background="@drawable/no_border"
         android:text="@string/reviewSubmitBttn" />
+
 </LinearLayout>
