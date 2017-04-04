@@ -57,10 +57,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String REVIEW_TABLE_NAME = "review";
 
-        private static final String REVIEW_COLUMN_TITLE = "title";
         private static final String REVIEW_COLUMN_RATING = "rating";
         private static final String REVIEW_COLUMN_REVIEW = "review";
-        private static final String REVIEW_COLUMN_REVIEWID = "_reviewId";
         private static final String REVIEW_COLUMN_USERNAME = "username";
         private static final String REVIEW_COLUMN_FILMID = "filmId";
 
@@ -118,7 +116,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_REVIEW_TABLE = "CREATE TABLE " + REVIEW_TABLE_NAME + "(" +
                 REVIEW_COLUMN_USERNAME + " TEXT PRIMARY KEY," +
                 REVIEW_COLUMN_REVIEW + " TEXT," +
-                REVIEW_COLUMN_TITLE + " TEXT," +
                 REVIEW_COLUMN_FILMID + " INTEGER," +
                 REVIEW_COLUMN_RATING + " INTEGER," +
 
@@ -180,7 +177,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_MOVIE_TABLE);
         db.execSQL(CREATE_CUSTOMER_TABLE);
         db.execSQL(CREATE_REVIEW_TABLE);
-        //db.execSQL(CREATE_CON_REVIEW);
         db.execSQL(CREATE_ROOM_TABLE);
         db.execSQL(CREATE_SEAT_TABLE);
         db.execSQL(CREATE_RECENTWATCH_TABLE);
@@ -214,18 +210,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public void addReview(Review review){
         ContentValues values = new ContentValues();
-        values.put(REVIEW_COLUMN_TITLE, review.getTitle());
         values.put(REVIEW_COLUMN_RATING, review.getRating());
         values.put(REVIEW_COLUMN_REVIEW, review.getReview());
-        values.put(REVIEW_COLUMN_REVIEWID, review.getReviewID());
         values.put(REVIEW_COLUMN_USERNAME, review.getCustomerUsername());
         values.put(REVIEW_COLUMN_FILMID, review.getFilmID());
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(REVIEW_TABLE_NAME, null, values);
         db.close();
+    }
 
+    public void getReviews(int filmID) {
+        String query = "SELECT * FROM " + REVIEW_TABLE_NAME + " WHERE " +
+                REVIEW_COLUMN_USERNAME + "=" + filmID;
 
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        while(cursor.moveToNext() ) {
+            Review review = new Review();
+
+            review.setCustomerUsername(cursor.getString(cursor.getColumnIndex(REVIEW_COLUMN_USERNAME)));
+            review.setFilmID(cursor.getInt(cursor.getColumnIndex(REVIEW_COLUMN_FILMID)));
+            review.setRating(cursor.getInt(cursor.getColumnIndex(REVIEW_COLUMN_RATING)));
+            review.setReview(cursor.getString(cursor.getColumnIndex(REVIEW_COLUMN_REVIEW)));
+        }
     }
 
     public void addRecentWatch(RecentWatch recentWatch){
