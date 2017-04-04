@@ -44,14 +44,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String CUSTOMER_TABLE_NAME = "customer";
 
-        private static final String CUSTOMER_COLUMN_USERNAME = "_username";
+        private static final String CUSTOMER_COLUMN_USERNAME = "username";
         private static final String CUSTOMER_COLUMN_FIRSTNAME = "firstname";
         private static final String CUSTOMER_COLUMN_LASTNAME = "lastname";
+        private static final String CUSTOMER_COLUMN_PASSWORD = "password";
         private static final String CUSTOMER_COLUMN_AGE = "age";
         private static final String CUSTOMER_COLUMN_CITY = "city";
         private static final String CUSTOMER_COLUMN_POSTALCODE = "postalcode";
         private static final String CUSTOMER_COLUMN_STREET = "street";
         private static final String CUSTOMER_COLUMN_GENDER = "gender";
+        private static final String CUSTOMER_COLUMN_EMAIL = "email";
 
     private static final String REVIEW_TABLE_NAME = "review";
 
@@ -91,7 +93,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         Log.i(TAG, "creating database");
         String CREATE_MOVIE_TABLE = "CREATE TABLE " + MOVIE_TABLE_NAME + "(" +
-                MOVIE_COLUMN_ID + " INTEGER PRIMATY KEY," +
+                MOVIE_COLUMN_ID + " INTEGER PRIMARY KEY," +
                 MOVIE_COLUMN_ACTORS  + " TEXT," +
                 MOVIE_COLUMN_TITLE  + " TEXT," +
                 MOVIE_COLUMN_DIRECTOR  + " TEXT," +
@@ -108,7 +110,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 CUSTOMER_COLUMN_CITY + " TEXT," +
                 CUSTOMER_COLUMN_POSTALCODE + " TEXT," +
                 CUSTOMER_COLUMN_STREET + " TEXT," +
-                CUSTOMER_COLUMN_GENDER + " TEXT" + ")"
+                CUSTOMER_COLUMN_GENDER + " TEXT," +
+                CUSTOMER_COLUMN_PASSWORD + " TEXT" +
+                CUSTOMER_COLUMN_EMAIL + " TEXT" +
+                ")"
                 ;
         String CREATE_REVIEW_TABLE = "CREATE TABLE " + REVIEW_TABLE_NAME + "(" +
                 REVIEW_COLUMN_USERNAME + " TEXT PRIMARY KEY," +
@@ -117,15 +122,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 REVIEW_COLUMN_FILMID + " INTEGER," +
                 REVIEW_COLUMN_RATING + " INTEGER," +
 
-                "FOREIGN KEY " + REVIEW_COLUMN_USERNAME + " REFERENCES " +
+                "FOREIGN KEY (" + REVIEW_COLUMN_USERNAME + ") REFERENCES " +
                 CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME + ")," +
 
-                "FOREIGN KEY " + REVIEW_COLUMN_FILMID + " REFERENCES " +
+                " FOREIGN KEY (" + REVIEW_COLUMN_FILMID + ") REFERENCES " +
                 MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")" +
-                ")"
-                ;
+                ");"
 
-       
+
+                ;
 
         String CREATE_ROOM_TABLE = "CREATE TABLE " + ROOM_TABLE_NAME + "(" +
                 ROOM_COLUMN_ROOMID + " INTEGER PRIMARY KEY," +
@@ -139,7 +144,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 SEAT_COLUMN_ISAVAILIBLE + " BOOLEAN," +
                 SEAT_COLUMN_ROOMID + " INTEGER," +
 
-                "FOREIGN KEY " + SEAT_COLUMN_ROOMID + " REFERENCES " +
+                "FOREIGN KEY (" + SEAT_COLUMN_ROOMID + ") REFERENCES " +
                 ROOM_TABLE_NAME + "(" + ROOM_COLUMN_ROOMID + ")" +
                 ")"
                 ;
@@ -148,33 +153,39 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 SCREENING_COLUMN_ROOMID + " INTEGER," +
                 SCREENING_COLUMN_FILMID + " INTEGER," +
 
-                "FOREIGN KEY " + SCREENING_COLUMN_FILMID + " REFERENCES " +
+                "FOREIGN KEY (" + SCREENING_COLUMN_FILMID + ") REFERENCES " +
                 MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")," +
 
-                "FOREIGN KEY " + SCREENING_COLUMN_ROOMID + " REFERENCES " +
+                "FOREIGN KEY (" + SCREENING_COLUMN_ROOMID + ") REFERENCES " +
                 ROOM_TABLE_NAME + "(" + ROOM_COLUMN_ROOMID + ")" +
-                ")"
+                ");"
                 ;
+
+
 
         String CREATE_RECENTWATCH_TABLE = "CREATE TABLE " + RECENT_WATCH_TABLE_NAME + "(" +
                 RECENTWATCH_COLUMN_USERNAME + " TEXT," +
                 RECENTWATCH_COLUMN_FILMID + " INTEGER," +
-                "FOREIGN KEY " + RECENTWATCH_COLUMN_FILMID + " REFERENCES " +
+                "FOREIGN KEY (" + RECENTWATCH_COLUMN_FILMID + ") REFERENCES " +
                 MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")," +
 
-                "FOREIGN KEY " + RECENTWATCH_COLUMN_USERNAME + " REFERENCES " +
+                "FOREIGN KEY (" + RECENTWATCH_COLUMN_USERNAME + ") REFERENCES " +
                 CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME+ ")" +
                 ")"
                 ;
 
 
+
+        db.execSQL("PRAGMA foreign_keys=ON;");
         db.execSQL(CREATE_MOVIE_TABLE);
         db.execSQL(CREATE_CUSTOMER_TABLE);
         db.execSQL(CREATE_REVIEW_TABLE);
+        //db.execSQL(CREATE_CON_REVIEW);
         db.execSQL(CREATE_ROOM_TABLE);
         db.execSQL(CREATE_SEAT_TABLE);
         db.execSQL(CREATE_RECENTWATCH_TABLE);
         db.execSQL(CREATE_SCREENING_TABLE);
+
 
     }
 
@@ -285,4 +296,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
 
     }
+
+    public String getPassword(String username){
+
+        String password = "";
+
+        String query = "SELECT " + CUSTOMER_COLUMN_PASSWORD + " FROM " + CUSTOMER_TABLE_NAME + " WHERE " +
+                CUSTOMER_COLUMN_USERNAME + "=" + "\"" + username + "\"";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        while(cursor.moveToNext() ) {
+
+            password =  cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_PASSWORD));
+        }
+
+        db.close();
+
+        return password;
+    }
+
+
+
+
 }
