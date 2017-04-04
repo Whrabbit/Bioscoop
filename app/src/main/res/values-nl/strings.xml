@@ -69,4 +69,6 @@
     <string name="accountDetailsView">Account gegevens:</string>
     <string name="usernameEnterView">Gebruikersnaam:</string>
     <string name="passwordEnterView">Wachtwoord:</string>
+    <string name="ticketPayText">Betalen met</string>
+    <string name="wrongPassword">Fout wachtwoord of gebruikersnaam</string>
 </resources>
