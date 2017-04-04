@@ -3,6 +3,7 @@ package com.example.whrabbit.bioscoop;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,8 +48,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String username = userNameBox.getText().toString();
+                Log.i("LOG",passwordBox.getText().toString());
 
-                if(passwordBox.getText().toString() == dbh.getPassword(username)) {
+
+                if(passwordBox.getText().toString().equals(dbh.getPassword(username)) ) {
                     Intent i = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(i);
                 }else{
