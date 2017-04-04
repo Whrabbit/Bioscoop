@@ -231,10 +231,10 @@
             android:background="@drawable/full_border_thin"
             android:ems="10"
             android:inputType="textPersonName"
-            android:paddingLeft="3dp"
-            android:paddingStart="3dp"
-            android:paddingRight="3dp"
             android:paddingEnd="3dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingStart="3dp"
             android:textSize="16sp" />
 
     </LinearLayout>
