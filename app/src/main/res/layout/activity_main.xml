@@ -17,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/usernameView"
+        android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="16sp" />
 
@@ -44,6 +45,15 @@
         android:ems="10"
         android:inputType="textPassword"
         android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/wrongPasswordView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        tools:text="@string/wrongPassword" />
 
     <Button
         android:id="@+id/loginBttn"
