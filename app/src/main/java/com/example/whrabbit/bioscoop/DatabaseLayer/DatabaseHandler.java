@@ -53,6 +53,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         private static final String CUSTOMER_COLUMN_POSTALCODE = "postalcode";
         private static final String CUSTOMER_COLUMN_STREET = "street";
         private static final String CUSTOMER_COLUMN_GENDER = "gender";
+        private static final String CUSTOMER_COLUMN_EMAIL = "email";
 
     private static final String REVIEW_TABLE_NAME = "review";
 
@@ -111,6 +112,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 CUSTOMER_COLUMN_STREET + " TEXT," +
                 CUSTOMER_COLUMN_GENDER + " TEXT," +
                 CUSTOMER_COLUMN_PASSWORD + " TEXT" +
+                CUSTOMER_COLUMN_EMAIL + " TEXT" +
                 ")"
                 ;
         String CREATE_REVIEW_TABLE = "CREATE TABLE " + REVIEW_TABLE_NAME + "(" +
