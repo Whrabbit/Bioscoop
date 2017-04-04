@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.CallSuper;
 import android.util.Log;
 
 import com.example.whrabbit.bioscoop.Domain.Customer;
@@ -109,7 +110,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 CUSTOMER_COLUMN_POSTALCODE + " TEXT," +
                 CUSTOMER_COLUMN_STREET + " TEXT," +
                 CUSTOMER_COLUMN_GENDER + " TEXT," +
-                CUSTOMER_COLUMN_PASSWORD + " TEXT" +
+                CUSTOMER_COLUMN_PASSWORD + " TEXT," +
                 CUSTOMER_COLUMN_EMAIL + " TEXT" +
                 ")"
                 ;
@@ -195,14 +196,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(CUSTOMER_COLUMN_USERNAME, customer.getUsername() );
         values.put(CUSTOMER_COLUMN_FIRSTNAME, customer.getFirstName() );
         values.put(CUSTOMER_COLUMN_LASTNAME, customer.getLastName() );
-        values.put(CUSTOMER_COLUMN_AGE, customer.getAge() );
+        values.put(CUSTOMER_COLUMN_EMAIL, customer.getEmail() );
         values.put(CUSTOMER_COLUMN_CITY, customer.getCity() );
         values.put(CUSTOMER_COLUMN_POSTALCODE, customer.getPostalCode() );
         values.put(CUSTOMER_COLUMN_STREET, customer.getStreet() );
-        values.put(CUSTOMER_COLUMN_GENDER, customer.getGender() );
+        values.put(CUSTOMER_COLUMN_PASSWORD, customer.getPassword() );
+
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(CUSTOMER_TABLE_NAME, null, values);
+        Log.i("TAG", "added");
         db.close();
 
 
@@ -320,16 +323,55 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(query, null);
 
-        cursor.moveToFirst();
+
 
         while(cursor.moveToNext() ) {
 
             password =  cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_PASSWORD));
+            Log.i("LOG",cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_PASSWORD)));
         }
 
         db.close();
 
         return password;
+    }
+
+    public Customer getCustomer(String username){
+
+        Customer customer = new Customer();
+
+        String query = "SELECT " + CUSTOMER_COLUMN_USERNAME + "," + CUSTOMER_COLUMN_FIRSTNAME + " FROM " + CUSTOMER_TABLE_NAME + " WHERE " +
+                CUSTOMER_COLUMN_USERNAME + "=" + "\"" + username + "\"";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        //cursor.moveToFirst();
+        Log.i("TAG", "before while");
+
+        while(cursor.moveToNext() ) {
+
+
+
+
+
+            customer.setUsername(cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_USERNAME)));
+            customer.setFirstName(cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_FIRSTNAME)));
+
+            Log.i("TAG", "got customer");
+        }
+
+        ;
+
+
+        db.close();
+
+     return customer;
+
+
+
+
     }
 
 
