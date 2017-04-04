@@ -6,17 +6,40 @@ package com.example.whrabbit.bioscoop.Domain;
 
 public class Customer {
 
-    private String username, firstName, lastName, city, street, gender, postalCode;
+    private String email, username, firstName, lastName, city, street, gender, postalCode, password;
     private int age;
 
-    public Customer(String username, String firstName, String lastName, String city, String street, String gender, int age) {
+    public Customer() {
+        this.email = " ";
+        this.username = " ";
+        this.firstName = " ";
+        this.lastName = " ";
+        this.city = " ";
+        this.street = " ";
+        this.postalCode = " ";
+        this.password = " ";
+
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUsername(String username) {
         this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.city = city;
-        this.street = street;
-        this.gender = gender;
-        this.age = age;
     }
 
     public String getUsername() { return username; }
