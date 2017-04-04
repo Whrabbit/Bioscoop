@@ -88,7 +88,7 @@
     <string name="selected_seat_text">Selected seat: </string>
     <string name="payBtn">TO PAYMENT</string>
     <string name="finalBtn">COMPLETE ORDER</string>
-    <string name="ratingText">Rating: </string>
+    <string name="ratingText" translatable="false">Rating: </string>
     <string name="ticketPayText">Payment Method </string>
 
 
@@ -109,5 +109,6 @@
     <string name="accountDetailsView">Account Details:</string>
     <string name="usernameEnterView">Username:</string>
     <string name="passwordEnterView">Password:</string>
+    <string name="wrongPassword">Wrong password or username</string>
 
 </resources>

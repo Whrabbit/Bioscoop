@@ -6,19 +6,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.whrabbit.bioscoop.DatabaseLayer.DatabaseHandler;
 
 public class MainActivity extends AppCompatActivity {
 
     Button loginBttn, registrationBttn;
+    EditText passwordBox, userNameBox;
+    TextView wrongPasswordView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DatabaseHandler dbh = new DatabaseHandler(getApplicationContext(), null, null, 1);
+        final DatabaseHandler dbh = new DatabaseHandler(getApplicationContext(), null, null, 1);
+        passwordBox = (EditText) findViewById(R.id.passEditText);
+        userNameBox = (EditText) findViewById(R.id.usernameEditText);
+        wrongPasswordView = (TextView) findViewById(R.id.wrongPasswordView);
+        wrongPasswordView.setVisibility(View.INVISIBLE);
+
 
         registrationBttn = (Button) findViewById(R.id.registrationBttn);
         registrationBttn.setOnClickListener(new View.OnClickListener() {
@@ -33,8 +43,17 @@ public class MainActivity extends AppCompatActivity {
         loginBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(i);
+
+                String username = userNameBox.getText().toString();
+
+                if(passwordBox.getText().toString() == dbh.getPassword(username)) {
+                    Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(i);
+                }else{
+                    wrongPasswordView.setVisibility(View.VISIBLE);
+                }
+
+
             }
         });
     }
