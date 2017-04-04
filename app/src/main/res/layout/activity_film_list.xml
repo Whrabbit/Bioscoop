@@ -36,34 +36,12 @@
             tools:ignore="ButtonStyle" />
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/discoverBtnID"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <Spinner
-            android:id="@+id/filterTypeSpinner"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:spinnerMode="dialog"
-            tools:ignore="NestedWeights" />
-
-        <Spinner
-            android:id="@+id/filterSpinner"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:spinnerMode="dialog" />
-
-        <Spinner
-            android:id="@+id/sortBySpinner"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:spinnerMode="dialog" />
-    </LinearLayout>
+        android:text="DISCOVER" />
 
     <LinearLayout
         android:layout_width="match_parent"
