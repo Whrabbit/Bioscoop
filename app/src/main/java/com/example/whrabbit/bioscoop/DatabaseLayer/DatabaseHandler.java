@@ -293,4 +293,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
 
     }
+
+    public void getMovie(){
+
+    }
+
+
+
+
 }
