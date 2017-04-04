@@ -89,6 +89,8 @@
     <string name="payBtn">TO PAYMENT</string>
     <string name="finalBtn">COMPLETE ORDER</string>
     <string name="ratingText">Rating: </string>
+    <string name="ticketPayText">Payment Method </string>
+
 
     <string-array name="listDummyEntries">
         <item>dummy</item>

@@ -30,6 +30,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="50dp"
         android:layout_weight="1.5"
         android:orientation="vertical"
         android:paddingTop="10dp">
@@ -38,9 +39,7 @@
             android:id="@+id/detailBuyerName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginRight="100dp"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="@string/detailBuyerName"
             android:textColor="@android:color/white"
             tools:ignore="NestedWeights" />
@@ -49,9 +48,7 @@
             android:id="@+id/detailBuyerAge"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginRight="100dp"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="@string/detailBuyerAge"
             android:textColor="@android:color/white" />
 
@@ -59,11 +56,10 @@
             android:id="@+id/detailBuyerSeat"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginRight="100dp"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="@string/detailBuyerSeat"
             android:textColor="@android:color/white" />
+
     </LinearLayout>
 
 </LinearLayout>
