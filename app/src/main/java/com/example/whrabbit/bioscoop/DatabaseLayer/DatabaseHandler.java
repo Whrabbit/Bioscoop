@@ -203,10 +203,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_RECENTWATCH_TABLE = "CREATE TABLE " + RECENT_WATCH_TABLE_NAME + "(" +
                 RECENTWATCH_COLUMN_USERNAME + " TEXT," +
                 RECENTWATCH_COLUMN_FILMID + " INTEGER," +
-                "PRIMARY KEY (" + RECENTWATCH_COLUMN_FILMID + ", " + RECENTWATCH_COLUMN_USERNAME + ")," +
+                "PRIMARY KEY (" + RECENTWATCH_COLUMN_USERNAME + ", " + RECENTWATCH_COLUMN_FILMID + ")," +
+
+                "FOREIGN KEY (" + RECENTWATCH_COLUMN_FILMID + ") REFERENCES " +
+                MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")" +
+
                 "FOREIGN KEY (" + RECENTWATCH_COLUMN_USERNAME + ") REFERENCES " +
-                CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME+ ")" +
-                ")"
+                CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME + ")" +
+                ");"
                 ;
 
 
