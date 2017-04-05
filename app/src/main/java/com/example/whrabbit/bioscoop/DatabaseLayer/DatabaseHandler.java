@@ -16,6 +16,8 @@ import com.example.whrabbit.bioscoop.Domain.Screening;
 import com.example.whrabbit.bioscoop.Domain.Seat;
 import com.example.whrabbit.bioscoop.Domain.Ticket;
 
+import java.util.ArrayList;
+
 /**
  * Created by Mika Krooswijk on 30-3-2017.
  */
@@ -59,10 +61,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String REVIEW_TABLE_NAME = "review";
 
-        private static final String REVIEW_COLUMN_TITLE = "title";
         private static final String REVIEW_COLUMN_RATING = "rating";
         private static final String REVIEW_COLUMN_REVIEW = "review";
-        private static final String REVIEW_COLUMN_REVIEWID = "_reviewId";
         private static final String REVIEW_COLUMN_USERNAME = "username";
         private static final String REVIEW_COLUMN_FILMID = "filmId";
 
@@ -150,11 +150,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         String CREATE_REVIEW_TABLE = "CREATE TABLE " + REVIEW_TABLE_NAME + "(" +
-                REVIEW_COLUMN_USERNAME + " TEXT PRIMARY KEY," +
+                REVIEW_COLUMN_USERNAME + " TEXT," +
                 REVIEW_COLUMN_REVIEW + " TEXT," +
-                REVIEW_COLUMN_TITLE + " TEXT," +
                 REVIEW_COLUMN_FILMID + " INTEGER," +
                 REVIEW_COLUMN_RATING + " INTEGER," +
+                "PRIMARY KEY (" + REVIEW_COLUMN_FILMID + ", " + REVIEW_COLUMN_USERNAME + ")," +
+
 
                 "FOREIGN KEY (" + REVIEW_COLUMN_USERNAME + ") REFERENCES " +
                 CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME + ")," +
@@ -250,18 +251,43 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public void addReview(Review review){
         ContentValues values = new ContentValues();
-        values.put(REVIEW_COLUMN_TITLE, review.getTitle());
         values.put(REVIEW_COLUMN_RATING, review.getRating());
         values.put(REVIEW_COLUMN_REVIEW, review.getReview());
-        values.put(REVIEW_COLUMN_REVIEWID, review.getReviewID());
         values.put(REVIEW_COLUMN_USERNAME, review.getCustomerUsername());
         values.put(REVIEW_COLUMN_FILMID, review.getFilmID());
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(REVIEW_TABLE_NAME, null, values);
         db.close();
+    }
 
+    public ArrayList getReviews(int filmID) {
 
+        ArrayList<Review> reviews = new ArrayList<>();
+
+        String query = "SELECT * FROM " + REVIEW_TABLE_NAME + " WHERE " +
+                REVIEW_COLUMN_FILMID + "=" + filmID;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        //cursor.moveToFirst();
+
+        while(cursor.moveToNext() ) {
+            Review review = new Review();
+
+            review.setCustomerUsername(cursor.getString(cursor.getColumnIndex(REVIEW_COLUMN_USERNAME)));
+            review.setFilmID(cursor.getInt(cursor.getColumnIndex(REVIEW_COLUMN_FILMID)));
+            review.setRating(cursor.getFloat(cursor.getColumnIndex(REVIEW_COLUMN_RATING)));
+            review.setReview(cursor.getString(cursor.getColumnIndex(REVIEW_COLUMN_REVIEW)));
+
+            reviews.add(review);
+        }
+
+        db.close();
+
+        return reviews;
     }
 
     public void addRecentWatch(RecentWatch recentWatch){
@@ -375,7 +401,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Customer customer = new Customer();
 
-        String query = "SELECT " + CUSTOMER_COLUMN_USERNAME + "," + CUSTOMER_COLUMN_FIRSTNAME + " FROM " + CUSTOMER_TABLE_NAME + " WHERE " +
+        String query = "SELECT " + CUSTOMER_COLUMN_FIRSTNAME + " FROM " + CUSTOMER_TABLE_NAME + " WHERE " +
                 CUSTOMER_COLUMN_USERNAME + "=" + "\"" + username + "\"";
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -386,30 +412,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Log.i("TAG", "before while");
 
         while(cursor.moveToNext() ) {
-
-
-
-
-
-            customer.setUsername(cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_USERNAME)));
             customer.setFirstName(cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_FIRSTNAME)));
-
             Log.i("TAG", "got customer");
-        }
-
-        ;
-
+        };
 
         db.close();
 
      return customer;
 
-
-
-
     }
-
-
-
-
 }

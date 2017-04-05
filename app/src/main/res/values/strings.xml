@@ -53,7 +53,7 @@
     <string name="makeReviewBttn">Write Review</string>
     <string name="filmBackdrop" translatable="false">Backdrop Film</string>
     <string name="userImage" translatable="false">Person Image of User</string>
-    <string name="reviewBox">Write a review...</string>
+    <string name="reviewBox">Your review here...</string>
     <string name="userName">Logged in as:</string>
     <string name="userRealName">Name:</string>
     <string name="reviewSubmitBttn">Submit Review</string>
@@ -109,6 +109,7 @@
     <string name="accountDetailsView">Account Details:</string>
     <string name="usernameEnterView">Username:</string>
     <string name="passwordEnterView">Password:</string>
-    <string name="wrongPassword">Wrong password or username</string>
+    <string name="wrongPassword">Username or password is invalid.</string>
+    <string name="reviewText" translatable="false">Review</string>
 
 </resources>

@@ -6,24 +6,9 @@ package com.example.whrabbit.bioscoop.Domain;
 
 public class Review {
 
-    private String title, review, customerName, customerUsername;
-    private int rating, reviewID, FilmID;
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    private String review, customerUsername;
+    private int FilmID;
+    private float rating;
 
     public String getReview() {
         return review;
@@ -33,20 +18,12 @@ public class Review {
         this.review = review;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Float rating) {
         this.rating = rating;
-    }
-
-    public int getReviewID() {
-        return reviewID;
-    }
-
-    public void setReviewID(int reviewID) {
-        this.reviewID = reviewID;
     }
 
     public String getCustomerUsername() {

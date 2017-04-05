@@ -29,7 +29,7 @@
     <string name="ticketsTabBttn">Kaarten</string>
     <string name="reviewsTabBttn">Beoordelingen</string>
     <string name="makeReviewBttn">Review Schrijven</string>
-    <string name="reviewBox">Schrijf een beoordeling...</string>
+    <string name="reviewBox">Schrijf hier uw review...</string>
     <string name="userName">Ingelogd als:</string>
     <string name="userRealName">Naam:</string>
     <string name="reviewSubmitBttn">Review Plaatsen</string>
@@ -70,5 +70,5 @@
     <string name="usernameEnterView">Gebruikersnaam:</string>
     <string name="passwordEnterView">Wachtwoord:</string>
     <string name="ticketPayText">Betalen met</string>
-    <string name="wrongPassword">Fout wachtwoord of gebruikersnaam</string>
+    <string name="wrongPassword">Gebruikersnaam of wachtwoord fout.</string>
 </resources>
