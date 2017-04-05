@@ -264,20 +264,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public ArrayList<Ticket> getTickets(String username){
 
-
-
-
-
         ArrayList<Ticket> tickets = new ArrayList<>();
 
         String query = "SELECT * FROM " + TICKET_TABLE_NAME + " WHERE " +
                 TICKET_COLUMN_CUSTOMERUSERNAME + " =' " + username + "'";
 
+        String queryAll = "SELECT * FROM " + TICKET_TABLE_NAME ;
+
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor cursor = db.rawQuery(queryAll, null);
 
-        //cursor.moveToFirst();
+        cursor.moveToFirst();
 
         while(cursor.moveToNext() ) {
 
@@ -378,7 +376,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TICKET_TABLE_NAME, null, values);
-        Log.i("TAG", "inserted ticket" + ticket.getTicketId());
+
 
         db.close();
     }
