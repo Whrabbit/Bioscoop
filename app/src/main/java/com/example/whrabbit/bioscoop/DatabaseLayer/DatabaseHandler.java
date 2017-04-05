@@ -14,6 +14,7 @@ import com.example.whrabbit.bioscoop.Domain.Review;
 import com.example.whrabbit.bioscoop.Domain.Room;
 import com.example.whrabbit.bioscoop.Domain.Screening;
 import com.example.whrabbit.bioscoop.Domain.Seat;
+import com.example.whrabbit.bioscoop.Domain.Ticket;
 
 import java.util.ArrayList;
 
@@ -86,6 +87,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         private static final String SEAT_COLUMN_ROOMID = "roomId";
 
 
+
+    private static final String TICKET_TABLE_NAME = "ticket";
+
+        private static final String TICKET_COLUMN_TICKETID = "_ticketId";
+        private static final String TICKET_COLUMN_AMOUNTSEATS = "amountseats";
+        private static final String TICKET_COLUMN_TICKETPRICE = "ticketprice";
+        private static final String TICKET_COLUMN_BUYDATE = "buydate";
+        private static final String TICKET_COLUMN_CUSTOMERUSERNAME = "customerId";
+        private static final String TICKET_COLUMN_FILMID = "filmId";
+
+
     public DatabaseHandler (Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, DB_NAME, factory, DB_VERSION);
 
@@ -116,6 +128,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 CUSTOMER_COLUMN_EMAIL + " TEXT" +
                 ")"
                 ;
+
+
+        String CREATE_TICKET_TABLE = "CREATE TABLE " + TICKET_TABLE_NAME + "(" +
+                TICKET_COLUMN_TICKETID + " INT PRIMARY KEY," +
+                TICKET_COLUMN_AMOUNTSEATS + " INTEGER," +
+                TICKET_COLUMN_BUYDATE + " TEXT," +
+                TICKET_COLUMN_CUSTOMERUSERNAME + " TEXT," +
+                TICKET_COLUMN_TICKETPRICE + " INTEGER," +
+                TICKET_COLUMN_FILMID + " INTEGER," +
+
+                "FOREIGN KEY (" + TICKET_COLUMN_CUSTOMERUSERNAME + ") REFERENCES " +
+                CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME + ")," +
+
+                " FOREIGN KEY (" + TICKET_COLUMN_FILMID + ") REFERENCES " +
+                MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")" +
+                ");"
+
+                ;
+
+
+
         String CREATE_REVIEW_TABLE = "CREATE TABLE " + REVIEW_TABLE_NAME + "(" +
                 REVIEW_COLUMN_USERNAME + " TEXT," +
                 REVIEW_COLUMN_REVIEW + " TEXT," +
@@ -182,6 +215,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_MOVIE_TABLE);
         db.execSQL(CREATE_CUSTOMER_TABLE);
         db.execSQL(CREATE_REVIEW_TABLE);
+        db.execSQL(CREATE_TICKET_TABLE);
         db.execSQL(CREATE_ROOM_TABLE);
         db.execSQL(CREATE_SEAT_TABLE);
         db.execSQL(CREATE_RECENTWATCH_TABLE);
@@ -262,7 +296,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(RECENTWATCH_COLUMN_FILMID, recentWatch.getFilmID());
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.insert(RECENT_WATCH_TABLE_NAME, null, values);
+        db.close();
+    }
+
+    public void addTicket(Ticket ticket){
+        ContentValues values = new ContentValues();
+        values.put(TICKET_COLUMN_AMOUNTSEATS, ticket.getAmountOfTickets());
+        values.put(TICKET_COLUMN_BUYDATE, ticket.getBuyDate());
+        values.put(TICKET_COLUMN_CUSTOMERUSERNAME, ticket.getUsername());
+        values.put(TICKET_COLUMN_FILMID, ticket.getFilmId());
+        values.put(TICKET_COLUMN_TICKETPRICE, ticket.getPrice());
+        values.put(TICKET_COLUMN_TICKETID, ticket.getTicketId());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TICKET_TABLE_NAME, null, values);
         db.close();
     }
 
@@ -290,7 +338,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(SCREENING_COLUMN_ROOMID, screening.getRoomID());
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.insert(SCREENING_TABLE_NAME, null, values);
         db.close();
 
 
@@ -304,7 +352,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.insert(ROOM_TABLE_NAME, null, values);
         db.close();
 
 
@@ -320,7 +368,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.insert(SEAT_TABLE_NAME, null, values);
         db.close();
 
     }

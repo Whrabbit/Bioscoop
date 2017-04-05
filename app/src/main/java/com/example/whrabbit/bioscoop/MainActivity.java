@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordBox, userNameBox;
     TextView wrongPasswordView;
 
+     
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), RegistrationActivity.class);
                 startActivity(i);
+                wrongPasswordView.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -48,22 +51,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String username = userNameBox.getText().toString();
-
-                if (!username.equals("") && !passwordBox.getText().toString().equals("")) {
                 Log.i("LOG",passwordBox.getText().toString());
-                    if (passwordBox.getText().toString().equals(dbh.getPassword(username))) {
-                        Intent i = new Intent(getApplicationContext(), HomeActivity.class);
-                        ((MyApplication) getBaseContext().getApplicationContext()).setSignedInUsername(username);
-                        startActivity(i);
-                    } else {
-                        wrongPasswordView.setVisibility(View.VISIBLE);
-                    }
+
+            if(userNameBox.getText().length() > 0 && passwordBox.getText().length() > 0) {
+
+                if (passwordBox.getText().toString().equals(dbh.getPassword(username))) {
+                    Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                    ((MyApplication) getBaseContext().getApplicationContext()).setSignedInUsername(username);
+                    startActivity(i);
+                    wrongPasswordView.setVisibility(View.INVISIBLE);
 
                 } else {
-
                     wrongPasswordView.setVisibility(View.VISIBLE);
-
                 }
+            }else{
+                wrongPasswordView.setVisibility(View.VISIBLE);
             }
         });
     }
