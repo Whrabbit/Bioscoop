@@ -30,6 +30,8 @@ public class FilmListActivityHistory extends AppCompatActivity implements TMDBCo
 
     private DatabaseHandler dbh;
 
+    int index = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,26 +68,28 @@ public class FilmListActivityHistory extends AppCompatActivity implements TMDBCo
         history = new ArrayList<>();
         history = dbh.getRecentWatch(username);
 
-        getFilm(history);
+        getFilm();
 
     }
 
-    public void getFilm(ArrayList<RecentWatch> arrayList) {
+    public void getFilm() {
 
         int FilmID;
 
         DetailApiConnector connector = new DetailApiConnector(this);
 
-        for (RecentWatch recentWatch: arrayList) {
-            FilmID = recentWatch.getFilmID();
+        if (history.size() > 0) {
+
+            FilmID = history.get(index).getFilmID();
 
             String url = "https://api.themoviedb.org/3/movie/" + FilmID +
                     "?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&append_to_response=release_dates";
 
-            String[]urls = new String[]{url};
+            String[] urls = new String[]{url};
             connector.execute(urls);
 
         }
+
 
     }
 
@@ -97,5 +101,9 @@ public class FilmListActivityHistory extends AppCompatActivity implements TMDBCo
             films.clear();
         }
         filmAdapter.notifyDataSetChanged();
+        if (index < history.size() - 1) {
+            index++;
+            getFilm();
+        }
     }
 }
