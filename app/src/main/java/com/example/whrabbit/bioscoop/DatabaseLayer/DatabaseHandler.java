@@ -262,7 +262,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList getTickets(String username){
+    public ArrayList<Ticket> getTickets(String username){
 
 
 

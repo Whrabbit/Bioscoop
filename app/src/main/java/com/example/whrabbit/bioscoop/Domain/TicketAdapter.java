@@ -40,10 +40,10 @@ public class TicketAdapter extends ArrayAdapter<Ticket> {
         filmTicketTitle.setText(  db.getFilmTitle(ticket.getFilmId()));
 
         TextView filmTicketAmount = (TextView) convertView.findViewById(R.id.filmTicketAmount);
-        filmTicketTitle.setText(ticket.getPrice());
+        filmTicketAmount.setText(ticket.getPrice());
 
         TextView filmTicketDate = (TextView) convertView.findViewById(R.id.filmTicketDate);
-        filmTicketTitle.setText(ticket.getBuyDate());
+        filmTicketDate.setText(ticket.getBuyDate());
 
 
 
