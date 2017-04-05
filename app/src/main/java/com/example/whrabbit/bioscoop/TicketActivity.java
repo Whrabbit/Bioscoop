@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.whrabbit.bioscoop.API.Film;
+import com.example.whrabbit.bioscoop.DatabaseLayer.DatabaseHandler;
+import com.example.whrabbit.bioscoop.Domain.Ticket;
 
 /**
  * Created by mark on 2-4-2017.
@@ -23,6 +25,7 @@ public class TicketActivity extends AppCompatActivity {
     private int aantalTickets, aantalStudenten, aantalKinderen, ticketPrijs;
     private Spinner ticketAantalSpinner;
     private Film film;
+    private Bundle extra;
 
     Button ticketSeatBttn;
 
@@ -37,10 +40,22 @@ public class TicketActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), SelectSeatsActivity.class);
                 i.putExtra("AANTAL", aantalTickets);
-                film = null;
+                extra = getIntent().getExtras();
+                film = extra.getParcelable("FILM");
+
                 i.putExtra("FILM", film);
                 i.putExtra("PRICE", ticketPrijs);
                 startActivity(i);
+
+
+                final DatabaseHandler dbh = new DatabaseHandler(getApplicationContext(), null, null, 1);
+                Ticket ticket = new Ticket();
+                ticket.setUsername("");
+                ticket.setAmountOfTickets(aantalTickets);
+                ticket.setFilmId(film.getId());
+                ticket.setPrice(ticketPrijs);
+                dbh.addTicket(ticket);
+
             }
         });
 

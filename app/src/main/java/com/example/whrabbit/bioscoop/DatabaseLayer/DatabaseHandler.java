@@ -14,6 +14,9 @@ import com.example.whrabbit.bioscoop.Domain.Review;
 import com.example.whrabbit.bioscoop.Domain.Room;
 import com.example.whrabbit.bioscoop.Domain.Screening;
 import com.example.whrabbit.bioscoop.Domain.Seat;
+import com.example.whrabbit.bioscoop.Domain.Ticket;
+
+import java.util.ArrayList;
 
 /**
  * Created by Mika Krooswijk on 30-3-2017.
@@ -58,10 +61,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String REVIEW_TABLE_NAME = "review";
 
-        private static final String REVIEW_COLUMN_TITLE = "title";
         private static final String REVIEW_COLUMN_RATING = "rating";
         private static final String REVIEW_COLUMN_REVIEW = "review";
-        private static final String REVIEW_COLUMN_REVIEWID = "_reviewId";
         private static final String REVIEW_COLUMN_USERNAME = "username";
         private static final String REVIEW_COLUMN_FILMID = "filmId";
 
@@ -84,6 +85,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         private static final String SEAT_COLUMN_SEATNUMEBER = "seatNumber";
         private static final String SEAT_COLUMN_ISAVAILIBLE = "isAvailible";
         private static final String SEAT_COLUMN_ROOMID = "roomId";
+
+
+
+    private static final String TICKET_TABLE_NAME = "ticket";
+
+        private static final String TICKET_COLUMN_TICKETID = "_ticketId";
+        private static final String TICKET_COLUMN_AMOUNTSEATS = "amountseats";
+        private static final String TICKET_COLUMN_TICKETPRICE = "ticketprice";
+        private static final String TICKET_COLUMN_BUYDATE = "buydate";
+        private static final String TICKET_COLUMN_CUSTOMERUSERNAME = "customerId";
+        private static final String TICKET_COLUMN_FILMID = "filmId";
 
 
     public DatabaseHandler (Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
@@ -116,12 +128,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 CUSTOMER_COLUMN_EMAIL + " TEXT" +
                 ")"
                 ;
+
+
+        String CREATE_TICKET_TABLE = "CREATE TABLE " + TICKET_TABLE_NAME + "(" +
+                TICKET_COLUMN_TICKETID + " INT PRIMARY KEY," +
+                TICKET_COLUMN_AMOUNTSEATS + " INTEGER," +
+                TICKET_COLUMN_BUYDATE + " TEXT," +
+                TICKET_COLUMN_CUSTOMERUSERNAME + " TEXT," +
+                TICKET_COLUMN_TICKETPRICE + " INTEGER," +
+                TICKET_COLUMN_FILMID + " INTEGER," +
+
+                "FOREIGN KEY (" + TICKET_COLUMN_CUSTOMERUSERNAME + ") REFERENCES " +
+                CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME + ")," +
+
+                " FOREIGN KEY (" + TICKET_COLUMN_FILMID + ") REFERENCES " +
+                MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")" +
+                ");"
+
+                ;
+
+
+
         String CREATE_REVIEW_TABLE = "CREATE TABLE " + REVIEW_TABLE_NAME + "(" +
-                REVIEW_COLUMN_USERNAME + " TEXT PRIMARY KEY," +
+                REVIEW_COLUMN_USERNAME + " TEXT," +
                 REVIEW_COLUMN_REVIEW + " TEXT," +
-                REVIEW_COLUMN_TITLE + " TEXT," +
                 REVIEW_COLUMN_FILMID + " INTEGER," +
                 REVIEW_COLUMN_RATING + " INTEGER," +
+                "PRIMARY KEY (" + REVIEW_COLUMN_FILMID + ", " + REVIEW_COLUMN_USERNAME + ")," +
+
 
                 "FOREIGN KEY (" + REVIEW_COLUMN_USERNAME + ") REFERENCES " +
                 CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME + ")," +
@@ -181,7 +215,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_MOVIE_TABLE);
         db.execSQL(CREATE_CUSTOMER_TABLE);
         db.execSQL(CREATE_REVIEW_TABLE);
-        //db.execSQL(CREATE_CON_REVIEW);
+        db.execSQL(CREATE_TICKET_TABLE);
         db.execSQL(CREATE_ROOM_TABLE);
         db.execSQL(CREATE_SEAT_TABLE);
         db.execSQL(CREATE_RECENTWATCH_TABLE);
@@ -217,18 +251,43 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public void addReview(Review review){
         ContentValues values = new ContentValues();
-        values.put(REVIEW_COLUMN_TITLE, review.getTitle());
         values.put(REVIEW_COLUMN_RATING, review.getRating());
         values.put(REVIEW_COLUMN_REVIEW, review.getReview());
-        values.put(REVIEW_COLUMN_REVIEWID, review.getReviewID());
         values.put(REVIEW_COLUMN_USERNAME, review.getCustomerUsername());
         values.put(REVIEW_COLUMN_FILMID, review.getFilmID());
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(REVIEW_TABLE_NAME, null, values);
         db.close();
+    }
 
+    public ArrayList getReviews(int filmID) {
 
+        ArrayList<Review> reviews = new ArrayList<>();
+
+        String query = "SELECT * FROM " + REVIEW_TABLE_NAME + " WHERE " +
+                REVIEW_COLUMN_FILMID + "=" + filmID;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        //cursor.moveToFirst();
+
+        while(cursor.moveToNext() ) {
+            Review review = new Review();
+
+            review.setCustomerUsername(cursor.getString(cursor.getColumnIndex(REVIEW_COLUMN_USERNAME)));
+            review.setFilmID(cursor.getInt(cursor.getColumnIndex(REVIEW_COLUMN_FILMID)));
+            review.setRating(cursor.getFloat(cursor.getColumnIndex(REVIEW_COLUMN_RATING)));
+            review.setReview(cursor.getString(cursor.getColumnIndex(REVIEW_COLUMN_REVIEW)));
+
+            reviews.add(review);
+        }
+
+        db.close();
+
+        return reviews;
     }
 
     public void addRecentWatch(RecentWatch recentWatch){
@@ -237,7 +296,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(RECENTWATCH_COLUMN_FILMID, recentWatch.getFilmID());
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.insert(RECENT_WATCH_TABLE_NAME, null, values);
+        db.close();
+    }
+
+    public void addTicket(Ticket ticket){
+        ContentValues values = new ContentValues();
+        values.put(TICKET_COLUMN_AMOUNTSEATS, ticket.getAmountOfTickets());
+        values.put(TICKET_COLUMN_BUYDATE, ticket.getBuyDate());
+        values.put(TICKET_COLUMN_CUSTOMERUSERNAME, ticket.getUsername());
+        values.put(TICKET_COLUMN_FILMID, ticket.getFilmId());
+        values.put(TICKET_COLUMN_TICKETPRICE, ticket.getPrice());
+        values.put(TICKET_COLUMN_TICKETID, ticket.getTicketId());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TICKET_TABLE_NAME, null, values);
         db.close();
     }
 
@@ -265,7 +338,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(SCREENING_COLUMN_ROOMID, screening.getRoomID());
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.insert(SCREENING_TABLE_NAME, null, values);
         db.close();
 
 
@@ -279,7 +352,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.insert(ROOM_TABLE_NAME, null, values);
         db.close();
 
 
@@ -295,7 +368,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(REVIEW_TABLE_NAME, null, values);
+        db.insert(SEAT_TABLE_NAME, null, values);
         db.close();
 
     }
@@ -328,7 +401,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Customer customer = new Customer();
 
-        String query = "SELECT " + CUSTOMER_COLUMN_USERNAME + "," + CUSTOMER_COLUMN_FIRSTNAME + " FROM " + CUSTOMER_TABLE_NAME + " WHERE " +
+        String query = "SELECT " + CUSTOMER_COLUMN_FIRSTNAME + " FROM " + CUSTOMER_TABLE_NAME + " WHERE " +
                 CUSTOMER_COLUMN_USERNAME + "=" + "\"" + username + "\"";
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -339,30 +412,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Log.i("TAG", "before while");
 
         while(cursor.moveToNext() ) {
-
-
-
-
-
-            customer.setUsername(cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_USERNAME)));
             customer.setFirstName(cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_FIRSTNAME)));
-
             Log.i("TAG", "got customer");
-        }
-
-        ;
-
+        };
 
         db.close();
 
      return customer;
 
-
-
-
     }
-
-
-
-
 }

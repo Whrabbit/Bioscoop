@@ -1,5 +1,7 @@
 package com.example.whrabbit.bioscoop;
 
+import android.app.*;
+import android.app.Application;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordBox, userNameBox;
     TextView wrongPasswordView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -31,14 +34,13 @@ public class MainActivity extends AppCompatActivity {
         wrongPasswordView = (TextView) findViewById(R.id.wrongPasswordView);
         wrongPasswordView.setVisibility(View.INVISIBLE);
 
-
-
         registrationBttn = (Button) findViewById(R.id.registrationBttn);
         registrationBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), RegistrationActivity.class);
                 startActivity(i);
+                wrongPasswordView.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -48,23 +50,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String username = userNameBox.getText().toString();
+                Log.i("LOG", passwordBox.getText().toString());
 
-                if (!username.equals("") && !passwordBox.getText().toString().equals("")) {
-
+                if (userNameBox.getText().length() > 0 && passwordBox.getText().length() > 0) {
 
                     if (passwordBox.getText().toString().equals(dbh.getPassword(username))) {
                         Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                        ((MyApplication) getBaseContext().getApplicationContext()).setSignedInUsername(username);
                         startActivity(i);
+                        wrongPasswordView.setVisibility(View.INVISIBLE);
+
                     } else {
                         wrongPasswordView.setVisibility(View.VISIBLE);
                     }
-
                 } else {
                     wrongPasswordView.setVisibility(View.VISIBLE);
                 }
-
-
             }
         });
     }
-}
+    }
+
