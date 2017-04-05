@@ -1,5 +1,6 @@
 package com.example.whrabbit.bioscoop;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +28,7 @@ public class FilterActivity extends AppCompatActivity implements KeywordConnecto
     ArrayList<String> selected_keywords;
     ArrayList<Integer> possible_keyword_ids;
     ArrayList<Integer> selected_keyword_ids;
-    Button searchBtn;
+    Button searchBtn, filterBtn;
     EditText searchText;
 
     @Override
@@ -45,6 +46,17 @@ public class FilterActivity extends AppCompatActivity implements KeywordConnecto
         searchBtn = (Button) findViewById(R.id.discoverSearchBtnID);
         searchText = (EditText) findViewById(R.id.keywordSearchID);
 
+        filterBtn = (Button) findViewById(R.id.filterButtonID);
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent data = new Intent();
+                data.putExtra("KEYWORD_IDS", selected_keyword_ids);
+                setResult(RESULT_OK, data);
+                finish();
+            }
+        });
+
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,9 +70,22 @@ public class FilterActivity extends AppCompatActivity implements KeywordConnecto
         possibleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                selected_keywords.add(possible_keywords.get(i));
-                selected_keyword_ids.add(possible_keyword_ids.get(i));
-                selected_adapter.notifyDataSetChanged();
+                Boolean keywordAlreadyInList;
+                keywordAlreadyInList = false;
+
+                for (String keyword : selected_keywords) {
+                    if (keyword.equals(possible_keywords.get(i))){
+                        keywordAlreadyInList = true;
+                    }
+                }
+
+                if (!keywordAlreadyInList) {
+
+                    selected_keywords.add(possible_keywords.get(i));
+                    selected_keyword_ids.add(possible_keyword_ids.get(i));
+                    selected_adapter.notifyDataSetChanged();
+
+                }
 
                 possible_keywords.remove(i);
                 possible_keyword_ids.remove(i);
@@ -76,7 +101,7 @@ public class FilterActivity extends AppCompatActivity implements KeywordConnecto
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selected_keywords.remove(i);
                 selected_keyword_ids.remove(i);
-                possible_adapter.notifyDataSetChanged();
+                selected_adapter.notifyDataSetChanged();
             }
         });
     }

@@ -23,10 +23,13 @@ import java.util.ArrayList;
 
 public class FilmListActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, TMDBConnectorListener {
 
+    static final int PICK_FILTERS_REQUEST = 1;
+
     Spinner filterTypeSpinner, filterSpinner, sortBySpinner;
     ListView filmListView;
     FilmAdapter filmAdapter;
     ArrayList<Film> films;
+    ArrayList<Integer> keyword_ids;
     Button filmSearchBttn, bekekenBttn;
     EditText filmSearchBar;
     String sortBy = "";
@@ -41,6 +44,7 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.activity_film_list);
 
         films = new ArrayList<>();
+        keyword_ids = new ArrayList<>();
 
         discoverBtn = (Button) findViewById(R.id.discoverBtnID);
 
@@ -48,24 +52,14 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), FilterActivity.class);
-                startActivity(i);
+                startActivityForResult(i, PICK_FILTERS_REQUEST);
             }
         });
 
-//        filterTypeSpinner = (Spinner) findViewById(R.id.filterTypeSpinner);
-//        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.filterTypeSpinnerStrings, android.R.layout.simple_spinner_item);
-//        filterTypeSpinner.setAdapter(adapter);
-//        filterTypeSpinner.setOnItemSelectedListener(this);
-//
-//        filterSpinner = (Spinner) findViewById(R.id.filterSpinner);
-//        ArrayAdapter a = ArrayAdapter.createFromResource(this, R.array.filterSpinnerStrings, android.R.layout.simple_spinner_item);
-//        filterSpinner.setAdapter(a);
-//        filterSpinner.setOnItemSelectedListener(this);
-//
-//        sortBySpinner = (Spinner) findViewById(R.id.sortBySpinner);
-//        ArrayAdapter o = ArrayAdapter.createFromResource(this, R.array.sortBySpinnerStrings, android.R.layout.simple_spinner_item);
-//        sortBySpinner.setAdapter(o);
-//        sortBySpinner.setOnItemSelectedListener(this);
+        sortBySpinner = (Spinner) findViewById(R.id.sortBySpinner);
+        ArrayAdapter o = ArrayAdapter.createFromResource(this, R.array.sortBySpinnerStrings, android.R.layout.simple_spinner_item);
+        sortBySpinner.setAdapter(o);
+        sortBySpinner.setOnItemSelectedListener(this);
 
         filmSearchBar = (EditText) findViewById(R.id.filmSearchBar);
 
@@ -116,13 +110,14 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
 
                 films.clear();
 
-//            Calendar c = Calendar.getInstance();
-//            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
-//            String strDate = sdf.format(c.getTime());
-//            Log.i("date", strDate);
-
                 if (searchType.equals("discover")) {
-                    url = "https://api.themoviedb.org/3/discover/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&sort_by=" + sortBy + "&include_adult=false&include_video=false&page=1&with_release_type=1";
+                    String keywords = "&with_keywords=";
+
+                    for (Integer id : keyword_ids) {
+                        keywords += id + ",";
+                    }
+
+                    url = "https://api.themoviedb.org/3/discover/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&sort_by=" + sortBy + "&include_adult=false&include_video=false&page=1&with_release_type=1" + keywords;
                 } else if (searchType.equals("search")) {
                     url = "https://api.themoviedb.org/3/search/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&query=" + encSearch + "&page=1&include_adult=false";
                 }
@@ -161,5 +156,17 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
             films.clear();
         }
         filmAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PICK_FILTERS_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                ArrayList<Integer> result = data.getExtras().getIntegerArrayList("KEYWORD_IDS");
+                keyword_ids = result;
+                searchType = "discover";
+                getFilms("");
+            }
+        }
     }
 }
