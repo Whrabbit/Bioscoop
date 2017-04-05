@@ -32,6 +32,8 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
     String sortBy = "";
     String searchType = "";
 
+    Button discoverBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,20 +42,30 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
 
         films = new ArrayList<>();
 
-        filterTypeSpinner = (Spinner) findViewById(R.id.filterTypeSpinner);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.filterTypeSpinnerStrings, android.R.layout.simple_spinner_item);
-        filterTypeSpinner.setAdapter(adapter);
-        filterTypeSpinner.setOnItemSelectedListener(this);
+        discoverBtn = (Button) findViewById(R.id.discoverBtnID);
 
-        filterSpinner = (Spinner) findViewById(R.id.filterSpinner);
-        ArrayAdapter a = ArrayAdapter.createFromResource(this, R.array.filterSpinnerStrings, android.R.layout.simple_spinner_item);
-        filterSpinner.setAdapter(a);
-        filterSpinner.setOnItemSelectedListener(this);
+        discoverBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), FilterActivity.class);
+                startActivity(i);
+            }
+        });
 
-        sortBySpinner = (Spinner) findViewById(R.id.sortBySpinner);
-        ArrayAdapter o = ArrayAdapter.createFromResource(this, R.array.sortBySpinnerStrings, android.R.layout.simple_spinner_item);
-        sortBySpinner.setAdapter(o);
-        sortBySpinner.setOnItemSelectedListener(this);
+//        filterTypeSpinner = (Spinner) findViewById(R.id.filterTypeSpinner);
+//        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.filterTypeSpinnerStrings, android.R.layout.simple_spinner_item);
+//        filterTypeSpinner.setAdapter(adapter);
+//        filterTypeSpinner.setOnItemSelectedListener(this);
+//
+//        filterSpinner = (Spinner) findViewById(R.id.filterSpinner);
+//        ArrayAdapter a = ArrayAdapter.createFromResource(this, R.array.filterSpinnerStrings, android.R.layout.simple_spinner_item);
+//        filterSpinner.setAdapter(a);
+//        filterSpinner.setOnItemSelectedListener(this);
+//
+//        sortBySpinner = (Spinner) findViewById(R.id.sortBySpinner);
+//        ArrayAdapter o = ArrayAdapter.createFromResource(this, R.array.sortBySpinnerStrings, android.R.layout.simple_spinner_item);
+//        sortBySpinner.setAdapter(o);
+//        sortBySpinner.setOnItemSelectedListener(this);
 
         filmSearchBar = (EditText) findViewById(R.id.filmSearchBar);
 
