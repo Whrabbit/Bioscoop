@@ -9,7 +9,7 @@ public class Ticket {
     private String buyDate, username;
     private int ticketId, amountOfTickets, filmId, price;
 
-    public Ticket(String buyDate, String username, int ticketId, int amountOfTickets, int filmId, int price) {
+    public Ticket() {
         this.buyDate = "";
         this.username = "";
         this.ticketId = 0;

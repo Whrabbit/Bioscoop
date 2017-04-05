@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordBox, userNameBox;
     TextView wrongPasswordView;
 
+     
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (passwordBox.getText().toString().equals(dbh.getPassword(username))) {
                     Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+
                     startActivity(i);
                     wrongPasswordView.setVisibility(View.INVISIBLE);
 
