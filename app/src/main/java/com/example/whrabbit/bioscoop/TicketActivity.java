@@ -3,6 +3,7 @@ package com.example.whrabbit.bioscoop;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -50,7 +51,8 @@ public class TicketActivity extends AppCompatActivity {
 
                 final DatabaseHandler dbh = new DatabaseHandler(getApplicationContext(), null, null, 1);
                 Ticket ticket = new Ticket();
-                String username = ((MyApplication) this.getApplicationContext()).getSignedInUsername();
+                String username = ((MyApplication) getApplicationContext()).getSignedInUsername();
+                Log.i("TAG", username);
                 ticket.setUsername("");
                 ticket.setAmountOfTickets(aantalTickets);
                 ticket.setFilmId(film.getId());
