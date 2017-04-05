@@ -92,7 +92,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String TICKET_TABLE_NAME = "ticket";
 
-        private static final String TICKET_COLUMN_TICKETID = "_ticketId";
+        private static final String TICKET_COLUMN_TICKETID = "ticketId";
         private static final String TICKET_COLUMN_AMOUNTSEATS = "amountseats";
         private static final String TICKET_COLUMN_TICKETPRICE = "ticketprice";
         private static final String TICKET_COLUMN_BUYDATE = "buydate";
@@ -133,7 +133,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         String CREATE_TICKET_TABLE = "CREATE TABLE " + TICKET_TABLE_NAME + "(" +
-                TICKET_COLUMN_TICKETID + " INT PRIMARY KEY," +
+                TICKET_COLUMN_TICKETID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 TICKET_COLUMN_AMOUNTSEATS + " INTEGER," +
                 TICKET_COLUMN_BUYDATE + " TEXT," +
                 TICKET_COLUMN_CUSTOMERUSERNAME + " TEXT," +
@@ -262,18 +262,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList getTicket(String username){
+
+    public ArrayList<Ticket> getTickets(String username){
+
 
         ArrayList<Ticket> tickets = new ArrayList<>();
 
         String query = "SELECT * FROM " + TICKET_TABLE_NAME + " WHERE " +
-                TICKET_COLUMN_CUSTOMERUSERNAME + "=" + username;
+                TICKET_COLUMN_CUSTOMERUSERNAME + " =' " + username + "'";
+
+        String queryAll = "SELECT * FROM " + TICKET_TABLE_NAME ;
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor cursor = db.rawQuery(queryAll, null);
 
-        //cursor.moveToFirst();
+        cursor.moveToFirst();
 
         while(cursor.moveToNext() ) {
 
@@ -283,6 +287,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ticket.setAmountOfTickets(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_AMOUNTSEATS)));
             ticket.setPrice(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_TICKETPRICE)));
             ticket.setTicketId(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_TICKETID)));
+            
+            Log.i("TAG", "tickets query");
 
             tickets.add(ticket);
         }
@@ -292,6 +298,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         return tickets;
+    }
+
+
+    public String getFilmTitle(int filmId){
+
+        String title = "";
+        String query = "SELECT " + MOVIE_COLUMN_TITLE + " FROM " + MOVIE_TABLE_NAME + " WHERE " +
+                MOVIE_COLUMN_ID + " = " + filmId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        //cursor.moveToFirst();
+        Log.i("TAG", "before while");
+
+        while(cursor.moveToNext() ) {
+            title = (cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_FIRSTNAME)));
+            Log.i("TAG", "got customer");
+        };
+
+        db.close();
+
+        return title;
+
     }
 
     public ArrayList getReviews(int filmID) {
@@ -324,16 +355,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void addTicket(Ticket ticket){
+
+
+
         ContentValues values = new ContentValues();
         values.put(TICKET_COLUMN_AMOUNTSEATS, ticket.getAmountOfTickets());
         values.put(TICKET_COLUMN_BUYDATE, ticket.getBuyDate());
         values.put(TICKET_COLUMN_CUSTOMERUSERNAME, ticket.getUsername());
         values.put(TICKET_COLUMN_FILMID, ticket.getFilmId());
         values.put(TICKET_COLUMN_TICKETPRICE, ticket.getPrice());
-        values.put(TICKET_COLUMN_TICKETID, ticket.getTicketId());
+        //values.put(TICKET_COLUMN_TICKETID, ticket.getTicketId());
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TICKET_TABLE_NAME, null, values);
+
+
         db.close();
     }
 

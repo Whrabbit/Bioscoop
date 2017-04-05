@@ -49,16 +49,7 @@ public class TicketActivity extends AppCompatActivity {
                 startActivity(i);
 
 
-                final DatabaseHandler dbh = new DatabaseHandler(getApplicationContext(), null, null, 1);
-                Ticket ticket = new Ticket();
-                String username = ((MyApplication) getApplicationContext()).getSignedInUsername();
-                Log.i("TAG", username);
-                ticket.setUsername("");
-                ticket.setAmountOfTickets(aantalTickets);
-                ticket.setFilmId(film.getId());
-                ticket.setPrice(ticketPrijs);
-                ticket.setUsername(username);
-                dbh.addTicket(ticket);
+
 
             }
         });

@@ -12,7 +12,7 @@ public class Ticket {
     public Ticket() {
         this.buyDate = "";
         this.username = "";
-        this.ticketId = 0;
+        //this.ticketId = 0;
         this.amountOfTickets = 0;
         this.filmId = 0;
         this.price = 0;
