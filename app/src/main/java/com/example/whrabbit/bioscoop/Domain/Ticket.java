@@ -14,7 +14,7 @@ public class Ticket {
         this.username = "";
         this.ticketId = 0;
         this.amountOfTickets = 0;
-        this.filmId = 0;
+        //this.filmId = 0;
         this.price = 0;
     }
 

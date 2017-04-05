@@ -271,7 +271,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ArrayList<Ticket> tickets = new ArrayList<>();
 
         String query = "SELECT * FROM " + TICKET_TABLE_NAME + " WHERE " +
-                TICKET_COLUMN_CUSTOMERUSERNAME + "=" + username;
+                TICKET_COLUMN_CUSTOMERUSERNAME + " = " + username;
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -298,6 +298,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         return tickets;
+    }
+
+
+    public String getFilmTitle(int filmId){
+
+        String title = "";
+        String query = "SELECT " + MOVIE_COLUMN_TITLE + " FROM " + MOVIE_TABLE_NAME + " WHERE " +
+                MOVIE_COLUMN_ID + " = " + filmId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        //cursor.moveToFirst();
+        Log.i("TAG", "before while");
+
+        while(cursor.moveToNext() ) {
+            title = (cursor.getString(cursor.getColumnIndex(CUSTOMER_COLUMN_FIRSTNAME)));
+            Log.i("TAG", "got customer");
+        };
+
+        db.close();
+
+        return title;
+
     }
 
     public ArrayList getReviews(int filmID) {
@@ -340,6 +365,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void addTicket(Ticket ticket){
+
+
+
         ContentValues values = new ContentValues();
         values.put(TICKET_COLUMN_AMOUNTSEATS, ticket.getAmountOfTickets());
         values.put(TICKET_COLUMN_BUYDATE, ticket.getBuyDate());

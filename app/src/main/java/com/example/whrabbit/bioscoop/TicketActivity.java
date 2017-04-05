@@ -58,6 +58,7 @@ public class TicketActivity extends AppCompatActivity {
                 ticket.setFilmId(film.getId());
                 ticket.setPrice(ticketPrijs);
                 ticket.setUsername(username);
+                ticket.setBuyDate("5-4-2017");
                 dbh.addTicket(ticket);
 
             }
