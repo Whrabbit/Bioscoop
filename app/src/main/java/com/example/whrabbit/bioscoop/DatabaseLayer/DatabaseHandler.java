@@ -374,7 +374,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(TICKET_COLUMN_CUSTOMERUSERNAME, ticket.getUsername());
         values.put(TICKET_COLUMN_FILMID, ticket.getFilmId());
         values.put(TICKET_COLUMN_TICKETPRICE, ticket.getPrice());
-        values.put(TICKET_COLUMN_TICKETID, ticket.getTicketId());
+        //values.put(TICKET_COLUMN_TICKETID, ticket.getTicketId());
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TICKET_TABLE_NAME, null, values);
