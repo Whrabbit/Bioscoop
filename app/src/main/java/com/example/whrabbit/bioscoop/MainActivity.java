@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     TextView wrongPasswordView;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -51,21 +50,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String username = userNameBox.getText().toString();
-                Log.i("LOG",passwordBox.getText().toString());
+                Log.i("LOG", passwordBox.getText().toString());
 
-            if(userNameBox.getText().length() > 0 && passwordBox.getText().length() > 0) {
+                if (userNameBox.getText().length() > 0 && passwordBox.getText().length() > 0) {
 
-                if (passwordBox.getText().toString().equals(dbh.getPassword(username))) {
-                    Intent i = new Intent(getApplicationContext(), HomeActivity.class);
-                    ((MyApplication) getBaseContext().getApplicationContext()).setSignedInUsername(username);
-                    startActivity(i);
-                    wrongPasswordView.setVisibility(View.INVISIBLE);
+                    if (passwordBox.getText().toString().equals(dbh.getPassword(username))) {
+                        Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                        ((MyApplication) getBaseContext().getApplicationContext()).setSignedInUsername(username);
+                        startActivity(i);
+                        wrongPasswordView.setVisibility(View.INVISIBLE);
 
+                    } else {
+                        wrongPasswordView.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     wrongPasswordView.setVisibility(View.VISIBLE);
                 }
-            }else{
-                wrongPasswordView.setVisibility(View.VISIBLE);
             }
         });
     }
