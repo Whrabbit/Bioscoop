@@ -50,10 +50,9 @@
         android:id="@+id/wrongPasswordView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/wrongPassword"
         android:textColor="@color/colorAccent"
-        android:textStyle="bold"
-        tools:text="@string/wrongPassword" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/loginBttn"
