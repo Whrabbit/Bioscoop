@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordBox, userNameBox;
     TextView wrongPasswordView;
 
-     
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
