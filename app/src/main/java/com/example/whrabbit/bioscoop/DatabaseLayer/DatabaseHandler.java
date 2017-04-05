@@ -90,7 +90,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String TICKET_TABLE_NAME = "ticket";
 
-        private static final String TICKET_COLUMN_TICKETID = "_ticketId";
+        private static final String TICKET_COLUMN_TICKETID = "ticketId";
         private static final String TICKET_COLUMN_AMOUNTSEATS = "amountseats";
         private static final String TICKET_COLUMN_TICKETPRICE = "ticketprice";
         private static final String TICKET_COLUMN_BUYDATE = "buydate";
@@ -131,7 +131,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         String CREATE_TICKET_TABLE = "CREATE TABLE " + TICKET_TABLE_NAME + "(" +
-                TICKET_COLUMN_TICKETID + " INT PRIMARY KEY," +
+                TICKET_COLUMN_TICKETID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 TICKET_COLUMN_AMOUNTSEATS + " INTEGER," +
                 TICKET_COLUMN_BUYDATE + " TEXT," +
                 TICKET_COLUMN_CUSTOMERUSERNAME + " TEXT," +
@@ -262,7 +262,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList getTicket(String username){
+    public ArrayList getTickets(String username){
 
 
 
@@ -271,7 +271,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ArrayList<Ticket> tickets = new ArrayList<>();
 
         String query = "SELECT * FROM " + TICKET_TABLE_NAME + " WHERE " +
-                TICKET_COLUMN_CUSTOMERUSERNAME + " = " + username;
+                TICKET_COLUMN_CUSTOMERUSERNAME + " =' " + username + "'";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -288,7 +288,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ticket.setPrice(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_TICKETPRICE)));
             ticket.setTicketId(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_TICKETID)));
 
-
+            Log.i("TAG", "tickets query");
 
             tickets.add(ticket);
         }
@@ -378,6 +378,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TICKET_TABLE_NAME, null, values);
+        Log.i("TAG", "inserted ticket" + ticket.getTicketId());
+
         db.close();
     }
 

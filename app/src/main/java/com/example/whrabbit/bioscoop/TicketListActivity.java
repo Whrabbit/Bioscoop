@@ -19,25 +19,30 @@ public class TicketListActivity extends AppCompatActivity {
 
     ListView ticketListView;
 
-    private TicketAdapter ticketAdapter;
+    private TicketAdapter ticketAdapter ;
+    private ArrayList<Ticket> tickets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_list);
 
+        ticketListView = (ListView) findViewById(R.id.ticketListView);
+
         final DatabaseHandler db = new DatabaseHandler(getApplicationContext(), null, null, 1);
 
-        ArrayList<Ticket> tickets = new ArrayList<>();
+        tickets = new ArrayList<>();
 
-        tickets = db.getTicket(((MyApplication) getApplicationContext()).getSignedInUsername());
+        tickets = db.getTickets(((MyApplication) getApplicationContext()).getSignedInUsername());
+
+
 
         ticketAdapter = new TicketAdapter(getApplicationContext(), tickets);
         ticketListView.setAdapter(ticketAdapter);
 
         ticketAdapter.notifyDataSetChanged();
 
-        ticketListView = (ListView) findViewById(R.id.ticketListView);
+
         ticketListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
