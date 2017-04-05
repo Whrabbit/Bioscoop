@@ -2,53 +2,72 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/userRealName"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_height="wrap_content"
+        android:paddingEnd="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
         android:text="@string/userRealName"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/userName"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_height="wrap_content"
+        android:paddingEnd="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
         android:text="@string/userName"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/ratingText"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:paddingEnd="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingStart="5dp"
+        android:paddingTop="20dp"
         android:text="@string/ratingText"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <RatingBar
         android:id="@+id/ratingBar"
-        style="@style/Widget.AppCompat.RatingBar.Small"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:clickable="true"
         android:numStars="5"
-        android:rating="3"
         android:stepSize="1" />
 
     <EditText
         android:id="@+id/reviewBox"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="5dp"
         android:layout_weight="6"
-        android:background="@drawable/full_border"
+        android:background="@drawable/border_top_bottom"
         android:ems="10"
         android:gravity="start"
-        android:inputType="textMultiLine" >
+        android:hint="@string/reviewBox"
+        android:inputType="textMultiLine"
+        android:padding="5dp">
 
         <requestFocus />
     </EditText>
