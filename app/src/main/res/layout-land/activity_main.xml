@@ -45,6 +45,13 @@
         android:inputType="textPassword"
         android:textSize="16sp" />
 
+    <TextView
+        android:id="@+id/wrongPasswordView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/wrongPassword"
+        android:textColor="@color/colorAccent" />
+
     <Button
         android:id="@+id/loginBttn"
         android:layout_width="wrap_content"
