@@ -11,14 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.whrabbit.bioscoop.API.ImageAdapter;
-import com.example.whrabbit.bioscoop.API.Seats;
-
-import java.util.List;
 
 public class SelectSeatsActivity extends AppCompatActivity {
-    public List<Seats> selectedSeats;
-    private static final int MAX_SEATS = 5;
     private Button payBtn;
+    private int seat;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,57 +30,41 @@ public class SelectSeatsActivity extends AppCompatActivity {
                                     int position, long id) {
                 ImageView imageView;
                 imageView = (ImageView) v;
-                Seats seatMo = null;
-                imageView.setImageResource(R.drawable.seat_selected);
+
+                //imageView.setImageResource(R.drawable.seat_selected);
                 TextView tv = (TextView) findViewById(R.id.selected_seat);
                 tv.setText(" " + position);
+                seat = position;
+
+                boolean flag=false;
+
+                if (!flag) {
+                    imageView.setImageResource(R.drawable.seat_selected);
+                    flag=true;
+                }
+                else {
+                    imageView.setImageResource(R.drawable.seat_sale);
+                    flag=false;
+                }
+
 
                 payBtn = (Button) findViewById(R.id.payBtn);
                 payBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(getApplicationContext(), PaymentActivity.class);
+                        i.putExtras(getIntent().getExtras());
+                        i.putExtra("SEAT", seat);
                         startActivity(i);
+
+
+
                     }
                 });
 
-
-
-
-
-//                if (seats != null) {
-//                        imageView.setImageResource(R.drawable.seat_selected);
-//                    } else seats = null; {
-//                        imageView.setImageResource(R.drawable.seat_sale);
-//                    }
-//                }
-
-//                if (seatMo != null) {
-//                    if (seatMo.isOnSale()) {
-//                        if (selectedSeats.size() < MAX_SEATS) {
-//                            seatMo.setSelected();
-//                            selectedSeats.add(seatMo);
-//                            imageView.setImageResource(R.drawable.seat_selected);
-//                        } else {
-//                            Toast.makeText(SelectSeats.this, "" + MAX_SEATS, Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                    } else if (seatMo.isSelected()) {
-//                        seatMo.setOnSale();
-//                        selectedSeats.remove(seatMo);
-//                        imageView.setImageResource(R.drawable.seat_sale);
-//
-//                    }
-//                }
 
             }
         });
     }
 }
 
-
-//    public boolean onClickSeat(int row, int column, BaseSeatMo seat) {
-//        Seats seatMo;
-//
-//
-//    }

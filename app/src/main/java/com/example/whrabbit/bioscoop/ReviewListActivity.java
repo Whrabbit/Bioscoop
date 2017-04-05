@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.whrabbit.bioscoop.API.Film;
+import com.example.whrabbit.bioscoop.DatabaseLayer.DatabaseHandler;
+import com.example.whrabbit.bioscoop.Domain.Review;
+import com.example.whrabbit.bioscoop.Domain.ReviewAdapter;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 /**
  * Created by mark on 2-4-2017.
@@ -22,11 +26,18 @@ public class ReviewListActivity extends AppCompatActivity {
     private ImageView filmBackdrop;
     private Bundle extra;
     private Film film;
+    private ListView reviewsList;
+    private ReviewAdapter reviewAdapter;
+    private ArrayList<Review> reviews;
+
+    private DatabaseHandler dbh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_list);
+
+        dbh = new DatabaseHandler(getApplicationContext(), null, null, 1);
 
         extra = getIntent().getExtras();
         film = extra.getParcelable("FILM");
@@ -68,5 +79,23 @@ public class ReviewListActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        reviewsList = (ListView) findViewById(R.id.reviewsList);
+
+        reviews = new ArrayList<>();
+        reviews = dbh.getReviews(film.getId());
+
+        reviewAdapter = new ReviewAdapter(getApplicationContext(), reviews);
+        reviewsList.setAdapter(reviewAdapter);
+
+        reviewAdapter.notifyDataSetChanged();
     }
+
+    /*
+    @Override
+    public void onReviewAvailable(Review review) {
+        reviews.add(review);
+        reviewAdapter.notifyDataSetChanged();
+    }
+    */
 }
