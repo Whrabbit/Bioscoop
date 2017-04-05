@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.CallSuper;
 import android.util.Log;
 
+import com.example.whrabbit.bioscoop.API.Film;
 import com.example.whrabbit.bioscoop.Domain.Customer;
 import com.example.whrabbit.bioscoop.Domain.RecentWatch;
 import com.example.whrabbit.bioscoop.Domain.Review;
@@ -16,6 +17,7 @@ import com.example.whrabbit.bioscoop.Domain.Screening;
 import com.example.whrabbit.bioscoop.Domain.Seat;
 import com.example.whrabbit.bioscoop.Domain.Ticket;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -201,9 +203,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_RECENTWATCH_TABLE = "CREATE TABLE " + RECENT_WATCH_TABLE_NAME + "(" +
                 RECENTWATCH_COLUMN_USERNAME + " TEXT," +
                 RECENTWATCH_COLUMN_FILMID + " INTEGER," +
-                "FOREIGN KEY (" + RECENTWATCH_COLUMN_FILMID + ") REFERENCES " +
-                MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")," +
-
+                "PRIMARY KEY (" + RECENTWATCH_COLUMN_FILMID + ", " + RECENTWATCH_COLUMN_USERNAME + ")," +
                 "FOREIGN KEY (" + RECENTWATCH_COLUMN_USERNAME + ") REFERENCES " +
                 CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME+ ")" +
                 ")"
@@ -264,10 +264,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public ArrayList getTicket(String username){
 
-
-
-
-
         ArrayList<Ticket> tickets = new ArrayList<>();
 
         String query = "SELECT * FROM " + TICKET_TABLE_NAME + " WHERE " +
@@ -287,8 +283,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ticket.setAmountOfTickets(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_AMOUNTSEATS)));
             ticket.setPrice(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_TICKETPRICE)));
             ticket.setTicketId(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_TICKETID)));
-
-
 
             tickets.add(ticket);
         }
@@ -329,16 +323,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return reviews;
     }
 
-    public void addRecentWatch(RecentWatch recentWatch){
-        ContentValues values = new ContentValues();
-        values.put(RECENTWATCH_COLUMN_USERNAME, recentWatch.getCustomerUsername());
-        values.put(RECENTWATCH_COLUMN_FILMID, recentWatch.getFilmID());
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(RECENT_WATCH_TABLE_NAME, null, values);
-        db.close();
-    }
-
     public void addTicket(Ticket ticket){
         ContentValues values = new ContentValues();
         values.put(TICKET_COLUMN_AMOUNTSEATS, ticket.getAmountOfTickets());
@@ -353,7 +337,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void getRecentWatch(String username) {
+    public void addRecentWatch(RecentWatch recentWatch){
+        ContentValues values = new ContentValues();
+        values.put(RECENTWATCH_COLUMN_USERNAME, recentWatch.getCustomerUsername());
+        values.put(RECENTWATCH_COLUMN_FILMID, recentWatch.getFilmID());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(RECENT_WATCH_TABLE_NAME, null, values);
+        db.close();
+    }
+
+    public ArrayList getRecentWatch(String username) {
+
+        ArrayList<RecentWatch> history = new ArrayList<>();
+
         String query = "SELECT * FROM " + RECENT_WATCH_TABLE_NAME + " WHERE " +
                 RECENTWATCH_COLUMN_USERNAME + "=" + "\"" + username + "\"";
 
@@ -361,14 +358,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(query, null);
 
-        cursor.moveToFirst();
+        //cursor.moveToFirst();
 
         while(cursor.moveToNext() ) {
-            Log.i(TAG, cursor.getString(   cursor.getColumnIndex(RECENTWATCH_COLUMN_USERNAME)));
-            Log.i(TAG, cursor.getString(cursor.getColumnIndex(RECENTWATCH_COLUMN_FILMID)));
-            Log.i(TAG, "--------------------------------------------");
+            RecentWatch recentWatch = new RecentWatch();
+
+            recentWatch.setCustomerUsername(cursor.getString(cursor.getColumnIndex(RECENTWATCH_COLUMN_USERNAME)));
+            recentWatch.setFilmID(cursor.getInt(cursor.getColumnIndex(RECENTWATCH_COLUMN_FILMID)));
+
+            history.add(recentWatch);
         }
+
         db.close();
+
+        return history;
     }
 
     public void addScreening(Screening screening){

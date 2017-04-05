@@ -71,4 +71,5 @@
     <string name="passwordEnterView">Wachtwoord:</string>
     <string name="ticketPayText">Betalen met</string>
     <string name="wrongPassword">Gebruikersnaam of wachtwoord fout.</string>
+    <string name="historyAddBttn">Toevoegen aan geschiedenis</string>
 </resources>
