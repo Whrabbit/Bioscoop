@@ -9,6 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.whrabbit.bioscoop.API.DetailApiConnector;
+import com.example.whrabbit.bioscoop.API.Film;
+import com.example.whrabbit.bioscoop.API.TMDBConnectorListener;
 import com.example.whrabbit.bioscoop.DatabaseLayer.DatabaseHandler;
 import com.example.whrabbit.bioscoop.Domain.ReviewAdapter;
 import com.example.whrabbit.bioscoop.Domain.Ticket;
@@ -16,7 +19,7 @@ import com.example.whrabbit.bioscoop.Domain.TicketAdapter;
 
 import java.util.ArrayList;
 
-public class TicketListActivity extends AppCompatActivity {
+public class TicketListActivity extends AppCompatActivity implements TMDBConnectorListener {
 
     ListView ticketListView;
 
@@ -28,6 +31,10 @@ public class TicketListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_list);
 
+
+
+
+
         ticketListView = (ListView) findViewById(R.id.ticketListView);
 
         final DatabaseHandler db = new DatabaseHandler(getApplicationContext(), null, null, 1);
@@ -36,12 +43,12 @@ public class TicketListActivity extends AppCompatActivity {
 
         tickets = db.getTickets(((MyApplication) getApplicationContext()).getSignedInUsername());
 
-        Ticket tic = db.getTickets(((MyApplication) getApplicationContext()).getSignedInUsername()).get(0);
 
-        for(Ticket t: tickets){
-            Log.i("ARRAY", "" + t );
-        }
-        Log.i("ARRAY", "" + tic.getFilmId()  );
+
+
+
+
+
 
         ticketAdapter = new TicketAdapter(getApplicationContext(), tickets);
         ticketListView.setAdapter(ticketAdapter);
@@ -58,4 +65,8 @@ public class TicketListActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onFilmsAvailable(Film film) {
+
+    }
 }

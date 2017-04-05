@@ -2,6 +2,7 @@ package com.example.whrabbit.bioscoop.Domain;
 
 import android.content.Context;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,7 @@ public class TicketAdapter extends ArrayAdapter<Ticket> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
 
-        final DatabaseHandler db = new DatabaseHandler(getContext(), null, null, 1);
+
 
         Ticket ticket = getItem(position);
 
@@ -36,14 +37,19 @@ public class TicketAdapter extends ArrayAdapter<Ticket> {
 
         }
 
+
+
         TextView filmTicketTitle = (TextView) convertView.findViewById(R.id.filmTicketTitle);
-        filmTicketTitle.setText(  db.getFilmTitle(ticket.getFilmId()));
+        filmTicketTitle.setText( "" +  ticket.getTitle());
+
 
         TextView filmTicketAmount = (TextView) convertView.findViewById(R.id.filmTicketAmount);
-        filmTicketAmount.setText("" + ticket.getPrice());
+        filmTicketAmount.setText("" + ticket.getAmountOfTickets());
+
 
         TextView filmTicketDate = (TextView) convertView.findViewById(R.id.filmTicketDate);
-        filmTicketDate.setText(ticket.getBuyDate());
+        filmTicketDate.setText("" + ticket.getBuyDate());
+
 
 
 

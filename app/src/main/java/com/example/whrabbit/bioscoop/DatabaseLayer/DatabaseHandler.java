@@ -98,6 +98,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         private static final String TICKET_COLUMN_BUYDATE = "buydate";
         private static final String TICKET_COLUMN_CUSTOMERUSERNAME = "customerId";
         private static final String TICKET_COLUMN_FILMID = "filmId";
+        private static final String TICKET_COLUMN_FILMTITLE = "filmTitle";
 
 
     public DatabaseHandler (Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
@@ -139,6 +140,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 TICKET_COLUMN_CUSTOMERUSERNAME + " TEXT," +
                 TICKET_COLUMN_TICKETPRICE + " INTEGER," +
                 TICKET_COLUMN_FILMID + " INTEGER," +
+                TICKET_COLUMN_FILMTITLE + " TEXT," +
 
                 "FOREIGN KEY (" + TICKET_COLUMN_CUSTOMERUSERNAME + ") REFERENCES " +
                 CUSTOMER_TABLE_NAME + "(" + CUSTOMER_COLUMN_USERNAME + ")," +
@@ -281,7 +283,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(queryAll, null);
 
-        cursor.moveToFirst();
+        //cursor.moveToFirst();
 
         while(cursor.moveToNext() ) {
 
@@ -291,8 +293,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ticket.setAmountOfTickets(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_AMOUNTSEATS)));
             ticket.setPrice(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_TICKETPRICE)));
             ticket.setTicketId(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_TICKETID)));
-            
-            Log.i("TAG", "tickets query");
+            ticket.setTitle(cursor.getString(cursor.getColumnIndex(TICKET_COLUMN_FILMTITLE)));
+            ticket.setBuyDate(cursor.getString(cursor.getColumnIndex(TICKET_COLUMN_BUYDATE)));
 
             tickets.add(ticket);
         }
@@ -368,7 +370,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(TICKET_COLUMN_CUSTOMERUSERNAME, ticket.getUsername());
         values.put(TICKET_COLUMN_FILMID, ticket.getFilmId());
         values.put(TICKET_COLUMN_TICKETPRICE, ticket.getPrice());
-        //values.put(TICKET_COLUMN_TICKETID, ticket.getTicketId());
+        values.put(TICKET_COLUMN_FILMTITLE, ticket.getTitle());
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TICKET_TABLE_NAME, null, values);

@@ -6,7 +6,7 @@ package com.example.whrabbit.bioscoop.Domain;
 
 public class Ticket {
 
-    private String buyDate, username;
+    private String buyDate, username, title;
     private int ticketId, amountOfTickets, filmId, price;
 
     public Ticket() {
@@ -16,6 +16,14 @@ public class Ticket {
         this.amountOfTickets = 0;
         this.filmId = 0;
         this.price = 0;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getBuyDate() {
