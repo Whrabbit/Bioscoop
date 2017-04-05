@@ -47,7 +47,7 @@
 
         <TextView
             android:id="@+id/selected_seat"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@android:color/white" />
@@ -63,7 +63,7 @@
 
         <TextView
             android:id="@+id/ticketPayText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/ticketPayText"
@@ -77,7 +77,7 @@
 
         <TextView
             android:id="@+id/ticketPayView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/ticketPayView"
