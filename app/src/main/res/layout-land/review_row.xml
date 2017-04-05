@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingEnd="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingStart="10dp"
+    android:paddingTop="5dp">
 
     <TextView
         android:id="@+id/reviewerName"
@@ -11,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/reviewerName"
+        android:textColor="@android:color/white"
         android:textSize="16sp" />
 
     <RatingBar
@@ -29,7 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView"
+        android:text="@string/reviewText"
+        android:textColor="@android:color/white"
         android:textSize="14sp" />
 
 </LinearLayout>
