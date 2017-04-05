@@ -48,13 +48,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String username = userNameBox.getText().toString();
-                Log.i("LOG",passwordBox.getText().toString());
+
+                if (!username.equals("") && !passwordBox.getText().toString().equals("")) {
 
 
-                if(passwordBox.getText().toString().equals(dbh.getPassword(username)) ) {
-                    Intent i = new Intent(getApplicationContext(), HomeActivity.class);
-                    startActivity(i);
-                }else{
+                    if (passwordBox.getText().toString().equals(dbh.getPassword(username))) {
+                        Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(i);
+                    } else {
+                        wrongPasswordView.setVisibility(View.VISIBLE);
+                    }
+
+                } else {
                     wrongPasswordView.setVisibility(View.VISIBLE);
                 }
 

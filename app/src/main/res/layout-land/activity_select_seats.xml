@@ -14,7 +14,8 @@
         android:columnWidth="75dp"
         android:gravity="center"
         android:numColumns="10"
-        android:stretchMode="spacingWidth" />
+        android:stretchMode="spacingWidth"
+        android:listSelector="@android:color/transparent"/>
 
     <LinearLayout
         android:layout_width="match_parent"
