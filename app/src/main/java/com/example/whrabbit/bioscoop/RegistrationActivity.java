@@ -75,6 +75,10 @@ public class RegistrationActivity extends AppCompatActivity {
                 Email.setText("");
 
 
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
+
+
 
 
 
