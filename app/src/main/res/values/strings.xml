@@ -53,7 +53,7 @@
     <string name="makeReviewBttn">Write Review</string>
     <string name="filmBackdrop" translatable="false">Backdrop Film</string>
     <string name="userImage" translatable="false">Person Image of User</string>
-    <string name="reviewBox">Write a review...</string>
+    <string name="reviewBox">Your review here...</string>
     <string name="userName">Logged in as:</string>
     <string name="userRealName">Name:</string>
     <string name="reviewSubmitBttn">Submit Review</string>

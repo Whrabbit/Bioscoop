@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.whrabbit.bioscoop.API.Film;
@@ -22,6 +23,7 @@ public class ReviewActivity extends AppCompatActivity {
 
     TextView userName, userRealName;
     EditText reviewBox;
+    RatingBar ratingBar;
     Button reviewSubmitBttn;
     DatabaseHandler dbh;
     String username;
@@ -39,6 +41,7 @@ public class ReviewActivity extends AppCompatActivity {
         userName = (TextView) findViewById(R.id.userName);
         userRealName = (TextView) findViewById(R.id.userRealName);
         reviewBox = (EditText) findViewById(R.id.reviewBox);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
         userName.setText("");
         userRealName.setText("");
@@ -65,7 +68,7 @@ public class ReviewActivity extends AppCompatActivity {
 
                 r.setReview(reviewBox.getText().toString());
                 r.setFilmID(film.getId());
-                //r.setRating();
+                r.setRating(ratingBar.getRating());
                 r.setCustomerUsername(username);
 
                 dbh.addReview(r);

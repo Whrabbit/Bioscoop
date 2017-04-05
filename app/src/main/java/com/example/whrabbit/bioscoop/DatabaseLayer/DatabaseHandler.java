@@ -245,7 +245,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
             review.setCustomerUsername(cursor.getString(cursor.getColumnIndex(REVIEW_COLUMN_USERNAME)));
             review.setFilmID(cursor.getInt(cursor.getColumnIndex(REVIEW_COLUMN_FILMID)));
-            review.setRating(cursor.getInt(cursor.getColumnIndex(REVIEW_COLUMN_RATING)));
+            review.setRating(cursor.getFloat(cursor.getColumnIndex(REVIEW_COLUMN_RATING)));
             review.setReview(cursor.getString(cursor.getColumnIndex(REVIEW_COLUMN_REVIEW)));
 
             reviews.add(review);
