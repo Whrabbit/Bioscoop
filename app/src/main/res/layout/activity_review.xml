@@ -36,7 +36,6 @@
         android:layout_height="0dp"
         android:layout_weight="0.5"
         android:numStars="5"
-        android:rating="3"
         android:stepSize="1" />
 
     <EditText
