@@ -111,5 +111,6 @@
     <string name="passwordEnterView">Password:</string>
     <string name="wrongPassword">Username or password is invalid.</string>
     <string name="reviewText" translatable="false">Review</string>
+    <string name="historyAddBttn">Add to History</string>
 
 </resources>

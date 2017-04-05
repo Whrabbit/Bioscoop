@@ -13,6 +13,8 @@ import com.example.whrabbit.bioscoop.API.ApiConnector;
 import com.example.whrabbit.bioscoop.API.DetailApiConnector;
 import com.example.whrabbit.bioscoop.API.Film;
 import com.example.whrabbit.bioscoop.API.TMDBConnectorListener;
+import com.example.whrabbit.bioscoop.DatabaseLayer.DatabaseHandler;
+import com.example.whrabbit.bioscoop.Domain.RecentWatch;
 import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
@@ -25,13 +27,18 @@ import java.util.ArrayList;
 
 public class FilmInfoActivity extends AppCompatActivity implements TMDBConnectorListener{
 
-    private Button ticketsTabBttn, reviewsTabBttn;
+    private Button ticketsTabBttn, reviewsTabBttn, historyBttn;
     private TextView infoTitle, infoRelease, infoAge, infoLanguage, infoRuntime, infoGenre, infoDirector, infoRating, infoPlot;
     private ImageView filmBackdrop;
     private String genres;
     private Bundle extra;
     private Film film;
     private ArrayList genreList;
+
+    private int FilmID;
+    private String username;
+
+    private DatabaseHandler dbh;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +98,30 @@ public class FilmInfoActivity extends AppCompatActivity implements TMDBConnector
             }
         });
 
+        historyBttn = (Button) findViewById(R.id.historyBttn);
+        historyBttn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dbh = new DatabaseHandler(getApplicationContext(), null, null, 1);
+
+                RecentWatch recentWatch = new RecentWatch();
+                FilmID = film.getId();
+                username = ((MyApplication) getBaseContext().getApplicationContext()).getSignedInUsername();
+
+                recentWatch.setCustomerUsername(username);
+                recentWatch.setFilmID(FilmID);
+
+                dbh.addRecentWatch(recentWatch);
+
+                //Intent i = new Intent(getApplicationContext(), FilmListActivityHistory.class);
+                //i.putExtra("FILM", film);
+            }
+        });
+
         getFilmInfo();
+
+
     }
 
     public void getFilmInfo() {
