@@ -34,14 +34,28 @@
             android:text="@string/bekekenBttnString"
             android:textAlignment="center"
             tools:ignore="ButtonStyle" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/discoverBtnID"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="DISCOVER" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/discoverBtnID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Filters" />
+
+        <Spinner
+            android:id="@+id/sortBySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,6 +90,8 @@
         <ListView
             android:id="@+id/filmListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
     </LinearLayout>
+
 </LinearLayout>

@@ -80,6 +80,8 @@ public class ApiConnector extends AsyncTask<String, Void, JSONObject> {
 
                     JSONArray films = json.getJSONArray("results");
 
+                if(!films.equals(null) || films.length() == 0) {
+
                     for (int i = 0; i < films.length(); i++) {
 
                         film = new Film();
@@ -100,6 +102,9 @@ public class ApiConnector extends AsyncTask<String, Void, JSONObject> {
                         listener.onFilmsAvailable(film);
 
                     }
+                } else {
+                    listener.onFilmsAvailable(null);
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();

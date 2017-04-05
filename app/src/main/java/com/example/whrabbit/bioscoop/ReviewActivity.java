@@ -58,8 +58,6 @@ public class ReviewActivity extends AppCompatActivity {
         reviewSubmitBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(getApplicationContext(), ReviewListActivity.class);
-//                startActivity(i);
 
                 extra = getIntent().getExtras();
                 film = extra.getParcelable("FILM");
@@ -75,6 +73,9 @@ public class ReviewActivity extends AppCompatActivity {
 
                 reviewBox.setText("");
 
+                Intent i = new Intent(getApplicationContext(), ReviewListActivity.class);
+                i.putExtra("FILM", film);
+                startActivity(i);
             }
         });
     }
