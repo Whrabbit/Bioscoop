@@ -46,14 +46,16 @@ public class PaymentActivity extends AppCompatActivity {
                 Film film = getIntent().getExtras().getParcelable("FILM");
                 Ticket ticket = new Ticket();
                 String username = ((MyApplication) getApplicationContext()).getSignedInUsername();
-                Log.i("TAG", username);
-                ticket.setUsername("");
+
+
                 ticket.setAmountOfTickets(aantalTickets);
                 ticket.setFilmId(film.getId());
                 ticket.setPrice(ticketPrijs);
                 ticket.setUsername(username);
                 ticket.setBuyDate("5-4-2017");
+                ticket.setTitle(film.getTitle());
                 dbh.addTicket(ticket);
+
 
             }
         });
