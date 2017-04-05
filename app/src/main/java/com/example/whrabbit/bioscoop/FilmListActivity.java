@@ -113,11 +113,13 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
                 if (searchType.equals("discover")) {
                     String keywords = "&with_keywords=";
 
-                    for (Integer id : keyword_ids) {
-                        keywords += id + ",";
+                    if (!keyword_ids.equals(null)) {
+                        for (Integer id : keyword_ids) {
+                            keywords += id + ",";
+                        }
                     }
 
-                    url = "https://api.themoviedb.org/3/discover/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&sort_by=" + sortBy + "&include_adult=false&include_video=false&page=1&with_release_type=1" + keywords;
+                    url = "https://api.themoviedb.org/3/discover/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&sort_by=" + sortBy + "&include_adult=false&include_video=false&page=1&with_release_type=2|3" + keywords;
                 } else if (searchType.equals("search")) {
                     url = "https://api.themoviedb.org/3/search/movie?api_key=863618e1d5c5f5cc4e34a37c49b8338e&language=en-US&query=" + encSearch + "&page=1&include_adult=false";
                 }
@@ -166,6 +168,7 @@ public class FilmListActivity extends AppCompatActivity implements AdapterView.O
                 keyword_ids = result;
                 searchType = "discover";
                 getFilms("");
+                filmAdapter.notifyDataSetChanged();
             }
         }
     }

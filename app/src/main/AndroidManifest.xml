@@ -74,7 +74,8 @@
         <activity
             android:name=".ReviewListActivity"
             android:noHistory="true" />
-        <activity android:name=".ReviewActivity" />
+        <activity android:name=".ReviewActivity"
+            android:noHistory="true" />
         <activity
             android:name=".FilmInfoActivity"
             android:noHistory="true" />

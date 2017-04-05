@@ -261,6 +261,45 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+
+    public ArrayList getTicket(String username){
+
+
+
+
+
+        ArrayList<Ticket> tickets = new ArrayList<>();
+
+        String query = "SELECT * FROM " + TICKET_TABLE_NAME + " WHERE " +
+                TICKET_COLUMN_CUSTOMERUSERNAME + "=" + username;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        //cursor.moveToFirst();
+
+        while(cursor.moveToNext() ) {
+
+            Ticket ticket = new Ticket();
+
+            ticket.setFilmId(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_FILMID)));
+            ticket.setAmountOfTickets(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_AMOUNTSEATS)));
+            ticket.setPrice(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_TICKETPRICE)));
+            ticket.setTicketId(cursor.getInt(cursor.getColumnIndex(TICKET_COLUMN_TICKETID)));
+
+
+
+            tickets.add(ticket);
+        }
+
+        db.close();
+
+
+
+        return tickets;
+    }
+
     public ArrayList getReviews(int filmID) {
 
         ArrayList<Review> reviews = new ArrayList<>();
