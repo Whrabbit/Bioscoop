@@ -1,10 +1,13 @@
 package com.example.whrabbit.bioscoop.Domain;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Mika Krooswijk on 5-4-2017.
  */
 
-public class Ticket {
+public class Ticket implements Parcelable{
 
     private String buyDate, username, title;
     private int ticketId, amountOfTickets, filmId, price;
@@ -17,6 +20,42 @@ public class Ticket {
         this.filmId = 0;
         this.price = 0;
     }
+
+    private Ticket(Parcel in) {
+        buyDate = in.readString();
+        username = in.readString();
+        amountOfTickets = in.readInt();
+        filmId = in.readInt();
+        price = in.readInt();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(buyDate);
+        out.writeString(username);
+        out.writeInt(amountOfTickets);
+        out.writeInt(filmId);
+        out.writeInt(price);
+    }
+
+    public static final Parcelable.Creator<Ticket> CREATOR = new Parcelable.Creator<Ticket>() {
+
+        @Override
+        public Ticket createFromParcel(Parcel in) {
+            return new Ticket(in);
+        }
+
+        @Override
+        public Ticket[] newArray(int size) {
+            return new Ticket[size];
+        }
+
+    };
 
     public String getTitle() {
         return title;
