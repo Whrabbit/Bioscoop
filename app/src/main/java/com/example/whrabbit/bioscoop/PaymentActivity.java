@@ -43,7 +43,6 @@ public class PaymentActivity extends AppCompatActivity {
                 i.putExtras(getIntent().getExtras());
                 i.putExtra("FILM", film);
                 i.putExtra("PAYMENT_METHOD", paymentMethod);
-                startActivity(i);
 
                 int aantalTickets = getIntent().getExtras().getInt("AANTAL");
                 int ticketPrijs = getIntent().getExtras().getInt("PRICE");
@@ -60,8 +59,14 @@ public class PaymentActivity extends AppCompatActivity {
                 ticket.setUsername(username);
                 ticket.setBuyDate("5-4-2017");
                 ticket.setTitle(film.getTitle());
-                dbh.addTicket(ticket);
 
+
+                dbh.addTicket(ticket);
+                i.putExtra("t", ticket);
+                i.putExtra("title", ticket.getTitle());
+                Log.i("tag", ticket.getTitle());
+
+                startActivity(i);
 
             }
         });

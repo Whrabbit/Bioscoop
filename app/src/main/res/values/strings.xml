@@ -46,7 +46,7 @@
     <string name="detailQrImage" translatable="false">QR</string>
     <string name="detailBuyerName">Name:</string>
     <string name="detailBuyerAge">Age:</string>
-    <string name="detailBuyerSeat">Seat:</string>
+    <string name="detailBuyerSeat">Amount of tickets:</string>
     <string name="ticketsTabBttn">Tickets</string>
     <string name="reviewsTabBttn">Reviews</string>
     <string name="infoTabBttn" translatable="false">Info</string>

@@ -274,13 +274,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ArrayList<Ticket> tickets = new ArrayList<>();
 
         String query = "SELECT * FROM " + TICKET_TABLE_NAME + " WHERE " +
-                TICKET_COLUMN_CUSTOMERUSERNAME + " =' " + username + "'";
+                TICKET_COLUMN_CUSTOMERUSERNAME + "=" + "\"" + username + "\"";
 
         String queryAll = "SELECT * FROM " + TICKET_TABLE_NAME ;
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery(queryAll, null);
+        Cursor cursor = db.rawQuery(query, null);
 
         //cursor.moveToFirst();
 
