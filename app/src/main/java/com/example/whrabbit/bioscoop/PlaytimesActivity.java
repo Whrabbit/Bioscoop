@@ -24,6 +24,7 @@ public class PlaytimesActivity extends AppCompatActivity {
     private Bundle extra;
     private Film film;
     private ImageView filmBackdrop;
+    private Button buyButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class PlaytimesActivity extends AppCompatActivity {
             }
         });
 
-        playtimesList = (ListView) findViewById(R.id.playtimesList);
+       /* playtimesList = (ListView) findViewById(R.id.playtimesList);
         playtimesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -69,6 +70,17 @@ public class PlaytimesActivity extends AppCompatActivity {
                 i.putExtra("FILM", film);
                 startActivity(i);
             }
+        }); */
+
+        buyButton = (Button) findViewById(R.id.buyButton);
+        buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), TicketActivity.class);
+                i.putExtra("FILM", film);
+                startActivity(i);
+            }
         });
+
     }
 }
