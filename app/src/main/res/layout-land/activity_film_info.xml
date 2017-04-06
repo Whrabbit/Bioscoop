@@ -14,10 +14,10 @@
         app:srcCompat="@color/colorAccent" />
 
     <Button
-        android:id="@+id/gezienButton"
+        android:id="@+id/historyBttn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gezien" />
+        android:text="@string/historyAddBttn" />
 
     <LinearLayout
         android:layout_width="match_parent"
