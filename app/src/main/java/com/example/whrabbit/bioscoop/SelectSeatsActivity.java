@@ -21,6 +21,7 @@ public class SelectSeatsActivity extends AppCompatActivity {
     private Button payBtn;
     private int seat;
     private Map<Integer, Boolean> seatTakenMap;
+    int aantalSeatsTaken = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,8 @@ public class SelectSeatsActivity extends AppCompatActivity {
 
         final GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
+
+        final int aantalTickets = getIntent().getExtras().getInt("AANTAL");
 
 
         //Create a new HashMap the size of the GridView, containing an Integer and Boolean.
@@ -53,11 +56,15 @@ public class SelectSeatsActivity extends AppCompatActivity {
                 //Check whether the seat is taken or not, and change the image accordingly.
                 //After changing the image, set the Boolean to true/false.
                 if (!seatTakenMap.get(position)){
-                    imageView.setImageResource(R.drawable.seat_selected);
-                    seatTakenMap.put(position, true);
+                    if (aantalSeatsTaken < aantalTickets) {
+                        imageView.setImageResource(R.drawable.seat_selected);
+                        seatTakenMap.put(position, true);
+                        aantalSeatsTaken++;
+                    }
                 } else {
                     imageView.setImageResource(R.drawable.seat_sale);
                     seatTakenMap.put(position, false);
+                    aantalSeatsTaken--;
                 }
 
                 payBtn = (Button) findViewById(R.id.payBtn);
