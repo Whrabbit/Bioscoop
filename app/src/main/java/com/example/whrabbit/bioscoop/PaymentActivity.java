@@ -16,11 +16,16 @@ public class PaymentActivity extends AppCompatActivity {
     private Button finalBtn, idealBtn, paypalBtn, creditcardBtn;
     private TextView ticketPrijsNumber, selectedSeat, method;
     private String paymentMethod = "iDeal";
+    private Bundle extra;
+    private Film film;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+
+        extra = getIntent().getExtras();
+        film = extra.getParcelable("FILM");
 
         ticketPrijsNumber = (TextView) findViewById(R.id.ticketPrijsNumber);
         selectedSeat = (TextView) findViewById(R.id.selected_seat);
@@ -36,6 +41,7 @@ public class PaymentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), FinalActivity.class);
                 i.putExtras(getIntent().getExtras());
+                i.putExtra("FILM", film);
                 i.putExtra("PAYMENT_METHOD", paymentMethod);
                 startActivity(i);
 

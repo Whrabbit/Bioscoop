@@ -19,7 +19,7 @@ import com.example.whrabbit.bioscoop.Domain.TicketAdapter;
 
 import java.util.ArrayList;
 
-public class TicketListActivity extends AppCompatActivity implements TMDBConnectorListener {
+public class TicketListActivity extends AppCompatActivity {
 
     ListView ticketListView;
 
@@ -31,10 +31,6 @@ public class TicketListActivity extends AppCompatActivity implements TMDBConnect
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_list);
 
-
-
-
-
         ticketListView = (ListView) findViewById(R.id.ticketListView);
 
         final DatabaseHandler db = new DatabaseHandler(getApplicationContext(), null, null, 1);
@@ -43,18 +39,10 @@ public class TicketListActivity extends AppCompatActivity implements TMDBConnect
 
         tickets = db.getTickets(((MyApplication) getApplicationContext()).getSignedInUsername());
 
-
-
-
-
-
-
-
         ticketAdapter = new TicketAdapter(getApplicationContext(), tickets);
         ticketListView.setAdapter(ticketAdapter);
 
         ticketAdapter.notifyDataSetChanged();
-
 
         ticketListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -63,10 +51,5 @@ public class TicketListActivity extends AppCompatActivity implements TMDBConnect
                 startActivity(i);
             }
         });
-    }
-
-    @Override
-    public void onFilmsAvailable(Film film) {
-
     }
 }

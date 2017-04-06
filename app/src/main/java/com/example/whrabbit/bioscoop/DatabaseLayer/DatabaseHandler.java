@@ -148,7 +148,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 " FOREIGN KEY (" + TICKET_COLUMN_FILMID + ") REFERENCES " +
                 MOVIE_TABLE_NAME + "(" + MOVIE_COLUMN_ID + ")" +
                 ");"
-
                 ;
 
 

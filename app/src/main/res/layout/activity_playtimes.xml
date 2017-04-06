@@ -57,9 +57,9 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/buyButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Order Tickets" />
+        android:id="@+id/buyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order Tickets" />
     </LinearLayout>
 </LinearLayout>
